@@ -1,0 +1,156 @@
+// src/components/Header.tsx
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import { ShoppingCart, Menu, Globe, Trash2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useCart } from "@/context/CartContext";
+
+const navLinks = [
+  { href: "/", label: "Inicio" },
+  { href: "/#experiencias", label: "Experiencias" },
+  { href: "/#contacto", label: "Contacto" },
+];
+
+export function Header() {
+  const [language, setLanguage] = useState<"ES" | "EN">("ES");
+  const [showMiniCart, setShowMiniCart] = useState(false);
+  const { cart, removeFromCart, getItemCount } = useCart();
+  const itemCount = getItemCount();
+
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat("es-MX", {
+      style: "currency",
+      currency: "MXN",
+      minimumFractionDigits: 0,
+    }).format(price);
+  };
+
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
+      <div className="container mx-auto px-4 lg:px-8">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo Limpio */}
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="w-14 h-14 flex items-center justify-center p-1 transition-transform duration-300 group-hover:scale-110">
+              <img 
+                src="/logo 2.png"
+                alt="Logo Viajes.mx" 
+                className="w-full h-full object-contain" 
+              />
+            </div>
+            <div className="hidden sm:block">
+              <span className="text-xl font-serif font-semibold text-foreground">Viajes</span>
+              <span className="text-xl font-serif font-light text-primary">.mx</span>
+            </div>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors relative group"
+              >
+                {link.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
+              </Link>
+            ))}
+          </nav>
+
+          {/* Right Section */}
+          <div className="flex items-center gap-3">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="sm" className="gap-2 text-muted-foreground hover:text-foreground">
+                  <Globe className="w-4 h-4" />
+                  <span className="hidden sm:inline">{language}</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="min-w-[100px]">
+                <DropdownMenuItem onClick={() => setLanguage("ES")} className="cursor-pointer">
+                  <span className={language === "ES" ? "font-semibold" : ""}>ES - Español</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setLanguage("EN")} className="cursor-pointer">
+                  <span className={language === "EN" ? "font-semibold" : ""}>EN - English</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* Cart */}
+            <div
+              className="relative"
+              onMouseEnter={() => setShowMiniCart(true)}
+              onMouseLeave={() => setShowMiniCart(false)}
+            >
+              <Link href="/carrito">
+                <Button variant="ghost" size="icon" className="relative text-muted-foreground hover:text-foreground">
+                  <ShoppingCart className="w-5 h-5" />
+                  {itemCount > 0 && (
+                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-primary text-primary-foreground text-xs rounded-full flex items-center justify-center font-medium">
+                      {itemCount}
+                    </span>
+                  )}
+                </Button>
+              </Link>
+
+              {showMiniCart && (
+                <div className="absolute right-0 top-full mt-2 w-80 bg-card border border-border rounded-xl shadow-xl overflow-hidden z-50">
+                  <div className="p-4 border-b border-border">
+                    <h3 className="font-semibold text-sm">Tu Carrito</h3>
+                  </div>
+                  {cart.items.length === 0 ? (
+                    <div className="p-6 text-center text-sm text-muted-foreground">Tu carrito está vacío</div>
+                  ) : (
+                    <>
+                      <div className="max-h-64 overflow-y-auto">
+                        {cart.items.slice(0, 3).map((item) => (
+                          <div key={`${item.experienceId}-${item.date}`} className="p-3 border-b border-border/50">
+                            <div className="flex gap-3">
+                              <img src={item.experience.image_url} className="w-12 h-12 rounded object-cover" alt="" />
+                              <div className="flex-1 min-w-0">
+                                <h4 className="text-xs font-medium truncate">{item.experience.title}</h4>
+                                <p className="text-[10px] text-muted-foreground">{item.people}p • {item.packageLevel.name}</p>
+                                <p className="text-xs font-semibold text-primary">{formatPrice(item.totalPrice)}</p>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="p-4 bg-secondary/30">
+                        <Link href="/carrito" className="block w-full py-2 bg-primary text-primary-foreground text-center rounded-lg text-sm font-medium">Ver Carrito</Link>
+                      </div>
+                    </>
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* Mobile Menu */}
+            <Sheet>
+              <SheetTrigger asChild className="lg:hidden">
+                <Button variant="ghost" size="icon"><Menu className="w-5 h-5" /></Button>
+              </SheetTrigger>
+              <SheetContent side="right">
+                <div className="flex flex-col gap-6 mt-8">
+                  {navLinks.map((link) => (
+                    <Link key={link.href} href={link.href} className="text-lg font-medium">{link.label}</Link>
+                  ))}
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+}
