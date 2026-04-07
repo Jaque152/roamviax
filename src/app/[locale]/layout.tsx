@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
-import "@/app/globals.css";
-import { ClientBody } from "@/app/ClientBody"
+import "../globals.css";
+import { ClientBody } from "@/app/ClientBody";
+import { ReactNode } from "react";
+
+// 1. Aquí está tu tipo correcto con la Promesa
+type Props = {
+  children: ReactNode;
+  params: Promise<{ locale: string }>;
+};
 
 export const metadata: Metadata = {
   title: "Zenith Mexico - Experiencias Únicas en México",
@@ -10,10 +17,7 @@ export const metadata: Metadata = {
 export default async function RootLayout({
   children,
   params
-}:{
-  children: React.ReactNode;
-  params: { locale: string };
-}) {
+}: Props) {
   const resolvedParams = await params;
   const locale = resolvedParams.locale;
 
@@ -25,5 +29,3 @@ export default async function RootLayout({
     </html>
   );
 }
-
-
