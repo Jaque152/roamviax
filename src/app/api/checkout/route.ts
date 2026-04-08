@@ -152,29 +152,31 @@ export async function POST(req: Request) {
 
     if (bookError) throw new Error("Error guardando reserva en la base de datos.");
 
-    if (!manualFolioData && cart.items.length > 0) {
-      const bookingItems = cart.items.map((item: CartItem) => ({
-        booking_id: booking.id,
-        package_id: item.packageId,
-        scheduled_date: item.date,
-        pax_qty: item.people,
-        unit_price: item.pricePerPerson
-      }));
-      const { error: itemsError } = await supabase.from('booking_items').insert(bookingItems);
-      if (itemsError) throw new Error("Error guardando items de reserva.");
+    if (cart.items.length > 0) {
+      const validBookingItems = cart.items
+        .filter((item: CartItem) => item.packageId > 0) 
+        .map((item: CartItem) => ({
+          booking_id: booking.id,
+          package_id: item.packageId,
+          scheduled_date: item.date,
+          pax_qty: item.people,
+          unit_price: item.pricePerPerson
+        }));
+      if (validBookingItems.length > 0) {
+        const { error: itemsError } = await supabase.from('booking_items').insert(validBookingItems);
+        if (itemsError) throw new Error("Error guardando items de reserva en la BD.");
+      }   
     }
-    
-    const visualCode = `RES-${booking.id.slice(0, 8).toUpperCase()}`;
+   
     const primaryColor = '#c2410c';
 
     const isEnglish = locale === 'en';
     const subjectClient = isEnglish 
-      ? `Purchase Confirmation: ${visualCode} - Thank you for traveling with us!` 
-      : `Confirmación de Compra: ${visualCode} - ¡Gracias por viajar con nosotros!`;
+      ? `Purchase Confirmation - Thank you for traveling with us!` 
+      : `Confirmación de Compra - ¡Gracias por viajar con nosotros!`;
 
     const greeting = isEnglish ? `Hello ${contactInfo.firstName}!` : `¡Hola ${contactInfo.firstName}!`;
     const confirmationText = isEnglish ? "Your reservation is confirmed." : "Tu reservación ha sido confirmada.";
-    const codeLabel = isEnglish ? "Booking Code" : "Código de Reserva";
     const totalLabel = isEnglish ? "TOTAL PAID:" : "TOTAL PAGADO:";
     const quoteLabel = isEnglish ? "Quote Payment" : "Pago de Cotización";
     const folioLabel = isEnglish ? "Folio" : "Folio";
@@ -194,11 +196,6 @@ export async function POST(req: Request) {
           <div style="padding: 40px 30px;">
             <h2 style="color: #1c1917; margin-top: 0;">${greeting}</h2>
             <p style="font-size: 16px; line-height: 1.6;">${confirmationText}</p>
-          
-            <div style="background-color: #fafaf9; padding: 20px; border-radius: 8px; margin: 25px 0; border-left: 4px solid ${primaryColor};">
-              <p style="margin: 0; font-size: 13px; color: #78716c; font-weight: bold; text-transform: uppercase;">${codeLabel}</p>
-              <p style="margin: 5px 0 0; font-size: 22px; font-family: monospace; color: ${primaryColor}; font-weight: bold;">${visualCode}</p>
-            </div>
             
             <table style="width: 100%; border-collapse: collapse; margin-bottom: 30px;">
               <thead>
@@ -266,7 +263,6 @@ export async function POST(req: Request) {
         <p>Se ha procesado un pago exitoso a través de la página web.</p>
         <hr/>
         <p><strong>Monto Total:</strong> ${formattedTotal}</p>
-        <p><strong>Folio Interno:</strong> ${visualCode}</p>
         <p><strong>ID Transacción (Etomin):</strong> ${saleData.transactionId || saleData.authorizationNumber}</p>
         <hr/>
         <h3>Datos del Cliente:</h3>
@@ -296,7 +292,8 @@ export async function POST(req: Request) {
     return NextResponse.json({ 
       success: true, 
       bookingId: booking.id,
-      visualCode: visualCode
+      
+
     });
 
   } catch (error: unknown) {

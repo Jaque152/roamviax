@@ -35,7 +35,6 @@ export default function CotizarPage() {
   const locale = useLocale();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-  const [quoteCode, setQuoteCode] = useState("");
 
   const [formData, setFormData] = useState({
     destination: "",
@@ -65,7 +64,6 @@ export default function CotizarPage() {
 
     try {
       const customer_name = `${formData.firstName} ${formData.lastName}`.trim();
-      const visualQuoteCode = `COT-${Date.now().toString(36).toUpperCase()}`;
 
       const { error: dbError } = await supabase
         .from('custom_quotes')
@@ -103,7 +101,6 @@ export default function CotizarPage() {
         }),
       });
 
-      setQuoteCode(visualQuoteCode);
       setShowSuccess(true);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : 'Error desconocido';
@@ -135,10 +132,6 @@ export default function CotizarPage() {
               <p className="text-muted-foreground mb-6">
                 <T>Hola</T> <strong>{formData.firstName}</strong>, <T>hemos enviado un correo a</T> <strong>{formData.email}</strong> <T>confirmando tu solicitud.</T>
               </p>
-              <div className="p-4 bg-secondary/50 rounded-lg mb-6 text-left border border-border">
-                <p className="text-sm text-muted-foreground mb-1"><T>Folio de seguimiento</T></p>
-                <p className="font-mono font-semibold text-lg">{quoteCode}</p>
-              </div>
               <Button asChild className="w-full bg-primary hover:bg-primary/90 rounded-full">
                 <Link href={`/${locale}/`}><T>Volver al Inicio</T></Link>
               </Button>

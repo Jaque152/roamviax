@@ -1,18 +1,60 @@
 "use client";
 import { useLocale } from 'next-intl';
+import { usePathname, useRouter } from 'next/navigation';
+import { useTransition } from "react";
 import Link from "next/link";
 import { T } from "@/components/T";
+import { ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export function Footer() {
   const locale = useLocale();
+  const pathname = usePathname();
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+
+  const handleLanguageChange = (nextLocale: string) => {
+    const newPath = pathname.replace(`/${locale}`, `/${nextLocale}`) || `/${nextLocale}`;
+    startTransition(() => {
+      router.replace(newPath);
+    });
+  };
+
   return (
     <footer className="bg-foreground text-background py-16">
       <div className="container mx-auto px-4 lg:px-8">
+        <div className="flex justify-center mb-16">
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center justify-between gap-4 bg-background text-foreground px-4 py-2.5 rounded-xl border border-border/20 min-w-[150px] outline-none hover:bg-background/90 transition-colors shadow-sm">
+              <span className="flex items-center gap-3">
+                <span className="text-xl leading-none">{locale === 'en' ? '🇺🇸' : '🇲🇽'}</span>
+                <span className="font-medium text-sm">{locale === 'en' ? 'English' : 'Español'}</span>
+              </span>
+              <ChevronDown className="w-4 h-4 text-muted-foreground" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="center" className="min-w-[150px] bg-background rounded-xl shadow-xl border border-border/20 p-1">
+              <DropdownMenuItem onClick={() => handleLanguageChange('en')} className="cursor-pointer flex items-center gap-3 px-3 py-2.5 hover:bg-muted rounded-lg transition-colors">
+                <span className="text-xl leading-none">🇺🇸</span>
+                <span className={`text-sm ${locale === 'en' ? "font-bold text-primary" : "font-medium text-foreground"}`}>English</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => handleLanguageChange('es')} className="cursor-pointer flex items-center gap-3 px-3 py-2.5 hover:bg-muted rounded-lg transition-colors mt-1">
+                <span className="text-xl leading-none">🇲🇽</span>
+                <span className={`text-sm ${locale === 'es' ? "font-bold text-primary" : "font-medium text-foreground"}`}>Español</span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-6">
               {/* Logo */}
-              <div className="w-12 h-12 flex items-center justify-center bg-white/10 rounded-lg p-1">
+              <div className="w-14 h-14 flex items-center justify-center bg-white/10 rounded-lg p-1">
                 <img src="/logo 2.png" alt="Logo zenith mexico" className="w-full h-full object-contain" />
               </div>
               <div>
@@ -66,10 +108,10 @@ export function Footer() {
               </li>
             </ul>
           </div>
-          {/* Contact Info */}
+          {/* Contact Info & Language */}
           <div>
             <h4 className="font-serif font-semibold text-lg mb-6"><T>Contacto</T></h4>
-            <ul className="space-y-3 text-background/60">
+            <ul className="space-y-3 text-background/60 mb-8">
               <li>
                 <a href="mailto:informes@zenithmex.com" className="hover:text-primary transition-colors">
                   informes@zenithmex.com
@@ -82,6 +124,7 @@ export function Footer() {
               </li>
               <li>Ciudad de México, México</li>
             </ul>
+
           </div>
         </div>
         {/* Bottom Bar */}
@@ -90,7 +133,7 @@ export function Footer() {
             <p className="text-sm text-background/40">
               © {new Date().getFullYear()} zenithmex.com- <T> Todos los derechos reservados</T>
             </p>
-            <div className="flex flex-wrap justify-center gap-6 text-sm">
+            <div className="flex flex-wrap justify-center items-center gap-6 text-sm">
               <Link href={`/${locale}/aviso-de-privacidad`} className="text-background/60 hover:text-primary transition-colors">
                 <T>Aviso de Privacidad</T>
               </Link>
@@ -100,6 +143,26 @@ export function Footer() {
               <Link href={`/${locale}/politica-de-cancelacion`} className="text-background/60 hover:text-primary transition-colors">
                 <T>Política de Cancelación</T>
               </Link>
+
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex items-center justify-between gap-3 bg-white text-foreground px-3 py-1.5 rounded-md border border-border min-w-[130px] outline-none">
+                  <span className="flex items-center gap-2">
+                    <span className="text-base leading-none">{locale === 'en' ? '🇺🇸' : '🇲🇽'}</span>
+                    <span className="font-medium text-sm">{locale === 'en' ? 'English' : 'Español'}</span>
+                  </span>
+                  <ChevronDown className="w-4 h-4 text-muted-foreground" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="min-w-[130px] bg-white rounded-md shadow-sm border border-border">
+                  <DropdownMenuItem onClick={() => handleLanguageChange('en')} className="cursor-pointer flex items-center gap-2 px-3 py-2 hover:bg-stone-50">
+                    <span className="text-base leading-none">🇺🇸</span>
+                    <span className={`text-sm ${locale === 'en' ? "font-semibold text-primary" : "text-foreground"}`}>English</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => handleLanguageChange('es')} className="cursor-pointer flex items-center gap-2 px-3 py-2 hover:bg-stone-50">
+                    <span className="text-base leading-none">🇲🇽</span>
+                    <span className={`text-sm ${locale === 'es' ? "font-semibold text-primary" : "text-foreground"}`}>Español</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
         </div>

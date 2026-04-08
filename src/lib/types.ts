@@ -1,16 +1,8 @@
-//DEFINICIÓN DE CATALOGOS
 export interface Category {
   id: number;
   name: string;
   slug: string;
 }
-
-export interface ServiceLevel {
-  id: number;
-  name: string; // "Básico", "Premium", "Aventurero"
-}
-
-//ACTIVIDADES Y PAQUETES
 
 export interface Experience {
   id: number;
@@ -19,50 +11,42 @@ export interface Experience {
   description: string;
   location: string;
   duration?: string;
-  // JSONB Arrays convertidos a string[]
-  images: string[]; // Carrusel de imagenes
-  itinerary?: string[]; // Para la línea de tiempo
-  requirements?: string[]; // Qué llevar
-  restrictions?: string[]; // No apto para...
-  included_general?: string[]; // Lo que siempre incluye
-  
+  images: string[]; 
+  what_you_will_do?: string[];          // <--- NUEVO
+  itinerary?: string[]; 
+  requirements?: string[]; 
+  important_info?: Record<string, string[]>; // <--- NUEVO (Objeto agrupado)
+  included_general?: string[]; 
   category_id: number;
-  categories?: Category; //para joins
+  categories?: Category; 
 }
 
-// Interfaz auxiliar para mapear el JSONB de features de forma segura
 export interface PackageFeatures {
-  tipo?: string;
   incluye?: string[];
   no_incluye?: string[];
-  ventaja?: string;
 }
-
 
 export interface ActivityPackage {
   id: number;
   activity_id: number;
-  level_id: number;
-  price: number; // Este es el unit_price
-  features: PackageFeatures; // es un objeto JSON
+  package_name: string; 
+  price: number; 
+  features: PackageFeatures; 
   min_pax: number; 
   max_pax?: number; 
   is_active: boolean; 
-  service_levels?: ServiceLevel; // Para Joins
 }
 
-// Tabla de disponibilidad
 export interface ActivityAvailability {
   id: number;
   package_id: number;
-  scheduled_date: string; // 'YYYY-MM-DD'
-  scheduled_time?: string; // 'HH:mm:ss'
+  scheduled_date: string; 
+  scheduled_time?: string; 
   remaining_slots: number;
 }
 
-// CLIENTES Y COTIZACIONES
 export interface Customer {
-  id: string; // UUID
+  id: string; 
   first_name: string;
   last_name: string;
   email: string;
@@ -94,32 +78,23 @@ export interface ContactMessage {
   created_at: string;
 }
 
-
-// RESERVAS Y PAGOS
-
 export interface Booking {
-  id: string; // UUID
+  id: string; 
   customer_id: string;
-  session_id?: string; //Para rastreo de carritos invitados
+  session_id?: string; 
   total_amount: number;
   payment_status: 'pending' | 'paid' | 'failed' | 'refunded';
-  
-  // Campos para la simulación de pago
   transaction_id?: string;
   payment_provider?: string;
   payment_date?: string;
-  
   created_at: string;
-  
-  // Campos de facturación
-  rfc?: string;
-  razon_social?: string;
-  direccion_facturacion?: string;
-  ciudad_facturacion?: string;
-  estado_facturacion?: string;
-  codigo_postal_facturacion?: string;
-
-  customers?: Customer; // Para Joins al mostrar el detalle
+  pais?: string;
+  direccion?: string;
+  localidad?: string;
+  estado?: string;
+  codigo_postal?: string;
+  order_notes?: string;
+  customers?: Customer; 
 }
 
 export interface BookingItem {
@@ -127,29 +102,27 @@ export interface BookingItem {
   booking_id: string;
   package_id: number;
   scheduled_date: string;
-  scheduled_time?: string; // Si el tour tiene horarios
+  scheduled_time?: string; 
   pax_qty: number; 
   unit_price: number;
-  
-  // Relación para el Dashboard
   activity_packages?: {
     features: PackageFeatures;
+    package_name: string;
     activities: { title: string; location: string };
   };
 }
 
-// --- INTERFAZ DEL CARRITO ---
 export interface CartItem {
-  id?: number; // Opcional si es solo estado local, obligatorio si viene de la tabla cart_items
-  sessionId?: string; // Para identificar al invitado
-  packageId: number; // Usamos el ID del paquete real de la BD
+  id?: number; 
+  sessionId?: string; 
+  packageId: number; 
   experience: Experience;
-  levelName: string; // "Básico", "Premium", etc.
-  date: string; // YYYY-MM-DD
-  time?: string; // HH:mm 
+  levelName: string; 
+  date: string; 
+  time?: string; 
   people: number;
   pricePerPerson: number;
-  totalPrice: number; // (pricePerPerson * people)
+  totalPrice: number; 
 }
 
 export interface Cart {
@@ -166,7 +139,6 @@ export interface FifaExp {
   image_url: string;
 }
 
-
 export interface SupabaseExperienceResponse {
   id: number;
   title: string;
@@ -176,5 +148,5 @@ export interface SupabaseExperienceResponse {
   images: string[]; 
   category_id: number;
   categories: { id: number; name: string; slug: string } | null;
-  activity_packages: { price: number }[];
+  activity_packages: { price: number; package_name: string }[];
 }

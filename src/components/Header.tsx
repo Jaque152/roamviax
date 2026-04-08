@@ -1,17 +1,10 @@
 "use client";
 import { T } from "@/components/T";
-import { usePathname, useRouter } from 'next/navigation';
 import { useLocale } from 'next-intl';
-import { useState, useTransition} from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { ShoppingCart, Menu, Globe } from "lucide-react";
+import { ShoppingCart, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { useCart } from "@/context/CartContext";
 
@@ -22,10 +15,7 @@ const navLinks = [
 ];
 
 export function Header() {
-  const locale = useLocale(); // Detecta si es 'es' o 'en'
-  const pathname = usePathname();
-  const router = useRouter();
-  const [isPending, startTransition] = useTransition();
+  const locale = useLocale();
   const [showMiniCart, setShowMiniCart] = useState(false);
   const { cart, getItemCount } = useCart();
   const itemCount = getItemCount();
@@ -38,21 +28,13 @@ export function Header() {
     }).format(price);
   };
 
-  const handleLanguageChange = (nextLocale: string) => {
-    const newPath = pathname.replace(`/${locale}`, `/${nextLocale}`) || `/${nextLocale}`;
-    
-    startTransition(() => {
-      router.replace(newPath);
-    });
-  };
-
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo*/}
           <Link href={`/${locale}/`} className="flex items-center gap-3 group">
-            <div className="w-14 h-14 flex items-center justify-center p-1 transition-transform duration-300 group-hover:scale-110">
+            <div className="w-20 h-20 flex items-center justify-center p-1 transition-transform duration-300 group-hover:scale-110">
               <img 
                 src="/logo 2.png"
                 alt="Logo zenithmex.com"
@@ -60,8 +42,8 @@ export function Header() {
               />
             </div>
             <div className="hidden sm:block">
-              <span className="text-xl font-serif font-semibold text-foreground">Zenith</span>
-              <span className="text-xl font-serif font-light text-primary">Mexico</span>
+              <span className="text-2xl font-serif font-semibold text-foreground">Zenith</span>
+              <span className="text-2xl font-serif font-light text-primary">Mexico</span>
             </div>
           </Link>
 
@@ -81,23 +63,6 @@ export function Header() {
 
           {/* Right Section */}
           <div className="flex items-center gap-3">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="gap-2 text-muted-foreground hover:text-foreground">
-                  <Globe className="w-4 h-4" />
-                  <span className="hidden sm:inline uppercase">{locale}</span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="min-w-[100px]">
-                <DropdownMenuItem onClick={() => handleLanguageChange('es')} className="cursor-pointer">
-                  <span className={locale === 'es' ? "font-semibold text-primary" : ""}>ES - Español</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => handleLanguageChange('en')} className="cursor-pointer">
-                  <span className={locale === 'en' ? "font-semibold text-primary" : ""}>EN - English</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-
             {/* Cart */}
             <div
               className="relative"
@@ -130,7 +95,6 @@ export function Header() {
                     <>
                       <div className="max-h-64 overflow-y-auto">
                         {cart.items.slice(0, 3).map((item) => {
-                          // Extrae la primera imagen del arreglo JSONB
                           const miniImage = item.experience.images && item.experience.images.length > 0 
                                               ? item.experience.images[0] 
                                               : '/placeholder.jpg';

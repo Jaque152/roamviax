@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale } from 'next-intl';
-import { useState, Suspense } from "react";
+import { useState, Suspense, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Header } from "@/components/Header";
@@ -17,22 +17,14 @@ import { useT } from "@/hooks/useT";
 
 function CheckoutContent() {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const manualFolio = searchParams.get("folio");
-  const manualMonto = searchParams.get("monto");
   const { cart, clearCart } = useCart();
-  
-  const isManualPayment = Boolean(manualFolio && manualMonto);
-  const finalTotal = isManualPayment ? parseFloat(manualMonto as string) : cart.total;
-  
+  const finalTotal = cart.total;
   const [isProcessing, setIsProcessing] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-  const [confirmationCode, setConfirmationCode] = useState("");
-
   const [contactInfo, setContactInfo] = useState({ firstName: "", lastName: "", email: "", phone: "" });
   
   const [billingInfo, setBillingInfo] = useState({ 
-    pais: "", // Corregido: Ahora inicia vacío
+    pais: "", 
     direccion: "", 
     localidad: "", 
     estado: "", 
@@ -48,6 +40,18 @@ function CheckoutContent() {
 
   const locale = useLocale();
 
+  //  Si vienen de pago-folio, rellena su nombre y correo automáticamente
+  useEffect(() => {
+    const savedData = sessionStorage.getItem("zenith_temp_contact");
+    if (savedData) {
+      const { nombre, email, folio } = JSON.parse(savedData);
+      setContactInfo(prev => ({ ...prev, firstName: nombre, email: email }));
+      setOrderNotes(`Pago referente al Folio: ${folio}`);
+      setAddNotes(true);
+      sessionStorage.removeItem("zenith_temp_contact"); 
+    }
+  }, []);
+
   const phNombre = useT("Nombre ");
   const phApellidos = useT("Apellidos");
   const phEmail = useT("Email ");
@@ -55,7 +59,7 @@ function CheckoutContent() {
   const phPais = useT("País / Región ");
   const phDireccion = useT("Dirección completa (Calle y número) ");
   const phLocalidad = useT("Localidad / Ciudad ");
-  const phEstado = useT("Región / Estado *");
+  const phEstado = useT("Región / Estado ");
   const phCP = useT("Código Postal ");
   const phTarjeta = useT("Número de tarjeta ");
   const phNombreTarjeta = useT("Nombre en la tarjeta ");
@@ -80,10 +84,10 @@ function CheckoutContent() {
           contactInfo,
           billingInfo,
           orderNotes: addNotes ? orderNotes : null,
-          cart: isManualPayment ? { items: [], total: finalTotal } : cart,
+          cart: cart,
           cardInfo,
           formattedTotal: formatPrice(finalTotal), 
-          manualFolioData: isManualPayment ? { folio: manualFolio, amount: finalTotal } : null
+          manualFolioData:null
         })
       });
 
@@ -92,12 +96,8 @@ function CheckoutContent() {
       if (!response.ok || !data.success) {
         throw new Error(data.message || "Error procesando el pago");
       }
-
-      setConfirmationCode(data.visualCode);
       setShowSuccess(true);
-      if (!isManualPayment) {
-        clearCart();
-      }
+      clearCart();
       
     } catch (error: unknown) {
       console.error(error);
@@ -111,7 +111,8 @@ function CheckoutContent() {
   const isFormValid = 
     contactInfo.firstName && contactInfo.email && contactInfo.phone &&
     billingInfo.pais && billingInfo.direccion && billingInfo.localidad && billingInfo.estado && billingInfo.codigo_postal &&
-    cardInfo.number.length >= 15 && cardInfo.name && cardInfo.expiry.length === 5 && cardInfo.cvv.length >= 3;
+    cardInfo.number.length >= 15 && cardInfo.name && cardInfo.expiry.length === 5 && cardInfo.cvv.length >= 3 &&
+    cart.items.length > 0;;
 
   const handleExpiryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let val = e.target.value.replace(/\D/g, '');
@@ -127,7 +128,6 @@ function CheckoutContent() {
           <CheckCircle className="w-20 h-20 text-lime-600 mx-auto mb-6" />
           <h1 className="text-3xl md:text-4xl font-serif font-bold mb-4 text-foreground"><T>¡Pago Exitoso!</T></h1>
           <p className="text-muted-foreground mb-2 text-lg"><T>Tu transacción ha sido confirmada.</T></p>
-          <p className="mb-8 text-muted-foreground"><T>Código de confirmación:</T> <span className="font-mono font-bold text-xl text-foreground ml-2">{confirmationCode}</span></p>
           <Button asChild className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-xl h-14 text-lg">
             <Link href={`/${locale}/`}><T>Volver al Inicio</T></Link>
           </Button>
@@ -213,65 +213,37 @@ function CheckoutContent() {
             </div>
             
             <div className="lg:col-span-1">
-              {isManualPayment ? (
-                 <Card className="sticky top-28 border-border shadow-2xl rounded-2xl overflow-hidden">
-                  <div className="bg-card p-8 text-foreground flex flex-col justify-between relative overflow-hidden border-b border-border">
-                    <div className="absolute top-[-20%] right-[-10%] w-48 h-48 bg-primary/10 rounded-full blur-[60px] opacity-60"></div>
-                    <div className="relative z-10">
-                      <h2 className="text-2xl font-serif font-bold leading-tight mb-3 text-foreground">
-                        <T>Pago de</T> <span className="text-primary italic"><T>Cotización</T></span>
-                      </h2>
-                      <div className="w-10 h-1.5 bg-primary mb-6 rounded-full"></div>
-                      <div className="space-y-1.5">
-                        <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest"><T>FOLIO DE SEGUIMIENTO</T></p>
-                        <p className="font-mono text-xl text-foreground bg-background inline-block px-3 py-1.5 rounded-md shadow-sm border border-border">{manualFolio}</p>
-                      </div>
-                    </div>
-                  </div>
-                  <CardContent className="p-8 bg-background">
-                    <div className="flex justify-between items-end text-xl font-bold text-foreground mb-8 border-b border-border pb-6">
-                      <span className="font-serif"><T>Total a Pagar</T></span>
-                      <div className="text-right">
-                        <div className="text-2xl text-primary">{formatPrice(finalTotal)}</div>
-                        <div className="text-xs font-medium text-muted-foreground mt-1"><T>IVA incluido</T></div>
-                      </div>
-                    </div>
-                    
-                    <Button type="submit" disabled={!isFormValid || isProcessing} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold h-14 rounded-xl shadow-lg transition-all text-lg">
-                      {isProcessing ? <Loader2 className="animate-spin w-5 h-5 mr-2" /> : <ShieldCheck className="w-5 h-5 mr-2" />}
-                      {isProcessing ? textProcesando : `${textPagar} ${formatPrice(finalTotal)}`}
-                    </Button>
-                  </CardContent>
-                 </Card>
-              ) : (
-                <Card className="p-8 sticky top-28 border-border shadow-2xl rounded-2xl">
-                  <h2 className="text-2xl font-serif font-bold mb-6 text-foreground border-b border-border pb-4"><T>Resumen de Compra</T></h2>
-                  
-                  <div className="space-y-4 mb-8">
-                    {cart.items.map((item, index) => (
+              <Card className="p-8 sticky top-28 border-border shadow-2xl rounded-2xl">
+                <h2 className="text-2xl font-serif font-bold mb-6 text-foreground border-b border-border pb-4"><T>Resumen de Compra</T></h2>
+                
+                <div className="space-y-4 mb-8">
+                  {cart.items.length === 0 ? (
+                    <p className="text-muted-foreground italic"><T>Tu carrito está vacío.</T></p>
+                  ) : (
+                    cart.items.map((item, index) => (
                       <div key={index} className="flex justify-between text-sm items-start">
                         <span className="text-muted-foreground pr-4 leading-relaxed"><T>{item.experience.title}</T> <span className="font-semibold text-foreground">(x{item.people})</span></span>
                         <span className="font-bold text-foreground">{formatPrice(item.totalPrice)}</span>
                       </div>
-                    ))}
-                  </div>
+                    ))
+                  )}
+                </div>
 
-                  <div className="border-t border-border pt-6 mt-6">
-                    <div className="flex justify-between items-end text-xl font-bold text-foreground mb-8">
-                      <span className="font-serif"><T>Total</T></span>
-                      <div className="text-right">
-                        <div className="text-2xl text-primary">{formatPrice(finalTotal)}</div>
-                        <div className="text-xs font-medium text-muted-foreground mt-1"><T>IVA incluido</T></div>
-                      </div>
+                <div className="border-t border-border pt-6 mt-6">
+                  <div className="flex justify-between items-end text-xl font-bold text-foreground mb-8">
+                    <span className="font-serif"><T>Total</T></span>
+                    <div className="text-right">
+                      <div className="text-2xl text-primary">{formatPrice(finalTotal)}</div>
+                      <div className="text-xs font-medium text-muted-foreground mt-1"><T>IVA incluido</T></div>
                     </div>
-                    
-                    <Button type="submit" disabled={!isFormValid || isProcessing} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold h-14 rounded-xl shadow-lg transition-all text-lg">
-                      {isProcessing ? <Loader2 className="animate-spin w-5 h-5 mr-2" /> : <Lock className="w-5 h-5 mr-2" />}
-                      {isProcessing ? textProcesando : `${textPagar} ${formatPrice(finalTotal)}`}
-                    </Button>
                   </div>
-                </Card>
-              )}
+                  
+                  <Button type="submit" disabled={!isFormValid || isProcessing} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold h-14 rounded-xl shadow-lg transition-all text-lg">
+                    {isProcessing ? <Loader2 className="animate-spin w-5 h-5 mr-2" /> : <Lock className="w-5 h-5 mr-2" />}
+                    {isProcessing ? textProcesando : `${textPagar} ${formatPrice(finalTotal)}`}
+                  </Button>
+                </div>
+              </Card>
             </div>
           </form>
         </div>
