@@ -18,7 +18,7 @@ const getEtominHeaders = (extraHeaders = {}) => ({
   'Content-Type': 'application/json',
   'Accept': 'application/json',
   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
-  'Origin': 'https://zenithmex.com', 
+  'Origin': 'https://roamviax.com', 
   ...extraHeaders
 });
 
@@ -105,7 +105,7 @@ export async function POST(req: Request) {
         cvv: cardInfo.cvv
       },
       items: etominItems,
-      redirectUrl: 'https://zenithmex.com' 
+      redirectUrl: 'https://roamviax.com' 
     };
 
     const saleData = await safeEtominFetch(`${ETOMIN_BASE_URL}/sale`, {
@@ -191,7 +191,7 @@ export async function POST(req: Request) {
     const htmlClient = `
         <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: auto; color: #444; border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden;">
           <div style="background-color: ${primaryColor}; padding: 30px; text-align: center;">
-            <h1 style="color: white; margin: 0; font-size: 24px; letter-spacing: 1px;">Zenith México</h1>
+            <h1 style="color: white; margin: 0; font-size: 24px; letter-spacing: 1px;">Roamviax</h1>
           </div>
           <div style="padding: 40px 30px;">
             <h2 style="color: #1c1917; margin-top: 0;">${greeting}</h2>
@@ -246,15 +246,14 @@ export async function POST(req: Request) {
     `;
 
     await resend.emails.send({
-      from: 'Zenith México <reservas@zenithmex.com>', 
+      from: 'Roamviax <reservas@roamviax.com>', 
       to: [contactInfo.email], 
-      //bcc: ['contacto@zenithmex.com'],
       subject: subjectClient,
       html: htmlClient,
     });
 
 
-    // --- NOTIFICACIÓN INTERNA PARA ZENITH ---
+    // --- NOTIFICACIÓN INTERNA PARA Roamviax---
     const subjectInternal = `[NUEVA VENTA] - ${formattedTotal} - ${contactInfo.firstName} ${contactInfo.lastName}`;
     
     const htmlInternal = `
@@ -282,8 +281,8 @@ export async function POST(req: Request) {
     `;
 
     await resend.emails.send({
-      from: 'Sistema Zenith México <reservas@zenithmex.com>',
-      to: ['contacto@zenithmex.com'],
+      from: 'Sistema Roamviax <reservas@roamviax.com>',
+      to: ['contacto@roamviax.com'],
       subject: subjectInternal,
       html: htmlInternal,
     });

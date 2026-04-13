@@ -5,13 +5,7 @@ import { useTransition } from "react";
 import Link from "next/link";
 import { T } from "@/components/T";
 import { ChevronDown } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 export function Footer() {
   const locale = useLocale();
@@ -27,44 +21,50 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-foreground text-background py-16">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex justify-center mb-16">
+    <footer className="bg-background text-foreground border-t border-border">
+      <div className="container mx-auto px-6 lg:px-12 py-16 lg:py-24">
+        
+        {/* Centered Language Selector - Editorial Style */}
+        <div className="flex justify-center mb-20">
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center justify-between gap-4 bg-background text-foreground px-4 py-2.5 rounded-xl border border-border/20 min-w-[150px] outline-none hover:bg-background/90 transition-colors shadow-sm">
-              <span className="flex items-center gap-3">
-                <span className="text-xl leading-none">{locale === 'en' ? '🇺🇸' : '🇲🇽'}</span>
-                <span className="font-medium text-sm">{locale === 'en' ? 'English' : 'Español'}</span>
-              </span>
+            <DropdownMenuTrigger className="flex items-center gap-4 bg-transparent text-foreground px-6 py-3 border border-border outline-none hover:bg-muted transition-colors rounded-none">
+              <span className="text-xl leading-none">{locale === 'en' ? '🇺🇸' : '🇲🇽'}</span>
+              <span className="text-sm uppercase tracking-[0.2em] font-medium">{locale === 'en' ? 'English' : 'Español'}</span>
               <ChevronDown className="w-4 h-4 text-muted-foreground" />
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="center" className="min-w-[150px] bg-background rounded-xl shadow-xl border border-border/20 p-1">
-              <DropdownMenuItem onClick={() => handleLanguageChange('en')} className="cursor-pointer flex items-center gap-3 px-3 py-2.5 hover:bg-muted rounded-lg transition-colors">
+            <DropdownMenuContent align="center" className="min-w-[180px] bg-background rounded-none border border-border p-0 shadow-xl">
+              <DropdownMenuItem onClick={() => handleLanguageChange('en')} className="cursor-pointer flex items-center justify-center gap-3 px-4 py-4 hover:bg-muted transition-colors rounded-none">
                 <span className="text-xl leading-none">🇺🇸</span>
-                <span className={`text-sm ${locale === 'en' ? "font-bold text-primary" : "font-medium text-foreground"}`}>English</span>
+                <span className={`text-[10px] uppercase tracking-[0.2em] ${locale === 'en' ? "font-bold text-primary" : "font-medium text-foreground"}`}>English</span>
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => handleLanguageChange('es')} className="cursor-pointer flex items-center gap-3 px-3 py-2.5 hover:bg-muted rounded-lg transition-colors mt-1">
+              <div className="h-[1px] bg-border/50 w-full" />
+              <DropdownMenuItem onClick={() => handleLanguageChange('es')} className="cursor-pointer flex items-center justify-center gap-3 px-4 py-4 hover:bg-muted transition-colors rounded-none">
                 <span className="text-xl leading-none">🇲🇽</span>
-                <span className={`text-sm ${locale === 'es' ? "font-bold text-primary" : "font-medium text-foreground"}`}>Español</span>
+                <span className={`text-[10px] uppercase tracking-[0.2em] ${locale === 'es' ? "font-bold text-primary" : "font-medium text-foreground"}`}>Español</span>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          <div className="lg:col-span-2">
-            <div className="flex items-center gap-3 mb-6">
-              {/* Logo */}
-              <div className="w-14 h-14 flex items-center justify-center bg-white/10 rounded-lg p-1">
-                <img src="/logo 2.png" alt="Logo zenith mexico" className="w-full h-full object-contain" />
+
+        {/* Main Footer Grid */}
+        <div className="grid lg:grid-cols-12 gap-16 lg:gap-12">
+          
+          {/* Brand & Payment */}
+          <div className="lg:col-span-5">
+            <Link href={`/${locale}/`} className="flex items-center gap-4 mb-8 group w-fit">
+              {/* Isotipo R */}
+              <div className="w-12 h-12 flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
+                <img src="/logo 2.png" alt="Logo Roamviax" className="w-full h-full object-contain" />
               </div>
-              <div>
-                <span className="text-xl font-serif font-semibold text-background">zenithmex</span>
-                <span className="text-xl font-serif font-light text-primary">.com</span>
+              <div className="flex flex-col">
+                <span className="text-3xl font-serif font-semibold tracking-tight leading-none text-foreground">roam<span className="text-primary italic">viax</span></span>
               </div>
-            </div>
-            <p className="text-background/60 mb-6 max-w-md">
-              <T>Diseñamos experiencias personalizadas donde tú eres el protagonista.</T>
+            </Link>
+            
+            <p className="text-muted-foreground max-w-sm mb-12 leading-relaxed font-sans">
+              <T>Diseñamos experiencias personalizadas donde tú eres el protagonista. El México que siempre soñaste.</T>
             </p>
+
             {/* Payment Methods */}
             <div className="mb-6">
               <p className="text-sm text-background/60 mb-3"><T>Aceptamos</T></p>
@@ -87,61 +87,58 @@ export function Footer() {
               </div>
             </div>
           </div>
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-serif font-semibold text-lg mb-6"><T>Enlaces</T></h4>
-            <ul className="space-y-3">
-              <li>
-                <Link href={`/${locale}/`} className="text-background/60 hover:text-primary transition-colors">
-                  <T>Inicio</T>
-                </Link>
-              </li>
-              <li>
-                <Link href={`/${locale}/#experiencias`} className="text-background/60 hover:text-primary transition-colors">
-                  <T>Experiencias</T>
-                </Link>
-              </li>
-              <li>
-                <Link href={`/${locale}/#contacto`} className="text-background/60 hover:text-primary transition-colors">
-                  <T>Contacto</T>
-                </Link>
-              </li>
+
+          {/* Links */}
+          <div className="lg:col-span-3 lg:col-start-7">
+            <p className="text-[10px] uppercase tracking-[0.3em] font-medium text-muted-foreground mb-8">
+              <T>Navegación</T>
+            </p>
+            <ul className="space-y-4">
+              <li><Link href={`/${locale}/`} className="text-sm text-foreground hover:text-primary transition-colors"><T>Inicio</T></Link></li>
+              <li><Link href={`/${locale}/experiencias`} className="text-sm text-foreground hover:text-primary transition-colors"><T>Experiencias</T></Link></li>
+              <li><Link href={`/${locale}/#contacto`} className="text-sm text-foreground hover:text-primary transition-colors"><T>Contacto</T></Link></li>
+              <li><Link href={`/${locale}/cotizar`} className="text-sm text-foreground hover:text-primary transition-colors"><T>Cotizar</T></Link></li>
             </ul>
           </div>
-          {/* Contact Info & Language */}
-          <div>
-            <h4 className="font-serif font-semibold text-lg mb-6"><T>Contacto</T></h4>
-            <ul className="space-y-3 text-background/60 mb-8">
+
+          {/* Contact */}
+          <div className="lg:col-span-3">
+            <p className="text-[10px] uppercase tracking-[0.3em] font-medium text-muted-foreground mb-8">
+              <T>Contacto</T>
+            </p>
+            <ul className="space-y-4">
               <li>
-                <a href="mailto:informes@zenithmex.com" className="hover:text-primary transition-colors">
-                  informes@zenithmex.com
+                <a href="mailto:contacto@roamviax.com" className="text-sm text-foreground hover:text-primary transition-colors font-serif italic text-lg">
+                  contacto@roamviax.com
                 </a>
               </li>
               <li>
-                <a href="tel:+525555555555" className="hover:text-primary transition-colors">
+                <a href="tel:+525555555555" className="text-sm text-foreground hover:text-primary transition-colors">
                   +52 55 5555 5555
                 </a>
               </li>
-              <li>Ciudad de México, México</li>
+              <li className="text-sm text-foreground">Ciudad de México, México</li>
             </ul>
-
           </div>
         </div>
-        {/* Bottom Bar */}
-        <div className="border-t border-background/10 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-background/40">
-              © {new Date().getFullYear()} zenithmex.com- <T> Todos los derechos reservados</T>
+      </div>
+
+      {/* Bottom Legal Bar */}
+      <div className="border-t border-border bg-muted/20">
+        <div className="container mx-auto px-6 lg:px-12 py-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+              © {new Date().getFullYear()} Roamviax — <T>Todos los derechos reservados</T>
             </p>
-            <div className="flex flex-wrap justify-center items-center gap-6 text-sm">
-              <Link href={`/${locale}/aviso-de-privacidad`} className="text-background/60 hover:text-primary transition-colors">
-                <T>Aviso de Privacidad</T>
+            <div className="flex flex-wrap justify-center items-center gap-6 text-[10px] uppercase tracking-[0.1em] font-medium">
+              <Link href={`/${locale}/aviso-de-privacidad`} className="text-muted-foreground hover:text-primary transition-colors">
+                <T>Privacidad</T>
               </Link>
-              <Link href={`/${locale}/terminos-y-condiciones`} className="text-background/60 hover:text-primary transition-colors">
-                <T>Términos y Condiciones</T>
+              <Link href={`/${locale}/terminos-y-condiciones`} className="text-muted-foreground hover:text-primary transition-colors">
+                <T>Términos</T>
               </Link>
-              <Link href={`/${locale}/politica-de-cancelacion`} className="text-background/60 hover:text-primary transition-colors">
-                <T>Política de Cancelación</T>
+              <Link href={`/${locale}/politica-de-cancelacion`} className="text-muted-foreground hover:text-primary transition-colors">
+                <T>Cancelación</T>
               </Link>
             </div>
           </div>

@@ -5,8 +5,6 @@ import { useParams, useRouter } from "next/navigation";
 import { supabase } from '@/lib/supabase';
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useCart } from "@/context/CartContext";
 import { Experience, ActivityPackage } from "@/lib/types"; 
@@ -95,7 +93,7 @@ export default function ExperienceDetailPage() {
 
   if (loading) return (
     <div className="min-h-screen flex items-center justify-center bg-background">
-      <Loader2 className="w-10 h-10 animate-spin text-primary" />
+      <Loader2 className="w-10 h-10 animate-spin text-foreground" />
     </div>
   );
 
@@ -103,47 +101,53 @@ export default function ExperienceDetailPage() {
 
   const mainImage = experience.images?.length > 0 ? experience.images[0] : '/placeholder.jpg';
 
+  // Widget Form Editorial
   const WidgetForm = () => (
-    <Card className="border-border shadow-xl rounded-2xl overflow-hidden bg-card">
-      <div className="bg-muted p-5 border-b border-border">
-        <h2 className="text-sm font-bold text-foreground uppercase tracking-widest text-center">
+    <div className="bg-background border border-border p-6 md:p-10 shadow-xl relative">
+      <div className="absolute top-0 left-0 w-full h-1 bg-primary"></div>
+      
+      <div className="mb-8">
+        <h2 className="text-[10px] uppercase tracking-[0.3em] font-medium text-muted-foreground mb-2">
           <T>Reserva tu lugar</T>
         </h2>
+        <p className="font-serif italic text-2xl text-foreground">Planifica tu viaje</p>
       </div>
       
-      <CardContent className="p-6 md:p-8">
-        
-        {/* Selector Dinámico de Opción */}
-        <div className="mb-6 space-y-3">
-          <label className="text-sm font-bold text-foreground block uppercase tracking-wider"><T>Elige una opción</T></label>
+      <div className="space-y-8">
+        {/* Selector de Paquete */}
+        <div className="space-y-3">
+          <label className="text-[10px] uppercase tracking-[0.2em] font-medium text-foreground block">
+            <T>Elige una opción</T>
+          </label>
           <select 
-            className="w-full h-12 px-4 bg-background border border-border text-foreground font-medium rounded-xl focus:outline-none focus:ring-2 focus:ring-primary transition-all cursor-pointer"
+            className="w-full h-12 bg-transparent border-0 border-b border-foreground/20 text-foreground font-serif italic text-lg focus:outline-none focus:ring-0 focus:border-primary transition-all cursor-pointer px-0"
             value={selectedPackageId}
             onChange={(e) => setSelectedPackageId(Number(e.target.value))}
           >
             {packages.map(pkg => (
-              <option key={pkg.id} value={pkg.id}>{pkg.package_name}</option>
+              <option key={pkg.id} value={pkg.id} className="font-sans not-italic text-sm">{pkg.package_name}</option>
             ))}
           </select>
         </div>
 
+        {/* Detalles del Paquete */}
         {selectedPackage && (
-          <div className="mb-8 animate-in fade-in">
-            <div className="flex flex-col mb-6 pb-4 border-b border-border">
-              <span className="font-bold text-lg text-foreground mb-1"><T>{selectedPackage.package_name}</T></span>
+          <div className="bg-muted/30 p-6 border border-border animate-fade-in">
+            <div className="flex flex-col mb-6 pb-4 border-b border-border/50">
+              <span className="font-serif text-xl text-foreground mb-2"><T>{selectedPackage.package_name}</T></span>
               <div className="flex items-baseline gap-2">
-                <span className="text-3xl font-medium text-primary tracking-tight">{formatPrice(selectedPackage.price)}</span>
-                <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest"><T>IVA incluido</T></span>
+                <span className="text-3xl font-serif text-primary">{formatPrice(selectedPackage.price)}</span>
+                <span className="text-[9px] font-medium text-muted-foreground uppercase tracking-[0.2em]"><T>IVA inc.</T></span>
               </div>
             </div>
             
             {selectedPackage.features?.incluye && (
-              <div className="mb-4">
-                <p className="text-xs font-bold uppercase text-foreground mb-3 tracking-widest"><T>Esta opción incluye:</T></p>
-                <ul className="space-y-2">
+              <div className="mb-6">
+                <p className="text-[9px] uppercase tracking-[0.2em] font-medium text-foreground mb-3"><T>Incluye</T></p>
+                <ul className="space-y-3">
                   {selectedPackage.features.incluye.map((inc, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground leading-snug">
-                      <Check className="w-4 h-4 text-primary shrink-0 mt-0.5"/> <T>{inc}</T>
+                    <li key={i} className="flex items-start gap-3 text-sm text-muted-foreground">
+                      <Check className="w-4 h-4 text-primary shrink-0"/> <T>{inc}</T>
                     </li>
                   ))}
                 </ul>
@@ -151,12 +155,12 @@ export default function ExperienceDetailPage() {
             )}
 
             {selectedPackage.features?.no_incluye && (
-              <div className="mt-4 pt-4 border-t border-border/50">
-                <p className="text-xs font-bold uppercase text-foreground mb-3 tracking-widest"><T>No Incluye:</T></p>
-                <ul className="space-y-2">
+              <div className="pt-6 border-t border-border/50">
+                <p className="text-[9px] uppercase tracking-[0.2em] font-medium text-foreground mb-3"><T>No Incluye</T></p>
+                <ul className="space-y-3">
                   {selectedPackage.features.no_incluye.map((noInc, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground/80 leading-snug">
-                      <X className="w-4 h-4 text-destructive shrink-0 mt-0.5"/> <T>{noInc}</T>
+                    <li key={i} className="flex items-start gap-3 text-sm text-muted-foreground/70">
+                      <X className="w-4 h-4 text-destructive shrink-0"/> <T>{noInc}</T>
                     </li>
                   ))}
                 </ul>
@@ -165,85 +169,95 @@ export default function ExperienceDetailPage() {
           </div>
         )}
 
-        <div className="space-y-6">
+        <div className="grid grid-cols-2 gap-6">
+          {/* Fecha */}
           <div className="space-y-3">
-            <label className="text-sm font-bold text-foreground block uppercase tracking-wider"><T>Fecha de salida:</T></label>
+            <label className="text-[10px] uppercase tracking-[0.2em] font-medium text-foreground block"><T>Fecha</T></label>
             <Input 
               type="date" 
               value={selectedDate} 
               onChange={(e) => setSelectedDate(e.target.value)} 
               min={minDateStr} 
-              className="rounded-xl h-12 bg-background font-medium focus-visible:ring-primary text-foreground border-border" 
+              className="h-12 bg-transparent border-0 border-b border-foreground/20 rounded-none px-0 text-foreground focus-visible:ring-0 focus-visible:border-primary font-serif" 
             />
           </div>
 
+          {/* Viajeros */}
           <div className="space-y-3">
-            <label className="text-sm font-bold text-foreground block uppercase tracking-wider"><T>Viajeros:</T></label>
-            <div className="flex items-center justify-between border border-border rounded-xl h-12 bg-background overflow-hidden">
-              <Button variant="ghost" className="h-full px-6 rounded-none hover:bg-muted text-foreground" onClick={() => setPeople(Math.max(1, people - 1))}><Minus className="w-4 h-4"/></Button>
-              <span className="flex-1 text-center font-bold text-lg text-foreground">{people}</span>
-              <Button variant="ghost" className="h-full px-6 rounded-none hover:bg-muted text-foreground" onClick={() => setPeople(people + 1)}><Plus className="w-4 h-4"/></Button>
+            <label className="text-[10px] uppercase tracking-[0.2em] font-medium text-foreground block"><T>Viajeros</T></label>
+            <div className="flex items-center justify-between border-b border-foreground/20 h-12">
+              <button className="h-full px-2 text-foreground hover:text-primary transition-colors" onClick={() => setPeople(Math.max(1, people - 1))}><Minus className="w-4 h-4"/></button>
+              <span className="font-serif text-xl text-foreground">{people}</span>
+              <button className="h-full px-2 text-foreground hover:text-primary transition-colors" onClick={() => setPeople(people + 1)}><Plus className="w-4 h-4"/></button>
             </div>
           </div>
-
-          <Button 
-            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold h-14 rounded-xl shadow-md uppercase tracking-widest text-sm transition-all mt-4"
-            onClick={handleAddToCart}
-            disabled={!selectedDate || isAdding}
-          >
-            {isAdding ? <Loader2 className="animate-spin w-5 h-5 mr-2 inline" /> : null}
-            {isAdding ? <T>Añadiendo...</T> : <T>Añadir al carrito</T>}
-          </Button>
         </div>
-      </CardContent>
-    </Card>
+
+        {/* Botón de Añadir */}
+        <button 
+          className="w-full h-16 bg-foreground text-background hover:bg-primary transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 mt-6"
+          onClick={handleAddToCart}
+          disabled={!selectedDate || isAdding}
+        >
+          {isAdding ? <Loader2 className="animate-spin w-5 h-5" /> : null}
+          <span className="text-[10px] uppercase tracking-[0.2em] font-medium">
+            {isAdding ? <T>Añadiendo...</T> : <T>Añadir al carrito</T>}
+          </span>
+        </button>
+      </div>
+    </div>
   );
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
       
-      <main className="flex-1 pt-28 pb-20">
-        <div className="container mx-auto px-4 max-w-7xl">
+      <main className="flex-1 pt-24 pb-24">
+        <div className="container mx-auto px-6 lg:px-12">
           
-          {/* Layout Mobile: Título aparece arriba de la imagen */}
-          <div className="lg:hidden mb-6">
-             <h1 className="text-3xl font-serif font-bold text-foreground leading-tight mb-4">
+          {/* Título Principal Editorial (Arriba de todo en ambos layouts) */}
+          <div className="max-w-4xl mb-12">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="w-8 h-[1px] bg-foreground/30"></span>
+              <p className="text-[10px] uppercase tracking-[0.3em] font-medium text-muted-foreground">
+                <T>{experience.categories?.name || "Experiencia"}</T>
+              </p>
+            </div>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-foreground leading-[0.95] mb-6">
               <T>{experience.title}</T>
-             </h1>
-             <div className="flex flex-wrap items-center gap-4 text-xs font-bold tracking-widest uppercase text-muted-foreground">
-                <div className="flex items-center gap-1.5"><MapPin className="w-3.5 h-3.5 text-primary" /> <T>{experience.location}</T></div>
-                {experience.duration && (
-                  <div className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-primary" /> <T>{experience.duration}</T></div>
-                )}
-             </div>
+            </h1>
+            <div className="flex flex-wrap items-center gap-6 text-[10px] font-medium tracking-[0.2em] uppercase text-muted-foreground border-t border-border pt-6">
+              <div className="flex items-center gap-2"><MapPin className="w-3.5 h-3.5 text-primary" /> <T>{experience.location}</T></div>
+              {experience.duration && (
+                <div className="flex items-center gap-2"><Clock className="w-3.5 h-3.5 text-primary" /> <T>{experience.duration}</T></div>
+              )}
+            </div>
           </div>
 
-          <div className="flex flex-col lg:grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          <div className="flex flex-col lg:grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
             
-            {/* COLUMNA IZQUIERDA: Imagen y Detalles */}
-            <div className="lg:col-span-7 space-y-12 w-full">
+            {/* COLUMNA IZQUIERDA: Imagen y Contenido */}
+            <div className="lg:col-span-7 space-y-16 w-full">
               
-              <div className="w-full aspect-[4/3] md:aspect-[16/9] rounded-2xl overflow-hidden shadow-lg border border-border">
+              {/* Imagen Principal asimétrica/editorial sin bordes redondeados */}
+              <div className="w-full aspect-[4/3] overflow-hidden border border-border">
                 <img src={mainImage} alt={experience.title} className="w-full h-full object-cover" />
               </div>
 
-              {/* Layout Mobile: Widget debajo de la imagen */}
+              {/* Layout Mobile: Widget se inserta aquí */}
               <div className="lg:hidden w-full">
                  <WidgetForm />
               </div>
 
-              {/* Qué harás (Siempre visible) */}
+              {/* Qué harás */}
               {experience.what_you_will_do && experience.what_you_will_do.length > 0 && (
-                <section>
-                  <h2 className="text-2xl font-serif font-bold text-foreground mb-6 flex items-center gap-2">
-                    <Compass className="w-6 h-6 text-primary" /> <T>Qué harás</T>
-                  </h2>
-                  <ul className="space-y-4">
+                <section className="pt-8 border-t border-border">
+                  <h2 className="text-3xl font-serif text-foreground mb-8"><T>Qué harás</T></h2>
+                  <ul className="space-y-6">
                     {experience.what_you_will_do.map((item, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <div className="w-2 h-2 rounded-full bg-primary mt-2 shrink-0"></div>
-                        <span className="text-muted-foreground leading-relaxed text-lg"><T>{item}</T></span>
+                      <li key={i} className="flex items-start gap-4">
+                        <span className="text-[10px] font-serif italic text-primary mt-1">0{i+1}</span>
+                        <span className="text-muted-foreground leading-relaxed font-sans text-base"><T>{item}</T></span>
                       </li>
                     ))}
                   </ul>
@@ -251,24 +265,22 @@ export default function ExperienceDetailPage() {
               )}
 
               {/* Descripción */}
-              <section>
-                <h2 className="text-2xl font-serif font-bold text-foreground mb-6"><T>Descripción general</T></h2>
-                <div className="text-muted-foreground leading-relaxed space-y-4 whitespace-pre-wrap text-lg">
+              <section className="pt-8 border-t border-border">
+                <h2 className="text-3xl font-serif text-foreground mb-8"><T>La Experiencia</T></h2>
+                <div className="text-muted-foreground leading-relaxed space-y-6 whitespace-pre-wrap font-sans text-base">
                   <T>{experience.description}</T>
                 </div>
               </section>
 
-              {/* Itinerario (Solo si existe y tiene contenido) */}
+              {/* Itinerario (Diseño de línea de tiempo minimalista) */}
               {experience.itinerary && experience.itinerary.length > 0 && (
-                <section className="bg-card border border-border p-8 rounded-2xl shadow-sm">
-                  <h2 className="text-2xl font-serif font-bold text-foreground mb-8 flex items-center gap-3">
-                    <CalendarDays className="w-6 h-6 text-primary" /> <T>Itinerario de la experiencia</T>
-                  </h2>
-                  <div className="relative border-l-2 border-primary/20 ml-3 space-y-8">
+                <section className="pt-8 border-t border-border">
+                  <h2 className="text-3xl font-serif text-foreground mb-10"><T>Itinerario</T></h2>
+                  <div className="relative border-l border-foreground/20 ml-2 space-y-12">
                     {experience.itinerary.map((step, i) => (
-                      <div key={i} className="relative pl-8">
-                        <div className="absolute w-4 h-4 bg-primary rounded-full -left-[9px] top-1.5 ring-4 ring-card"></div>
-                        <p className="text-foreground font-medium leading-relaxed"><T>{step}</T></p>
+                      <div key={i} className="relative pl-10">
+                        <div className="absolute w-2 h-2 bg-primary rounded-none -left-[4.5px] top-2"></div>
+                        <p className="text-foreground font-sans leading-relaxed text-base"><T>{step}</T></p>
                       </div>
                     ))}
                   </div>
@@ -277,35 +289,33 @@ export default function ExperienceDetailPage() {
 
               {/* Qué Llevar */}
               {experience.requirements && experience.requirements.length > 0 && (
-                <section>
-                  <h2 className="text-2xl font-serif font-bold text-foreground mb-6 flex items-center gap-2">
-                    <Info className="w-6 h-6 text-primary"/> <T>¿Qué llevar?</T>
-                  </h2>
-                  <div className="grid sm:grid-cols-2 gap-4">
+                <section className="pt-8 border-t border-border">
+                  <h2 className="text-3xl font-serif text-foreground mb-8"><T>Esenciales para el viaje</T></h2>
+                  <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4">
                     {experience.requirements.map((req, i) => (
-                      <div key={i} className="flex items-center gap-3 bg-secondary/20 p-4 rounded-xl border border-border">
+                      <div key={i} className="flex items-center gap-3 border-b border-border py-3">
                         <Check className="w-4 h-4 text-primary shrink-0"/>
-                        <span className="text-sm text-foreground font-medium"><T>{req}</T></span>
+                        <span className="text-sm text-foreground font-sans"><T>{req}</T></span>
                       </div>
                     ))}
                   </div>
                 </section>
               )}
 
-              {/* Información Importante Clasificada */}
+              {/* Información Importante */}
               {experience.important_info && Object.keys(experience.important_info).length > 0 && (
-                 <section className="bg-secondary/10 p-6 md:p-8 rounded-2xl border border-border">
-                    <h2 className="text-2xl font-serif font-bold text-foreground mb-8 flex items-center gap-2">
-                      <AlertTriangle className="w-6 h-6 text-primary"/> <T>Información Importante</T>
+                 <section className="bg-muted/20 p-8 md:p-12 border border-border">
+                    <h2 className="text-2xl font-serif text-foreground mb-8 flex items-center gap-3">
+                      <AlertTriangle className="w-5 h-5 text-primary"/> <T>A tomar en cuenta</T>
                     </h2>
-                    <div className="grid sm:grid-cols-2 gap-8">
+                    <div className="grid sm:grid-cols-2 gap-10">
                       {Object.entries(experience.important_info).map(([category, items], idx) => (
                         <div key={idx}>
-                          <h3 className="font-bold text-foreground mb-4 uppercase tracking-wider text-sm"><T>{category}</T></h3>
-                          <ul className="space-y-3 text-muted-foreground text-sm">
+                          <h3 className="text-[10px] uppercase tracking-[0.2em] font-medium text-foreground mb-4"><T>{category}</T></h3>
+                          <ul className="space-y-3">
                             {(items as string[]).map((item, i) => (
-                              <li key={i} className="flex items-start gap-2 leading-relaxed">
-                                <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0"></div>
+                              <li key={i} className="flex items-start gap-3 text-sm text-muted-foreground leading-relaxed">
+                                <div className="w-1 h-1 bg-foreground/30 mt-2 shrink-0"></div>
                                 <span><T>{item}</T></span>
                               </li>
                             ))}
@@ -318,23 +328,9 @@ export default function ExperienceDetailPage() {
 
             </div>
 
-            {/* COLUMNA DERECHA: Título (Web) + Widget Sticky */}
-            <div className="hidden lg:flex lg:col-span-5 flex-col space-y-6 sticky top-28">
-              
-              <div>
-                <h1 className="text-3xl lg:text-4xl font-serif font-bold text-foreground mb-4 leading-tight">
-                  <T>{experience.title}</T>
-                </h1>
-                <div className="flex flex-wrap items-center gap-4 text-xs font-bold tracking-widest uppercase text-muted-foreground mb-2">
-                  <div className="flex items-center gap-1.5"><MapPin className="w-4 h-4 text-primary" /> <T>{experience.location}</T></div>
-                  {experience.duration && (
-                    <div className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-primary" /> <T>{experience.duration}</T></div>
-                  )}
-                </div>
-              </div>
-
+            {/* COLUMNA DERECHA: Widget Sticky en Web */}
+            <div className="hidden lg:block lg:col-span-5 sticky top-28">
               <WidgetForm />
-              
             </div>
             
           </div>

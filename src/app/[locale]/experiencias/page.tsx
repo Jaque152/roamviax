@@ -1,4 +1,3 @@
-// src/app/[locale]/experiencias/page.tsx
 "use client";
 import { useLocale } from 'next-intl';
 import { useState, useEffect, Suspense } from "react";
@@ -6,9 +5,6 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { supabase } from '@/lib/supabase';
 import { MapPin, Search, ArrowRight, Loader2 } from "lucide-react";
@@ -88,97 +84,130 @@ function ExperienciasContent() {
   };
 
   if (loading) return (
-    <div className="min-h-screen flex items-center justify-center">
-      <Loader2 className="w-10 h-10 animate-spin text-orange-600" />
+    <div className="min-h-screen flex items-center justify-center bg-background">
+      <Loader2 className="w-10 h-10 animate-spin text-foreground" />
     </div>
   );
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-background">
       <Header />
       <main className="flex-1 pt-20">
-        <section className="bg-stone-50 py-16">
-          <div className="container mx-auto px-4 lg:px-8">
-            <Badge variant="outline" className="mb-4 rounded-full px-4 py-1 border-primary/30 text-primary">
-              <T>Catálogo de Experiencias</T>
-            </Badge>
-            <h1 className="text-4xl md:text-5xl font-serif font-semibold mb-6 text-stone-900">
-              <T>Descubre</T> <span className="text-orange-600"><T>aventuras únicas</T></span>
+        
+        {/* Header Section Editorial */}
+        <section className="bg-background pt-0 pb-12 border-b border-border">
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="flex items-center gap-4 mb-8">
+              <span className="w-8 h-[1px] bg-foreground/30"></span>
+              <p className="text-[10px] uppercase tracking-[0.3em] font-medium text-muted-foreground">
+                <T>Catálogo de Experiencias</T>
+              </p>
+            </div>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif leading-[0.95] text-foreground">
+              <span className="block"><T>Descubre</T></span>
+              <span className="block italic text-primary"><T>aventuras únicas</T></span>
             </h1>
           </div>
         </section>
 
+        {/* Filter Bar Editorial */}
         <section className="border-b border-border bg-background sticky top-20 z-40">
-          <div className="container mx-auto px-4 lg:px-8 py-4">
-            <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
-              <div className="flex flex-wrap gap-2">
-                <Button
-                  variant={!selectedCategory ? "default" : "outline"}
-                  size="sm"
+          <div className="container mx-auto px-6 lg:px-12 py-4">
+            <div className="flex flex-col lg:flex-row gap-6 items-start lg:items-center justify-between">
+              
+              {/* Categorías (Minimalist Text Buttons) */}
+              <div className="flex flex-wrap gap-6 items-center">
+                <button
                   onClick={() => setSelectedCategory(null)}
-                  className="rounded-full"
-                ><T>Todas</T></Button>
+                  className={`text-[10px] uppercase tracking-[0.2em] font-medium transition-colors ${!selectedCategory ? 'text-primary border-b border-primary pb-1' : 'text-muted-foreground hover:text-foreground'}`}
+                >
+                  <T>Todas</T>
+                </button>
                 {categories.map((cat) => (
-                  <Button
+                  <button
                     key={cat.id}
-                    variant={selectedCategory === cat.slug ? "default" : "outline"}
-                    size="sm"
                     onClick={() => setSelectedCategory(cat.slug)}
-                    className="rounded-full"
-                  ><T>{cat.name}</T></Button>
+                    className={`text-[10px] uppercase tracking-[0.2em] font-medium transition-colors ${selectedCategory === cat.slug ? 'text-primary border-b border-primary pb-1' : 'text-muted-foreground hover:text-foreground'}`}
+                  >
+                    <T>{cat.name}</T>
+                  </button>
                 ))}
               </div>
-              <div className="relative w-full lg:w-72">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+
+              {/* Búsqueda */}
+              <div className="flex items-center w-full lg:w-72 h-10 border-b border-border bg-transparent group focus-within:border-primary transition-colors">
+                <div className="flex items-center justify-center w-8 shrink-0">
+                  <Search 
+                    className="w-4 h-4 text-muted-foreground group-focus-within:text-foreground transition-colors" 
+                    strokeWidth={1.5} 
+                  />
+                </div>
                 <Input
                   placeholder={phSearch}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 rounded-full"
+                  className="flex-1 border-0 bg-transparent rounded-none h-full px-0 focus-visible:ring-0 focus-visible:border-0 text-sm font-serif italic text-foreground placeholder:text-muted-foreground"
                 />
               </div>
             </div>
           </div>
         </section>
 
-        <section className="py-12">
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Grid de Experiencias */}
+        <section className="py-16 lg:py-24 bg-muted/10">
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-16">
               {filteredExperiences.map((exp) => {
                 const thumbImage = exp.images?.length > 0 ? exp.images[0] : '/placeholder.jpg';
 
                 return (
-                  <Link key={exp.id} href={`/${locale}/experiencias/${exp.id}`} className="group">
-                    <Card className="h-full overflow-hidden hover:shadow-xl transition-all border-none shadow-sm rounded-2xl">
-                      <div className="aspect-[4/3] relative overflow-hidden">
-                        <img src={thumbImage} alt={exp.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
-                        <Badge className="absolute top-4 left-4 bg-background/90 text-foreground border-none">
+                  <Link key={exp.id} href={`/${locale}/experiencias/${exp.id}`} className="group flex flex-col">
+                    <div className="aspect-[4/5] relative overflow-hidden bg-muted mb-6 border border-border/50">
+                      <img 
+                        src={thumbImage} 
+                        alt={exp.title} 
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                      />
+                    </div>
+                    
+                    <div className="flex flex-col flex-1">
+                      <div className="flex justify-between items-start mb-3">
+                        <p className="text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
                           <T>{exp.categories?.name || "Sin Categoría"}</T>
-                        </Badge>
-                      </div>
-                      <CardContent className="p-5">
-                        <h3 className="text-lg font-serif font-semibold mb-2"><T>{exp.title}</T></h3>
-                        <div className="flex items-center gap-1 text-sm text-muted-foreground mb-4">
-                          <MapPin className="w-4 h-4" /> <T>{exp.location}</T>
+                        </p>
+                        <div className="flex items-center gap-1.5 text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
+                          <MapPin className="w-3 h-3 text-primary" /> <T>{exp.location}</T>
                         </div>
-                        <div className="flex items-center justify-between pt-4 border-t">
-                          <div>
-                            <p className="text-xs text-muted-foreground uppercase font-bold"><T>Desde</T></p>
-                            <p className="text-lg font-bold text-orange-600">
+                      </div>
+                      
+                      <h3 className="text-2xl font-serif text-foreground mb-4 group-hover:text-primary transition-colors">
+                        <T>{exp.title}</T>
+                      </h3>
+                      
+                      <div className="mt-auto pt-6 border-t border-border flex items-center justify-between">
+                        <div>
+                          <p className="text-[9px] uppercase tracking-[0.2em] text-muted-foreground mb-1"><T>Desde</T></p>
+                          <div className="flex items-baseline gap-2">
+                            <p className="text-lg font-serif font-medium text-foreground">
                               {formatPrice(exp.displayPrice)}
                             </p>
-                            <span className="text-xs font-normal text-stone-500"><T>IVA incluido</T></span>
                           </div>
-                          <span className="flex items-center gap-1 text-sm text-primary font-medium group-hover:translate-x-1 transition-transform">
-                            <T>Ver detalles</T> <ArrowRight className="w-4 h-4" />
-                          </span>
                         </div>
-                      </CardContent>
-                    </Card>
+                        <span className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] font-medium text-foreground group-hover:text-primary transition-colors">
+                          <T>Explorar</T> <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        </span>
+                      </div>
+                    </div>
                   </Link>
                 );
               })}
             </div>
+            
+            {filteredExperiences.length === 0 && (
+              <div className="text-center py-20 border border-border">
+                <p className="text-muted-foreground font-serif text-xl italic"><T>No encontramos experiencias con esos filtros.</T></p>
+              </div>
+            )}
           </div>
         </section>
       </main>
@@ -190,8 +219,8 @@ function ExperienciasContent() {
 export default function ExperienciasPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader2 className="w-10 h-10 animate-spin text-orange-600" />
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <Loader2 className="w-10 h-10 animate-spin text-foreground" />
       </div>
     }>
       <ExperienciasContent />

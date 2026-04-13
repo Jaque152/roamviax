@@ -13,32 +13,45 @@ interface LegalPageProps {
 
 export function LegalPage({ title, sections }: LegalPageProps) {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-background">
       <Header />
       <main className="flex-1 pt-32 pb-24">
-        <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
-          <h1 className="text-4xl md:text-5xl font-serif font-semibold mb-12">
-            <T>{title}</T>
-          </h1>
+        <div className="container mx-auto px-6 lg:px-12 max-w-3xl">
+          
+          {/* Header Legal */}
+          <div className="mb-16 pb-8 border-b border-border">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="w-8 h-[1px] bg-foreground/30"></span>
+              <p className="text-[10px] uppercase tracking-[0.3em] font-medium text-muted-foreground">
+                <T>Información Legal</T>
+              </p>
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-foreground leading-[1.1]">
+              <T>{title}</T>
+            </h1>
+          </div>
 
-          <div className="prose prose-lg max-w-none">
+          {/* Contenido Legal */}
+          <div className="space-y-12">
             {sections.map((section, index) => (
-              <div key={index} className="mb-10">
-                <h2 className="text-2xl font-serif font-semibold text-foreground mb-4">
+              <div key={index} className="group">
+                <h2 className="text-xl font-serif text-foreground mb-4">
                   <T>{section.heading}</T>
                 </h2>
-                <p className="text-muted-foreground leading-relaxed">
+                <div className="text-muted-foreground font-sans leading-relaxed text-sm md:text-base text-justify">
                   <T>{section.content}</T>
-                </p>
+                </div>
               </div>
             ))}
           </div>
 
-          {/* <div className="mt-16 pt-8 border-t border-border">
-            <p className="text-sm text-muted-foreground">
-             <T> Última actualización: </T>{new Date().toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' })}
+          {/* Footer del Documento */}
+          <div className="mt-20 pt-8 border-t border-border">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+              Roamviax — Luxury Travel
             </p>
-          </div> */}
+          </div>
+          
         </div>
       </main>
       <Footer />

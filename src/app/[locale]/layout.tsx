@@ -10,7 +10,7 @@ type Props = {
 };
 
 export const metadata: Metadata = {
-  title: "Zenith Mexico - Experiencias Únicas en México",
+  title: "Roamviax - Luxury Travel",
   description: "Diseñamos experiencias personalizadas para que tú solo te preocupes por disfrutar el camino. Descubre los rincones más auténticos de México.",
 };
 

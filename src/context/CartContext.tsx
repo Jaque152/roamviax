@@ -20,7 +20,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   // Cargar del localStorage
   useEffect(() => {
-    const savedCart = localStorage.getItem("ZenithMexico-cart");
+    const savedCart = localStorage.getItem("Roamviax-cart");
     if (savedCart) {
       try {
         setCart(JSON.parse(savedCart));
@@ -34,7 +34,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   // Guardar en localStorage
   useEffect(() => {
     if (isHydrated) {
-      localStorage.setItem("ZenithMexico-cart", JSON.stringify(cart));
+      localStorage.setItem("Roamviax-cart", JSON.stringify(cart));
     }
   }, [cart, isHydrated]);
 

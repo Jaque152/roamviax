@@ -1,78 +1,82 @@
 "use client";
 import { T } from "@/components/T";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, MapPin, Compass } from "lucide-react";
 import Link from "next/link";
 import { useLocale } from 'next-intl';
+import { ArrowDownRight, ArrowRight } from "lucide-react";
 
 export function Hero() {
   const locale = useLocale();
+  
   return (
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-secondary/30 to-background" />
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <div className="space-y-8 animate-fade-up">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full">
-              <Compass className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium text-primary">
-                <T>Experiencias Auténticas</T>
-              </span>
-            </div>
+    <section className="relative min-h-[90vh] flex flex-col bg-background">
+      {/* Main Content - Split Layout */}
+      <div className="flex-1 grid lg:grid-cols-2">
+        
+        {/* Left - Text Content */}
+        <div className="flex flex-col justify-center px-6 lg:px-12 xl:px-20 py-24 lg:py-0 order-2 lg:order-1 relative z-10 bg-background animate-fade-up">
+          <div className="max-w-xl">
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-semibold leading-tight">
-              <T> Descubre el </T> <span className="relative text-primary">México</span><br />
-              <T>que siempre soñaste</T>
+            {/* Main Title - Typography Editorial */}
+            <h1 className="text-6xl md:text-7xl lg:text-[5.5rem] font-serif mb-8 leading-[0.95] text-foreground tracking-tight">
+              <span className="block"><T>Descubre el</T></span>
+              <span className="block italic text-primary"><T>México</T></span>
+              <span className="block"><T>que siempre soñaste</T></span>
             </h1>
 
-            <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
-              <T>Diseñamos experiencias personalizadas donde tú eres el protagonista.
-              Desde santuarios naturales hasta tradiciones ancestrales.</T>
+            {/* Subtitle */}
+            <p className="text-base md:text-lg text-muted-foreground mb-12 max-w-md leading-relaxed font-sans">
+              <T>Diseñamos experiencias personalizadas donde tú eres el protagonista. Desde santuarios naturales hasta tradiciones ancestrales.</T>
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-            <Button asChild className="mt-4">
-              <Link href={`/${locale}/experiencias`}>
-              <T>Ver experiencias</T>
+            {/* CTA - Editorial Buttons */}
+            <div className="flex flex-wrap items-center gap-8">
+              <Link
+                href={`/${locale}/experiencias`}
+                className="group inline-flex items-center gap-4 bg-foreground text-background px-8 py-4 hover:bg-primary transition-all duration-300"
+              >
+                <span className="text-[10px] uppercase tracking-[0.2em] font-medium">
+                  <T>Ver experiencias</T>
+                </span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
-            </Button>
+
+              <Link
+                href={`/${locale}/#contacto`}
+                className="text-[10px] uppercase tracking-[0.2em] font-medium text-foreground underline underline-offset-8 hover:text-primary transition-colors"
+              >
+                <T>Contactar</T>
+              </Link>
             </div>
           </div>
+        </div>
 
-          <div className="relative hidden lg:block">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-4">
-                <div className="aspect-[3/4] rounded-3xl overflow-hidden relative group shadow-2xl">
-                  <div className="absolute inset-0 bg-[url('https://lugares.inah.gob.mx/sites/default/files/zonas/185_A_slider_chichen_itza_3.jpg')] bg-cover bg-center transition-transform duration-700 group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-4 left-4 flex items-center gap-2 text-white">
-                    <MapPin className="w-4 h-4" />
-                    <span className="text-sm font-medium">Chichén Itzá</span>
-                  </div>
-                </div>
-                {/* Logo dinámico en el grid */}
-                <div className="bg-white/50 backdrop-blur-sm rounded-3xl aspect-[1.2] flex items-center justify-center p-10 group border border-white/20">
-                  <img 
-                    src="/logo 2.png" 
-                    alt="Logo" 
-                    className="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity" 
-                  />
-                </div>
-              </div>
+        {/* Right - Image with Editorial Fade */}
+        <div className="relative h-[55vh] lg:h-auto order-1 lg:order-2">
+          {/* Background Image */}
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: "url('https://lugares.inah.gob.mx/sites/default/files/zonas/185_A_slider_chichen_itza_3.jpg')" }}
+          />
+          
+          {/* EL DIFUMINADO EDITORIAL: 
+              Este gradiente funde el fondo claro de la izquierda con la imagen. 
+              Al usar "to-transparent", evitamos la mancha blanca en el centro de la foto. */}
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/40 to-transparent w-full md:w-3/4 opacity-100" />
 
-              <div className="space-y-4 pt-12">
-                <div className="aspect-square rounded-3xl overflow-hidden relative shadow-2xl">
-                  <div className="absolute inset-0 bg-[url('https://oem.com.mx/elsoldemexico/img/13723873/1729769072/BASE_LANDSCAPE/1200/image.webp')] bg-cover bg-center" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-4 left-4 text-white text-sm font-medium">Oaxaca de Juárez</div>
-                </div>
-                <div className="aspect-[3/4] rounded-3xl overflow-hidden relative shadow-2xl">
-                  <div className="absolute inset-0 bg-[url('https://www.delphinusworld.com/hubfs/playas%20y%20cenotes%20riviera%20maya.webp')] bg-cover bg-center" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-4 left-4 text-white text-sm font-medium">Riviera Maya</div>
-                </div>
-              </div>
-            </div>
+          {/* Gradiente sutil inferior para asegurar la lectura de la etiqueta */}
+          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/30 to-transparent" />
+
+          {/* Floating Label */}
+          <div className="absolute bottom-8 right-8 bg-background/95 backdrop-blur-md px-6 py-4 border border-border">
+            <p className="font-serif text-2xl italic text-foreground">Chichén Itzá</p>
+          </div>
+
+          {/* Scroll Indicator (Solo Desktop) */}
+          <div className="absolute bottom-10 left-12 hidden lg:flex items-center gap-3 text-background">
+            <ArrowDownRight className="w-6 h-6 animate-bounce drop-shadow-md" />
+            <span className="text-[10px] uppercase tracking-[0.3em] font-medium drop-shadow-md">
+              <T>Scroll</T>
+            </span>
           </div>
         </div>
       </div>

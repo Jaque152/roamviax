@@ -1,94 +1,119 @@
 "use client";
 import { useLocale } from 'next-intl';
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Check, Sparkles } from "lucide-react";
+import { Check } from "lucide-react";
 import Link from "next/link";
 import { T } from "@/components/T";
 
 export function Pricing() {
   const locale = useLocale();
+  const features = [
+    "Itinerario 100% personalizado",
+    "Precio ajustado a tu presupuesto",
+    "Asesoría de expertos en destinos",
+    "Atención dedicada ",
+    "Sin cargos ocultos - IVA incluido",
+  ];
+
   return (
-    <section id="precios" className="py-24 lg:py-32 bg-secondary/30 relative overflow-hidden">
-      {/* Background decorations */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
-
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <Badge variant="outline" className="mb-4 rounded-full px-4 py-1 border-primary/30 text-primary">
-            <T>Viajes a Tu Medida</T>
-          </Badge>
-          <h2 className="text-4xl md:text-5xl font-serif font-semibold mb-6">
-            <T>Diseñamos tu</T>{" "}
-            <span className="text-gradient"><T>aventura perfecta</T></span>
-          </h2>
-          <p className="text-lg text-muted-foreground">
-            <T>Cada viajero es único. Por eso creamos experiencias 100% personalizadas
-            que se adaptan a tus gustos, tiempos y presupuesto.</T>
-          </p>
-        </div>
-
-        {/* Custom Service Card - Centered */}
-        <div className="max-w-lg mx-auto">
-          <Card className="relative overflow-hidden border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-accent/5 shadow-xl hover:shadow-2xl transition-all duration-300">
-            {/* Decorative elements */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl" />
-            <div className="absolute bottom-0 left-0 w-24 h-24 bg-accent/10 rounded-full blur-2xl" />
-
-            <CardHeader className="pb-4 relative">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-6">
-                <Sparkles className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-2xl font-serif font-semibold"><T>Servicio Personalizado</T></h3>
-              <p className="text-muted-foreground mt-2"><T>Diseñamos tu viaje a la medida de tus sueños</T></p>
-            </CardHeader>
-
-            <CardContent className="relative">
-              <p className="text-muted-foreground mb-6">
-                <T>¿Tienes un destino en mente? ¿Un presupuesto específico? ¿Necesidades especiales?
-                Nuestro equipo de expertos creará un itinerario único solo para ti.</T>
+    <section id="precios" className="py-24 lg:py-32 bg-background overflow-hidden border-t border-border">
+      <div className="container mx-auto px-6 lg:px-12">
+        {/* Split Layout */}
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          
+          {/* Left - Content */}
+          <div className="order-2 lg:order-1">
+            <div className="flex items-center gap-4 mb-8">
+              <span className="w-8 h-[1px] bg-foreground/30"></span>
+              <p className="text-[10px] uppercase tracking-[0.3em] font-medium text-muted-foreground">
+                <T>Servicio Personalizado</T>
               </p>
+            </div>
+            
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-serif leading-[0.95] mb-8 text-foreground">
+              <span className="block"><T>Diseñamos tu</T></span>
+              <span className="block italic text-primary"><T>aventura perfecta</T></span>
+            </h2>
 
-              <div className="p-5 bg-background/60 backdrop-blur-sm rounded-xl mb-6 border border-border/50">
-                <h4 className="font-medium mb-4 text-foreground"><T>¿Qué incluye?</T></h4>
-                <ul className="space-y-3">
-                  <li className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                    <T>Itinerario 100% personalizado</T>
-                  </li>
-                  <li className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                    <T>Precio ajustado a tu presupuesto</T>
-                  </li>
-                  <li className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                    <T>Asesoría de expertos en destinos</T>
-                  </li>
-                  <li className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                    <T>Atención dedicada</T>
-                  </li>
-                  <li className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                    <T>Sin cargos ocultos - IVA incluido</T>
-                  </li>
-                </ul>
-              </div>
+            <p className="text-base md:text-lg text-muted-foreground mb-12 max-w-md leading-relaxed font-sans">
+              <T>
+                Cada viajero es único. Por eso creamos experiencias 100% personalizadas
+                que se adaptan a tus gustos, tiempos y presupuesto. Nuestro equipo de expertos creará un itinerario único solo para ti.
+              </T>
+            </p>
 
-              <Button asChild className="w-full rounded-full h-12 text-base bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity">
-                <Link href={`/${locale}/cotizar`}>
-                  <T>Cotizar Ahora</T>
-                </Link>
-              </Button>
+            {/* Features List */}
+            <div className="space-y-5 mb-12">
+              {features.map((feature, idx) => (
+                <div key={idx} className="flex items-center gap-5">
+                  <div className="w-6 h-6 border border-foreground/20 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-3 h-3 text-primary" />
+                  </div>
+                  <span className="text-sm text-foreground font-medium tracking-wide">
+                    <T>{feature}</T>
+                  </span>
+                </div>
+              ))}
+            </div>
 
-              <p className="text-center text-xs text-muted-foreground mt-4">
+            {/* CTA */}
+            <div className="flex flex-col sm:flex-row sm:items-center gap-6">
+              <Link
+                href={`/${locale}/cotizar`}
+                className="group inline-flex items-center justify-center gap-4 bg-foreground text-background px-10 py-5 hover:bg-primary transition-colors duration-300 w-full sm:w-auto"
+              >
+                <span className="text-[10px] uppercase tracking-[0.2em] font-medium">
+                  <T>Cotizar ahora</T>
+                </span>
+              </Link>
+              <p className="text-[10px] uppercase tracking-[0.1em] text-muted-foreground text-center sm:text-left">
                 <T>Respuesta en menos de 24 horas</T>
               </p>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
+
+          {/* Right - Image Collage (Polaroid Style) */}
+          <div className="relative order-1 lg:order-2">
+            <div className="grid grid-cols-2 gap-6 lg:gap-8">
+              {/* Columna Izquierda */}
+              <div className="space-y-6 lg:space-y-8 mt-8">
+                {/* Polaroid 1 */}
+                <div className="bg-white p-2 pb-10 lg:p-3 lg:pb-14 shadow-2xl border border-black/5 -rotate-2 hover:rotate-0 transition-transform duration-500">
+                  <div className="aspect-[3/4] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1552083375-1447ce886485?w=600" alt="Cenote" className="w-full h-full object-cover" />
+                  </div>
+                </div>
+                {/* Polaroid 2 */}
+                <div className="bg-white p-2 pb-10 lg:p-3 lg:pb-14 shadow-2xl border border-black/5 rotate-2 hover:rotate-0 transition-transform duration-500">
+                  <div className="aspect-square overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=400" alt="Cultura" className="w-full h-full object-cover" />
+                  </div>
+                </div>
+              </div>
+              
+              {/* Columna Derecha */}
+              <div className="space-y-6 lg:space-y-8 pt-16 lg:pt-24">
+                {/* Polaroid 3 */}
+                <div className="bg-white p-2 pb-10 lg:p-3 lg:pb-14 shadow-2xl border border-black/5 rotate-1 hover:rotate-0 transition-transform duration-500">
+                  <div className="aspect-square overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?w=400" alt="Chichen Itza" className="w-full h-full object-cover" />
+                  </div>
+                </div>
+                {/* Polaroid 4 */}
+                <div className="bg-white p-2 pb-10 lg:p-3 lg:pb-14 shadow-2xl border border-black/5 -rotate-1 hover:rotate-0 transition-transform duration-500">
+                  <div className="aspect-[3/4] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600" alt="Gastronomia" className="w-full h-full object-cover" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Floating Quote */}
+            <div className="absolute -bottom-6 -left-6 lg:-bottom-12 lg:-left-12 bg-background border border-border p-6 lg:p-8 max-w-[260px] shadow-xl z-10 hidden sm:block">
+              <p className="font-serif italic text-lg lg:text-xl mb-3 text-foreground">
+                Una experiencia inolvidable.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

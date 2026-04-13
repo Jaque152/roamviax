@@ -5,12 +5,11 @@ import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { CheckCircle } from "lucide-react";
 import { T } from "@/components/T";
 import { useT } from "@/hooks/useT";
 import { useCart } from "@/context/CartContext";
+import { ArrowRight } from "lucide-react";
 
 export default function PagoFolioPage() {
   const router = useRouter();
@@ -24,7 +23,7 @@ export default function PagoFolioPage() {
   const [folio, setFolio] = useState("");
   const [fecha, setFecha] = useState("");
 
-  const btnConfirmar = useT(" Añadir al carrito ");
+  const btnConfirmar = useT("Añadir al carrito");
 
   const handleMontoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value.replace(/[^0-9.]/g, ''); 
@@ -63,7 +62,7 @@ export default function PagoFolioPage() {
     };
 
     addToCart(customExperienceItem);
-    sessionStorage.setItem("zenith_temp_contact", JSON.stringify({ nombre, email, folio }));
+    sessionStorage.setItem("roamviax_temp_contact", JSON.stringify({ nombre, email, folio }));
     router.push(`/${locale}/checkout`);
   };
 
@@ -71,139 +70,157 @@ export default function PagoFolioPage() {
   minDate.setDate(minDate.getDate() + 1);
   const minDateStr = minDate.toISOString().split("T")[0];
 
+  // Estilos compartidos para inputs editoriales
+  const inputClass = "h-12 border-0 border-b border-foreground/20 bg-transparent rounded-none px-0 focus-visible:ring-0 focus-visible:border-primary text-foreground placeholder:text-muted-foreground/40 font-serif italic text-base w-full";
+  const labelClass = "text-[10px] uppercase tracking-[0.2em] font-medium text-foreground block mb-2";
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
       
-      <main className="flex-1 pt-24 pb-24 px-4 lg:pt-36">
-        <div className="container mx-auto max-w-6xl">
+      <main className="flex-1 pt-24 pb-24">
+        <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
           
-          <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-16 items-start">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
             
-            {/* Columna Izquierda: Imagen y Textos (Fija en escritorio) */}
-            <div className="w-full relative rounded-2xl overflow-hidden shadow-2xl h-[350px] md:h-[450px] lg:h-[700px] lg:sticky lg:top-32 mb-10 lg:mb-0">
-              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1288&auto=format&fit=crop')] bg-cover bg-center"></div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
-              
-              <div className="absolute bottom-6 left-6 right-6 lg:bottom-10 lg:left-10 lg:right-10 z-10">
-                <p className="text-primary font-bold mb-3 text-xs md:text-sm uppercase tracking-widest"><T>Servicios Especiales</T></p>
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white leading-tight mb-4 uppercase">
-                  <T>Aventura</T> <br/>
-                  <T>Personalizada</T>
+            {/* Columna Izquierda: Contexto Editorial (Sticky para que acompañe el scroll) */}
+            <div className="lg:col-span-5 space-y-10 lg:sticky lg:top-32">
+              <div>
+                <div className="flex items-center gap-4 mb-6">
+                  <span className="w-8 h-[1px] bg-foreground/30"></span>
+                  <p className="text-[10px] uppercase tracking-[0.3em] font-medium text-muted-foreground">
+                    <T>Servicios Especiales</T>
+                  </p>
+                </div>
+                <h1 className="text-5xl md:text-6xl font-serif text-foreground leading-[0.95] mb-6">
+                  <span className="block"><T>Aventura</T></span>
+                  <span className="block italic text-primary"><T>Personalizada</T></span>
                 </h1>
-                <p className="text-white/90 text-sm md:text-base leading-relaxed max-w-sm hidden md:block">
-                  <T>Si alguna de nuestras experiencias no cumple con tus expectativas, organizaremos una experiencia totalmente personalizada.</T>
+                <p className="text-muted-foreground leading-relaxed font-sans text-base">
+                  <T>Si tienes un itinerario diseñado previamente por tu agente o deseas agendar una actividad privada para un grupo, ingresa los detalles aquí para asegurar tu lugar.</T>
                 </p>
+              </div>
+
+              {/* Imagen contenida en un marco (Nunca se cortará) */}
+              <div className="aspect-[4/5] w-full overflow-hidden border border-border bg-muted shadow-sm">
+                <img
+                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1288&auto=format&fit=crop"
+                  alt="Aventura Personalizada"
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                />
               </div>
             </div>
 
-            {/* Columna Derecha: Formulario */}
-            <div className="w-full flex flex-col justify-center lg:pt-4">
-              
-              <div className="mb-10">
-                <h2 className="text-2xl font-serif font-bold text-foreground mb-4">
-                  <T>Sujeto a cotización</T>
+            {/* Columna Derecha: Formulario Editorial */}
+            <div className="lg:col-span-7">
+              <div className="bg-background border border-border p-8 md:p-12 lg:p-14 shadow-sm">
+                
+                <h2 className="text-2xl font-serif text-foreground mb-8 pb-4 border-b border-border">
+                  <T>Detalles de la cotización</T>
                 </h2>
-                
-                <p className="text-muted-foreground leading-relaxed mb-8">
-                  <T>Si alguna de nuestras experiencias no cumple con tus expectativas, o si deseas agendar una actividad para un grupo, contáctanos. Organizaremos una experiencia </T>
-                  <strong className="text-foreground"><T>totalmente personalizada</T></strong>
-                  <T>, en la que uno de nuestros agentes se comunicará contigo para recopilar los detalles de tu aventura y asegurarse de que cada aspecto se ajuste a tus necesidades.</T>
-                </p>
-              </div>
 
-              <form onSubmit={handleConfirmarReserva} className="space-y-6 bg-card p-6 md:p-8 rounded-2xl border border-border shadow-lg">
-                
-                {/* Costo */}
-                <div className="space-y-3">
-                  <label className="text-sm font-bold text-foreground flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" /> <T>Costo del Servicio MXN + IVA</T>
-                  </label>
-                  <div className="relative flex items-center">
-                    <span className="absolute left-4 text-muted-foreground font-bold">$</span>
-                    <Input 
-                      type="text" 
-                      value={monto}
-                      onChange={handleMontoChange}
-                      placeholder="0.00"
-                      required
-                      className="bg-background border-border focus-visible:ring-primary pl-8 text-foreground h-12 rounded-xl"
-                    />
+                <form onSubmit={handleConfirmarReserva} className="space-y-10">
+                  
+                  {/* Costo - FIX LUPA/BORROSO: Usando Flexbox en lugar de absolute */}
+                  <div>
+                    <label className={labelClass}>
+                      <T>Costo del Servicio (MXN + IVA)</T> <span className="text-primary">*</span>
+                    </label>
+                    <div className="flex items-center w-full h-12 border-b border-foreground/20 group focus-within:border-primary transition-colors">
+                      <div className="flex items-center justify-center w-6 shrink-0">
+                        <span className="font-serif italic text-muted-foreground group-focus-within:text-foreground text-lg transition-colors">$</span>
+                      </div>
+                      <Input 
+                        type="text" 
+                        value={monto}
+                        onChange={handleMontoChange}
+                        placeholder="0.00"
+                        required
+                        className="flex-1 bg-transparent border-0 rounded-none px-0 h-full focus-visible:ring-0 text-lg font-mono tracking-wider not-italic text-foreground placeholder:text-muted-foreground/40"
+                      />
+                    </div>
                   </div>
-                </div>
 
-                {/* Nombre */}
-                <div className="space-y-3">
-                  <label className="text-sm font-bold text-foreground flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" /> 
-                    <span><T>Nombre</T> <span className="text-destructive">*</span></span>
-                  </label>
-                  <Input 
-                    type="text" 
-                    value={nombre}
-                    onChange={(e) => setNombre(e.target.value)}
-                    required
-                    className="bg-background border-border focus-visible:ring-primary text-foreground h-12 rounded-xl"
-                  />
-                </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-10">
+                    {/* Nombre */}
+                    <div>
+                      <label className={labelClass}>
+                        <T>Nombre completo</T> <span className="text-primary">*</span>
+                      </label>
+                      <Input 
+                        type="text" 
+                        value={nombre}
+                        onChange={(e) => setNombre(e.target.value)}
+                        required
+                        placeholder="Tu nombre"
+                        className={inputClass}
+                      />
+                    </div>
 
-                {/* Email */}
-                <div className="space-y-3">
-                  <label className="text-sm font-bold text-foreground flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" /> 
-                    <span><T>Correo Electrónico</T> <span className="text-destructive">*</span></span>
-                  </label>
-                  <Input 
-                    type="email" 
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    className="bg-background border-border focus-visible:ring-primary text-foreground h-12 rounded-xl"
-                  />
-                </div>
+                    {/* Email */}
+                    <div>
+                      <label className={labelClass}>
+                        <T>Correo Electrónico</T> <span className="text-primary">*</span>
+                      </label>
+                      <Input 
+                        type="email" 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        placeholder="correo@ejemplo.com"
+                        className={inputClass}
+                      />
+                    </div>
+                  </div>
 
-                {/* Folio */}
-                <div className="space-y-3">
-                  <label className="text-sm font-bold text-foreground flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" /> 
-                    <span><T>Número de folio Acordado</T> <span className="text-destructive">*</span></span>
-                  </label>
-                  <Input 
-                    type="text" 
-                    value={folio}
-                    onChange={(e) => setFolio(e.target.value.toUpperCase())}
-                    required
-                    className="bg-background border-border focus-visible:ring-primary text-foreground uppercase font-mono h-12 rounded-xl"
-                  />
-                </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-10">
+                    {/* Folio */}
+                    <div>
+                      <label className={labelClass}>
+                        <T>Folio Acordado</T> <span className="text-primary">*</span>
+                      </label>
+                      <Input 
+                        type="text" 
+                        value={folio}
+                        onChange={(e) => setFolio(e.target.value.toUpperCase())}
+                        required
+                        placeholder="Ej: RX-001"
+                        className={`${inputClass} uppercase font-mono not-italic tracking-wider`}
+                      />
+                    </div>
 
-                {/* Fecha */}
-                <div className="space-y-3 pb-4">
-                  <label className="text-sm font-bold text-foreground flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-primary" /> 
-                    <span><T>Selecciona tu fecha de salida:</T></span>
-                  </label>
-                  <Input 
-                    type="date" 
-                    value={fecha}
-                    min={minDateStr}
-                    onChange={(e) => setFecha(e.target.value)}
-                    required
-                    className="bg-background border-border focus-visible:ring-primary text-foreground h-12 rounded-xl"
-                  />
-                </div>
+                    {/* Fecha */}
+                    <div>
+                      <label className={labelClass}>
+                        <T>Fecha de salida</T> <span className="text-primary">*</span>
+                      </label>
+                      <Input 
+                        type="date" 
+                        value={fecha}
+                        min={minDateStr}
+                        onChange={(e) => setFecha(e.target.value)}
+                        required
+                        className={`${inputClass} font-sans not-italic`}
+                      />
+                    </div>
+                  </div>
 
-                {/* Botón Confirmar */}
-                <Button 
-                  type="submit" 
-                  disabled={!isFormValid}
-                  className="w-full md:w-auto h-12 bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-xl transition-all shadow-lg px-8 text-base"
-                >
-                  {btnConfirmar}
-                </Button>
-                
-              </form>
-              
+                  {/* Botón Confirmar */}
+                  <div className="pt-8 mt-4 border-t border-border">
+                    <button 
+                      type="submit" 
+                      disabled={!isFormValid}
+                      className="w-full h-16 bg-foreground text-background hover:bg-primary transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+                    >
+                      <span className="text-[10px] uppercase tracking-[0.2em] font-medium">
+                        {btnConfirmar}
+                      </span>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                  
+                </form>
+              </div>
             </div>
 
           </div>
