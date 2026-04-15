@@ -18,14 +18,14 @@ export function Hero() {
 
             {/* Main Title - Typography Editorial */}
             <h1 className="text-6xl md:text-7xl lg:text-[5.5rem] font-serif mb-8 leading-[0.95] text-foreground tracking-tight">
-              <span className="block"><T>Descubre el</T></span>
+              <span className="block"><T>Explora el</T></span>
               <span className="block italic text-primary"><T>México</T></span>
-              <span className="block"><T>que siempre soñaste</T></span>
+              <span className="block"><T>más autentico</T></span>
             </h1>
 
             {/* Subtitle */}
             <p className="text-base md:text-lg text-muted-foreground mb-12 max-w-md leading-relaxed font-sans">
-              <T>Diseñamos experiencias personalizadas donde tú eres el protagonista. Desde santuarios naturales hasta tradiciones ancestrales.</T>
+              <T>Diseñamos itinerarios a la medida donde tú dictas el ritmo. Desde retiros intocados por el tiempo hasta el corazón vibrante de nuestras tradiciones.</T>
             </p>
 
             {/* CTA - Editorial Buttons */}

@@ -62,7 +62,7 @@ export function Footer() {
             </Link>
             
             <p className="text-muted-foreground max-w-sm mb-12 leading-relaxed font-sans">
-              <T>Diseñamos experiencias personalizadas donde tú eres el protagonista. El México que siempre soñaste.</T>
+              <T>Elevamos el arte de viajar mediante itinerarios de lujo creados a tu medida. Descubre la verdadera esencia y sofisticación de México.</T>
             </p>
 
             {/* Payment Methods */}

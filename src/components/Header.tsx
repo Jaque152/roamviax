@@ -145,7 +145,7 @@ export function Header() {
                 <span className="w-1 h-1 rounded-full bg-primary" />
                 <span><T>México Mágico</T></span>
                 <span className="w-1 h-1 rounded-full bg-primary" />
-                <span><T>Experiencias Únicas</T></span>
+                <span><T>Travesías Exclusivas</T></span>
                 <span className="w-1 h-1 rounded-full bg-primary" />
                 <span>FIFA 2026</span>
                 <span className="w-1 h-1 rounded-full bg-primary" />

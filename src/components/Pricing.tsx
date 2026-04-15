@@ -30,14 +30,13 @@ export function Pricing() {
             </div>
             
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-serif leading-[0.95] mb-8 text-foreground">
-              <span className="block"><T>Diseñamos tu</T></span>
-              <span className="block italic text-primary"><T>aventura perfecta</T></span>
+              <span className="block"><T>Trazamos tu</T></span>
+              <span className="block italic text-primary"><T>ruta ideal</T></span>
             </h2>
 
             <p className="text-base md:text-lg text-muted-foreground mb-12 max-w-md leading-relaxed font-sans">
               <T>
-                Cada viajero es único. Por eso creamos experiencias 100% personalizadas
-                que se adaptan a tus gustos, tiempos y presupuesto. Nuestro equipo de expertos creará un itinerario único solo para ti.
+                Entendemos que cada viajero tiene su propia visión. Por ello, moldeamos viajes exclusivos que se alinean a tus preferencias, agenda y estilo. Nuestros especialistas diseñarán un itinerario que solo te pertenezca a ti.
               </T>
             </p>
 

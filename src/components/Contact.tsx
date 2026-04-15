@@ -61,16 +61,16 @@ export function Contact() {
             <div className="flex items-center gap-4 mb-8">
               <span className="w-8 h-[1px] bg-foreground/30"></span>
               <p className="text-[10px] uppercase tracking-[0.3em] font-medium text-muted-foreground">
-                <T>Nuevas Aventuras</T>
+                <T>Próximos Destinos</T>
               </p>
             </div>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-serif leading-[0.95] mb-8 text-foreground">
-              <span className="block"><T>Hablemos de</T></span>
-              <span className="block italic text-primary"><T>tu viaje</T></span>
+              <span className="block"><T>Comencemos</T></span>
+              <span className="block italic text-primary"><T>a planear</T></span>
             </h2>
 
             <p className="text-base md:text-lg text-muted-foreground mb-16 max-w-md leading-relaxed font-sans">
-              <T>Personalizamos cada detalle de tu viaje para que sea único. Nuestro equipo está listo para ayudarte a crear memorias inolvidables.</T>
+              <T>Cuidamos cada aspecto de tu itinerario para garantizar una experiencia irrepetible y sin contratiempos. Estamos preparados para hacer realidad el viaje de tus sueños.</T>
             </p>
 
             {/* Contact Info */}

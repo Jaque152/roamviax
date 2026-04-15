@@ -120,11 +120,11 @@ export default function CotizarPage() {
               </p>
             </div>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif leading-[0.95] text-foreground max-w-3xl mb-6">
-              <span className="block"><T>Diseñamos tu</T></span>
-              <span className="block italic text-primary"><T>aventura perfecta</T></span>
+              <span className="block"><T>Confeccionamos tu</T></span>
+              <span className="block italic text-primary"><T>travesía ideal</T></span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-xl font-sans">
-              <T>Cuéntanos tu idea y crearemos un itinerario único adaptado a ti.</T>
+              <T>Comparte tu visión con nosotros. Nuestros expertos orquestarán un itinerario exclusivo donde cada detalle lleve tu firma.</T>
             </p>
           </div>
         </section>

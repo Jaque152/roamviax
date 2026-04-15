@@ -8,7 +8,7 @@ const experiences = [
   {
     id: 1,
     title: "Santuarios Naturales",
-    description: "Camina entre bosques milenarios donde el tiempo parece detenerse.",
+    description: "Respira la paz de entornos majestuosos e inalterados. Conecta profundamente con los paisajes más puros y serenos del país.",
     tag: "01",
     slug: "naturaleza",
     image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800",
@@ -16,7 +16,7 @@ const experiences = [
   {
     id: 2,
     title: "Aventura Marina",
-    description: "Domina la energía del mar y conecta con el Pacífico.",
+    description: "Desafía tus límites y siente la adrenalina pura. Travesías diseñadas para quienes buscan libertad y movimiento en cada rincón del mundo.",
     tag: "02",
     slug: "aventura",
     image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=800",
@@ -24,7 +24,7 @@ const experiences = [
   {
     id: 3,
     title: "Tradiciones Vivas",
-    description: "Adéntrate en el corazón de la cultura local y sus mitos.",
+    description: "Sumérgete en el alma de los pueblos a través de sus relatos, arquitectura y costumbres. Un viaje al núcleo de la identidad mexicana.",
     tag: "03",
     slug: "cultura",
     image: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=800",
@@ -32,7 +32,7 @@ const experiences = [
   {
     id: 4,
     title: "Rutas Gastronómicas",
-    description: "Descubre los sabores auténticos de México guiado por expertos.",
+    description: "Saborea la esencia del país mediante experiencias culinarias privadas, de la mano de quienes dominan el arte de nuestra cocina.",
     tag: "04",
     slug: "gastronomia",
     image: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=800",
@@ -54,8 +54,8 @@ export function Experiences() {
               </p>
             </div>
             <h2 className="text-5xl md:text-6xl font-serif leading-[0.95] text-foreground">
-              <span className="block"><T>Vive el México que</T></span>
-              <span className="block italic text-primary"><T>siempre soñaste</T></span>
+              <span className="block"><T>Adéntrate en un</T></span>
+              <span className="block italic text-primary"><T>México inexplorado</T></span>
             </h2>
           </div>
 
