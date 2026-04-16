@@ -51,7 +51,7 @@ export default function PagoFolioPage() {
         slug: "aventura-personalizada",
         description: `Pago de folio: ${folio}`,
         location: "Múltiples Destinos",
-        images: ["https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1288&auto=format&fit=crop"],
+        images: ["https://unsplash.com/es/fotos/mujeres-asiaticas-que-trabajan-en-un-centro-de-llamadas-atencion-al-cliente-con-auriculares-0ZIJbjXP454"],
         category_id: 0
       },
       levelName: "Personalizado",

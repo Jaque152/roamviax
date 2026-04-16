@@ -42,7 +42,7 @@ export function Header() {
                 </div>
                 <div className="hidden sm:flex flex-col">
                   <span className="text-2xl font-serif font-semibold tracking-tight leading-none text-foreground">roam<span className="text-primary italic">viax</span></span>
-                  <span className="text-[9px] uppercase tracking-[0.2em] text-muted-foreground mt-1">Luxury Travel </span>
+                  <span className="text-[9px] uppercase tracking-[0.2em] text-muted-foreground mt-1">Viajes de lujo </span>
                 </div>
               </Link>
 

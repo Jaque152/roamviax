@@ -33,7 +33,7 @@ export default function ExperienceDetailPage() {
       setLoading(true);
       try {
         const { data: activity } = await supabase
-          .from('activities')
+          .from('activities_roamviax')
           .select('*, categories(name, slug)')
           .eq('id', params.id)
           .single();
@@ -117,17 +117,26 @@ export default function ExperienceDetailPage() {
         {/* Selector de Paquete */}
         <div className="space-y-3">
           <label className="text-[10px] uppercase tracking-[0.2em] font-medium text-foreground block">
-            <T>Elige una opción</T>
+            {packages.length > 1?
+            <T>Elige una opcion</T> : <T>Opción de servicio</T>
+            }
           </label>
-          <select 
-            className="w-full h-12 bg-transparent border-0 border-b border-foreground/20 text-foreground font-serif italic text-lg focus:outline-none focus:ring-0 focus:border-primary transition-all cursor-pointer px-0"
-            value={selectedPackageId}
-            onChange={(e) => setSelectedPackageId(Number(e.target.value))}
-          >
-            {packages.map(pkg => (
-              <option key={pkg.id} value={pkg.id} className="font-sans not-italic text-sm">{pkg.package_name}</option>
-            ))}
-          </select>
+          {packages.length >1? (
+            <select 
+              className="w-full h-12 bg-transparent border-0 border-b border-foreground/20 text-foreground font-serif italic text-lg focus:outline-none focus:ring-0 focus:border-primary transition-all cursor-pointer px-0"
+              value={selectedPackageId}
+              onChange={(e) => setSelectedPackageId(Number(e.target.value))}
+              >
+              {packages.map(pkg => (
+                <option key={pkg.id} value={pkg.id} className="font-sans not-italic text-sm">{pkg.package_name}</option>
+              ))}
+            </select>
+
+          ): (
+            <div className="w-full h-12 flex items-center border-0 border-b border-foreground/20 bg-transparent px-0 text-foreground font-serif italic text-lg">
+              {packages[0]?.package_name}
+            </div>
+          )} 
         </div>
 
         {/* Detalles del Paquete */}

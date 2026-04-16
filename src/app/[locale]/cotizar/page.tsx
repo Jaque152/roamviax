@@ -30,7 +30,7 @@ export default function CotizarPage() {
   const [showSuccess, setShowSuccess] = useState(false);
 
   const [formData, setFormData] = useState({
-    destination: "", startDate: "", endDate: "", travelers: 2, budget: "", requirements: "", firstName: "", lastName: "", email: "", phone: "",
+    destination: "", startDate: "", travelers: 2, budget: "", requirements: "", firstName: "", lastName: "", email: "", phone: "",
   });
 
   const phDestination = useT("Ej: Oaxaca, Riviera Maya...");
@@ -51,7 +51,7 @@ export default function CotizarPage() {
       const { error: dbError } = await supabase.from('custom_quotes').insert([
         {
           customer_name: customer_name, customer_email: formData.email, phone: formData.phone, destination: formData.destination,
-          start_date: formData.startDate, end_date: formData.endDate || null, pax_qty: formData.travelers, budget: formData.budget,
+          start_date: formData.startDate, pax_qty: formData.travelers, budget: formData.budget,
           special_requests: formData.requirements, status: 'pending'
         }
       ]);
@@ -63,7 +63,7 @@ export default function CotizarPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           type: 'QUOTE', locale: locale, email: formData.email, customerName: formData.firstName, destination: formData.destination,
-          budget: formData.budget, startDate: formData.startDate, endDate: formData.endDate || 'No definida', travelers: formData.travelers, message: formData.requirements || "Solicitud de itinerario personalizado."
+          budget: formData.budget, startDate: formData.startDate, travelers: formData.travelers, message: formData.requirements || "Solicitud de itinerario personalizado."
         }),
       });
 
@@ -146,10 +146,10 @@ export default function CotizarPage() {
                     <label className={labelClass}><Calendar className="w-3.5 h-3.5" /> <T>Inicio *</T></label>
                     <Input type="date" value={formData.startDate} onChange={(e) => setFormData({ ...formData, startDate: e.target.value })} min={minDateStr} required className={inputClass} />
                   </div>
-                  <div>
+                  {/* <div>
                     <label className={labelClass}><Calendar className="w-3.5 h-3.5" /> <T>Regreso</T></label>
                     <Input type="date" value={formData.endDate} onChange={(e) => setFormData({ ...formData, endDate: e.target.value })} min={formData.startDate || minDateStr} className={inputClass} />
-                  </div>
+                  </div> */}
                   <div>
                     <label className={labelClass}><Users className="w-3.5 h-3.5" /> <T>Viajeros</T></label>
                     <Input type="number" value={formData.travelers} onChange={(e) => setFormData({ ...formData, travelers: parseInt(e.target.value) || 1 })} min={1} className={inputClass} />

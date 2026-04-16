@@ -10,7 +10,7 @@ type Props = {
 };
 
 export const metadata: Metadata = {
-  title: "Roamviax - Luxury Travel",
+  title: "Roamviax - Viajes de lujo",
   description: "Diseñamos experiencias personalizadas para que tú solo te preocupes por disfrutar el camino. Descubre los rincones más auténticos de México.",
 };
 

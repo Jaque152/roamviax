@@ -46,7 +46,7 @@ CREATE TABLE public.activities_roamviax (
 
 CREATE TABLE public.activity_packages (
   id SERIAL PRIMARY KEY,
-  activity_id INTEGER REFERENCES public.activities(id),
+  activity_id INTEGER REFERENCES public.activities_roamviax(id),
   package_name VARCHAR NOT NULL, 
   price NUMERIC NOT NULL,
   features JSONB,
@@ -220,9 +220,9 @@ INSERT INTO public.activities_roamviax (title, slug, category_id, location, dura
 -- 5. INSERTAR DETALLE DE EXPERIENCIAS
 -- =====================================================================================
 -- 1. Cabo Cuatrimotos
-UPDATE public.activities SET 
+UPDATE public.activities_roamviax SET 
   description = 'Acelera la adrenalina y descubre el lado más aventurero de Cabo San Lucas conduciendo una cuatrimoto a través del desierto, senderos naturales y playas espectaculares frente al Océano Pacífico. Finaliza esta experiencia llena de emoción con una degustación de tequila y vistas que quedarán grabadas en tu memoria.',
-  images = '["https://images.unsplash.com/photo-1739315006392-6697acb29fd8?q=80&w=1227&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"]'::jsonb,
+  images = '["https://images.unsplash.com/photo-1739315006392-6697acb29fd8?q=80&w=1227&auto=format&fit=crop"]'::jsonb,
   what_you_will_do = '["Conducirás una potente cuatrimoto a través del desierto de Baja California", "Explorarás senderos escondidos hasta llegar a la playa de Migriño", "Disfrutarás de una cata de tequilas artesanales al finalizar el recorrido"]'::jsonb,
   itinerary = '["Llegada a las instalaciones y registro", "Explicación de seguridad y manejo", "Recorrido guiado por caminos desérticos", "Llegada a la Playa de Migriño", "Degustación de tequilas artesanales"]'::jsonb,
   requirements = '["Calzado cerrado", "Protector solar biodegradable", "Licencia de conducir vigente (para el conductor)", "Tarjeta de crédito para depósito"]'::jsonb,
@@ -231,9 +231,9 @@ UPDATE public.activities SET
 WHERE slug = 'cabo-cuatrimoto-tequila';
 
 -- 2. Crucero Pirata
-UPDATE public.activities SET 
+UPDATE public.activities_roamviax SET 
   description = 'Vive una noche diferente a bordo de un auténtico barco pirata. Navega por el Mar de Cortés disfrutando del atardecer mientras presencias un show en vivo de piratas, degustas una cena estilo barbacoa y aprovechas la barra libre ilimitada.',
-  images = '["https://images.unsplash.com/photo-1511316695145-4992006ffddb?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"]'::jsonb,
+  images = '["https://images.unsplash.com/photo-1511316695145-4992006ffddb?q=80&w=1169&auto=format&fit=crop"]'::jsonb,
   what_you_will_do = '["Navegarás al atardecer por el Mar de Cortés hacia el famoso Arco", "Presenciarás un espectáculo pirata interactivo con acrobacias", "Disfrutarás de una cena completa y barra libre bajo las estrellas"]'::jsonb,
   itinerary = '["Abordaje en el Muelle Cero", "Navegación hacia El Arco y la colonia de leones marinos", "Cena a bordo durante el atardecer", "Espectáculo pirata interactivo", "Regreso al puerto"]'::jsonb,
   requirements = '["Efectivo para el impuesto de muelle", "Cámara fotográfica", "Suéter ligero para el regreso"]'::jsonb,
@@ -242,9 +242,9 @@ UPDATE public.activities SET
 WHERE slug = 'crucero-pirata-cabos';
 
 -- 3. Nevado Toluca
-UPDATE public.activities SET 
+UPDATE public.activities_roamviax SET 
   description = 'Disfruta de una aventura única subiendo al cuarto volcán más alto de México. Recorre senderos boscosos, experimenta el cambio de ecosistema de alta montaña y admira las impresionantes Lagunas del Sol y de la Luna ubicadas directamente en el cráter.',
-  images = '["https://unsplash.com/es/fotos/cordillera-nevada-con-denso-bosque-verde-debajo-jkS3O74Ulbk"]'::jsonb,
+  images = '["https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
   what_you_will_do = '["Realizarás senderismo de alta montaña guiado por expertos", "Admirarás las Lagunas del Sol y de la Luna dentro del cráter", "Alcanzarás una de las cimas más emblemáticas del país"]'::jsonb,
   itinerary = '["Encuentro en el punto de partida en CDMX", "Traslado a las faldas del Nevado de Toluca", "Ascenso guiado por el Paso del Quetzal", "Descanso y tiempo libre en las lagunas", "Descenso y regreso a la ciudad"]'::jsonb,
   requirements = '["Calzado especializado de senderismo", "Ropa térmica de 3 capas y chamarra rompevientos", "Lentes de sol y guantes", "Mochila pequeña con agua y snacks"]'::jsonb,
@@ -253,9 +253,9 @@ UPDATE public.activities SET
 WHERE slug = 'nevado-toluca-cima';
 
 -- 4. Aqua Nick
-UPDATE public.activities SET 
+UPDATE public.activities_roamviax SET 
   description = 'Vive un día lleno de diversión infinita en Aqua Nick Park en la Riviera Maya. Deslízate por emocionantes toboganes, relájate en los ríos lentos, experimenta el famoso Slime y convive con tus personajes favoritos de Nickelodeon en un entorno acuático espectacular diseñado para toda la familia.',
-  images = '["https://unsplash.com/es/fotos/dias-de-verano-llenos-de-diversion-nino-divirtiendose-en-la-piscina-V0xHQ5uQ5bI"]'::jsonb,
+  images = '["https://images.unsplash.com/photo-1582293041079-7814c2f12063?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
   what_you_will_do = '["Te lanzarás por toboganes de clase mundial", "Navegarás por el río perezoso y el río de aventuras", "Recibirás el icónico baño de Slime verde de Nickelodeon", "Conocerás a Bob Esponja, Patricio y los Padrinos Mágicos"]'::jsonb,
   itinerary = '["Llegada al parque y entrega de pulseras", "Tiempo libre en la zona de toboganes y piscinas", "Super Slime time en la piscina principal", "Almuerzo en los kioscos de Splash Bites", "Cierre del parque"]'::jsonb,
   requirements = '["Traje de baño puesto y cambio de ropa seca", "Sandalias o calzado acuático", "Protector solar estrictamente biodegradable", "Tarjeta de crédito para consumos extra"]'::jsonb,
@@ -264,9 +264,9 @@ UPDATE public.activities SET
 WHERE slug = 'aqua-nick-riviera-maya';
 
 -- 5. Sayulita Caballo
-UPDATE public.activities SET 
+UPDATE public.activities_roamviax SET 
   description = 'Desconéctate de la rutina y disfruta de un sereno recorrido a caballo por la exuberante selva tropical y las cálidas playas de Sayulita. Una experiencia relajante y en contacto directo con la naturaleza, perfecta para familias, parejas y jinetes de todos los niveles de experiencia.',
-  images = '["https://unsplash.com/es/fotos/persona-montando-en-caballo-blanco-en-la-playa-durante-el-dia-qaF4IhTuZv0"]'::jsonb,
+  images = '["https://images.unsplash.com/photo-1597848467475-4700d23bbdf6?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
   what_you_will_do = '["Cabalgarás por senderos ocultos dentro de la selva nayarita", "Llegarás a una playa virgen para galopar frente al océano", "Aprenderás sobre la flora y fauna local con tu guía"]'::jsonb,
   itinerary = '["Llegada a Rancho Mi Chaparrita y asignación de caballo", "Instrucciones básicas de monta y seguridad", "Recorrido guiado por la selva", "Paseo por la línea de playa", "Regreso al rancho y tiempo libre en la piscina"]'::jsonb,
   requirements = '["Calzado cerrado o tenis deportivos (prohibidas chanclas)", "Pantalón largo cómodo (jeans o leggings)", "Repelente de mosquitos y protector solar", "Efectivo para propinas"]'::jsonb,
@@ -275,9 +275,9 @@ UPDATE public.activities SET
 WHERE slug = 'paseo-caballo-sayulita';
 
 -- 6. Cancun Manaties
-UPDATE public.activities SET 
+UPDATE public.activities_roamviax SET 
   description = 'Vive un encuentro único y conmovedor con los gentiles manatíes en las aguas cristalinas de Isla Mujeres. Durante este programa interactivo, aprenderás sobre la dieta, el comportamiento y los esfuerzos de conservación de estos increíbles mamíferos marinos mientras compartes el agua con ellos. Además del encuentro, disfrutarás de un día completo de relajación en nuestras instalaciones con acceso a piscinas, comida buffet y bebidas.',
-  images = '["https://unsplash.com/es/fotos/vaca-marina-gris-bajo-el-agua-UDdt74azlig"]'::jsonb,
+  images = '["https://images.unsplash.com/photo-1681934336066-bdf8eebf9949?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
   what_you_will_do = '["Interactuarás de forma segura y respetuosa con los manatíes en el agua", "Aprenderás sobre la conservación marina de la mano de especialistas", "Disfrutarás de un día de club de playa en Isla Mujeres con comida y bebidas"]'::jsonb,
   itinerary = '["Cruce en ferry panorámico desde Cancún a Isla Mujeres", "Orientación educativa sobre los manatíes", "Encuentro interactivo en el agua (40 min)", "Almuerzo buffet internacional y barra libre", "Tiempo libre en piscinas y camastros", "Regreso en ferry a Cancún"]'::jsonb,
   requirements = '["Traje de baño puesto", "Cambio de ropa seca y toalla", "Protector solar biodegradable", "Efectivo para pago de impuesto de muelle"]'::jsonb,
@@ -286,9 +286,9 @@ UPDATE public.activities SET
 WHERE slug = 'manaties-isla-mujeres';
 
 -- 7. Tolantongo
-UPDATE public.activities SET 
+UPDATE public.activities_roamviax SET 
   description = 'Escapa del bullicio de la ciudad y adéntrate en las majestuosas montañas de Hidalgo para descubrir las Grutas de Tolantongo. Relájate en las icónicas pozas termales color turquesa que se asientan en los acantilados, explora la cueva principal de donde brota el río y camina por el túnel de vapor. Un paraíso natural perfecto para desconectar.',
-  images = '["https://unsplash.com/es/fotos/una-piscina-con-arboles-a-su-alrededor-HHTpTO90W_w"]'::jsonb,
+  images = '["https://images.unsplash.com/photo-1505322022379-7c3353ee6291?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
   what_you_will_do = '["Te bañarás en las famosas pozas termales escalonadas en la montaña", "Explorarás el interior de las grutas y cascadas de agua caliente", "Caminarás por el río turquesa rodeado del cañón"]'::jsonb,
   itinerary = '["Salida desde el punto de encuentro", "Llegada al parque ecológico Tolantongo", "Exploración guiada de la Gruta Principal y el río", "Traslado interno hacia la zona de las Pozas", "Tiempo libre para relajarse en las aguas termales", "Regreso al punto de origen"]'::jsonb,
   requirements = '["Zapatos acuáticos (obligatorios por las piedras del río)", "Funda impermeable para celular", "Traje de baño y muda de ropa seca", "Dinero en efectivo (dentro del parque no aceptan tarjetas)"]'::jsonb,
@@ -297,9 +297,9 @@ UPDATE public.activities SET
 WHERE slug = 'cuevas-tolantongo';
 
 -- 8. Tiburon Ballena desde Cabo
-UPDATE public.activities SET 
+UPDATE public.activities_roamviax SET 
   description = 'Vive una experiencia extraordinaria nadando junto al pez más grande del planeta en su hábitat natural. Este tour de día completo te lleva desde Los Cabos hasta la Bahía de La Paz, donde abordarás una embarcación especializada para buscar y hacer snorkel con el dócil tiburón ballena. Finaliza el día con unos deliciosos tacos locales en el malecón.',
-  images = '["https://unsplash.com/es/fotos/peces-negros-en-el-agua-wXt0DiISf38"]'::jsonb,
+  images = '["https://images.unsplash.com/photo-1544324209-6ac0c0429f79?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
   what_you_will_do = '["Viajarás por carretera cruzando el desierto desde Los Cabos hasta La Paz", "Harás snorkel en mar abierto a pocos metros del majestuoso tiburón ballena", "Pasearás por el famoso Malecón de La Paz degustando comida local"]'::jsonb,
   itinerary = '["Pickup en tu hotel en Los Cabos", "Traslado terrestre hacia La Paz con desayuno ligero", "Abordaje de la embarcación y navegación hacia el área de avistamiento", "Snorkel en turnos controlados con el Tiburón Ballena", "Regreso a tierra y almuerzo de tacos tradicionales", "Traslado de regreso a Los Cabos"]'::jsonb,
   requirements = '["Traje de baño (ya puesto)", "Toalla y cambio de ropa seca", "Cámara de acción tipo GoPro", "Chamarra ligera para el traslado matutino"]'::jsonb,
@@ -308,9 +308,9 @@ UPDATE public.activities SET
 WHERE slug = 'tiburon-ballena-desde-cabo';
 
 -- 9. Mariposa Monarca
-UPDATE public.activities SET 
+UPDATE public.activities_roamviax SET 
   description = 'Adéntrate en los frondosos bosques de oyamel en Michoacán para ser testigo de uno de los fenómenos migratorios más asombrosos del mundo. Millones de mariposas monarca viajan desde Canadá para pasar el invierno en este santuario, cubriendo los árboles de un vibrante color naranja. Una caminata espiritual y en profunda conexión con la naturaleza.',
-  images = '["https://unsplash.com/es/fotos/mosca-de-la-colina-naranja-mC2mAodvrws"]'::jsonb,
+  images = '["https://images.unsplash.com/photo-1534260933201-574343169ec7?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
   what_you_will_do = '["Caminarás por los senderos boscosos del Santuario El Rosario", "Observarás racimos gigantes de mariposas monarca colgando de los árboles", "Aprenderás sobre el ciclo de vida y la migración de la especie"]'::jsonb,
   itinerary = '["Llegada a las faldas del Santuario El Rosario", "Ascenso caminando o a caballo (opcional) hacia la zona núcleo", "Tiempo de observación en silencio de las mariposas (aprox 45 min)", "Senderismo de descenso", "Tiempo libre para comida local en el parador turístico"]'::jsonb,
   requirements = '["Calzado cómodo de montaña o tenis con buen agarre", "Ropa abrigada (se recomienda vestirse en capas)", "Protector solar y gorra", "Prismáticos o cámara con buen zoom"]'::jsonb,
@@ -319,9 +319,9 @@ UPDATE public.activities SET
 WHERE slug = 'mariposa-monarca-rosario';
 
 -- 10. Safari Oceanico
-UPDATE public.activities SET 
+UPDATE public.activities_roamviax SET 
   description = 'Explora el lado más salvaje del Mar de Cortés, conocido como el "Acuario del Mundo". En esta expedición en panga, navegaremos mar adentro buscando encuentros espontáneos con la impresionante fauna local: grandes bancos de delfines, colonias de lobos marinos, mantarrayas gigantes y aves pelágicas.',
-  images = '["https://unsplash.com/es/fotos/peces-azules-y-amarillos-en-arrecifes-de-coral-h1hV1bOJJG4"]'::jsonb,
+  images = '["https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
   what_you_will_do = '["Navegarás en mar abierto por los alrededores de la Isla Espíritu Santo o Isla Cerralvo", "Saltarás al agua para hacer snorkel en los arrecifes cuando se presente la oportunidad", "Aprenderás sobre biología marina con guías expertos"]'::jsonb,
   itinerary = '["Encuentro en la marina de La Paz o La Ventana", "Zarpe y navegación de búsqueda en altamar", "Avistamiento de fauna y sesiones de snorkel espontáneas", "Pausa en una playa prístina para almorzar", "Regreso al puerto base"]'::jsonb,
   requirements = '["Chamarra rompevientos (el viento en altamar es frío)", "Traje de baño y toalla", "Protector solar estrictamente biodegradable", "Medicación para el mareo (tomada antes de zarpar)"]'::jsonb,
@@ -330,9 +330,9 @@ UPDATE public.activities SET
 WHERE slug = 'safari-oceanico-la-paz';
 
 -- 11. Tiburon Ballena Biologo
-UPDATE public.activities SET 
+UPDATE public.activities_roamviax SET 
   description = 'Experimenta el nado con tiburones ballena desde una perspectiva científica y de conservación. Acompañado por biólogos marinos investigadores, aprenderás a identificar a los individuos a través de su patrón de manchas y comprenderás los protocolos estrictos para garantizar un encuentro pasivo, seguro y enriquecedor.',
-  images = '["https://unsplash.com/es/fotos/una-ballena-grande-y-una-ballena-mas-pequena-nadando-en-el-oceano-bZc2GI4LR2Q"]'::jsonb,
+  images = '["https://images.unsplash.com/photo-1582967788606-a171c1080cb0?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
   what_you_will_do = '["Nadarás paralelamente al pez más grande del mundo en la bahía de La Paz", "Participarás en la foto-identificación científica de los tiburones observados", "Aprenderás datos fascinantes directamente de los investigadores que los protegen"]'::jsonb,
   itinerary = '["Reunión en las oficinas y charla técnica de conservación", "Caminata al muelle y abordaje", "Navegación corta hacia el Área de Refugio del Tiburón Ballena", "Nados controlados en grupos de máximo 5 personas", "Toma de datos y regreso al muelle"]'::jsonb,
   requirements = '["Traje de baño", "Toalla", "Cámara acuática (prohibido el uso de flash)", "Botella de agua reutilizable"]'::jsonb,
@@ -341,9 +341,9 @@ UPDATE public.activities SET
 WHERE slug = 'nado-tiburon-ballena-biologo';
 
 -- 12. Safari Delfines y Orcas
-UPDATE public.activities SET 
+UPDATE public.activities_roamviax SET 
   description = 'Una expedición de mar profundo para verdaderos amantes del océano. Pasaremos hasta 8 horas navegando en el Mar de Cortés en busca de los grandes depredadores pelágicos. Aunque los avistamientos de orcas son raros y especiales, las posibilidades de nadar con inmensas manadas de delfines salvajes y leones marinos hacen de este safari una experiencia épica.',
-  images = '["https://unsplash.com/es/fotos/escuela-de-delfines-comunes-en-sudafrica-AbdHnvUpY-o"]'::jsonb,
+  images = '["https://images.unsplash.com/photo-1600612294445-5ee882672db1?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
   what_you_will_do = '["Explorarás zonas alejadas de la costa en busca de megafauna marina", "Te deslizarás al agua para interactuar con delfines en libertad (si las condiciones lo permiten)", "Disfrutarás del entorno virgen de las islas del Golfo de California"]'::jsonb,
   itinerary = '["Zarpe a primera hora de la mañana", "Navegación intensiva de exploración mar adentro (cubriendo grandes distancias)", "Interacciones y snorkel", "Parada breve para almuerzo a bordo", "Continuación de la búsqueda y regreso al atardecer"]'::jsonb,
   requirements = '["Ropa cómoda en capas y chamarra rompevientos", "Sombrero o gorra que no vuele con el viento y lentes polarizados", "Protector solar amigable con el arrecife", "Pastillas para el mareo"]'::jsonb,
@@ -352,9 +352,9 @@ UPDATE public.activities SET
 WHERE slug = 'safari-delfines-orcas-paz';
 
 -- 13. Avistamiento de Ballenas Cabos
-UPDATE public.activities SET 
+UPDATE public.activities_roamviax SET 
   description = 'Cada invierno, las majestuosas ballenas jorobadas migran a las cálidas aguas de Los Cabos para aparearse y dar a luz. Sube a bordo de nuestras embarcaciones cómodas y seguras para presenciar los espectaculares saltos, aleteos y cantos de estos gigantes del océano, todo con el icónico Arco de Cabo San Lucas como telón de fondo.',
-  images = '["https://unsplash.com/es/fotos/aleta-caudal-de-la-poderosa-ballena-jorobada-sobre-la-superficie-del-oceano-nombre-cientifico-megaptera-novaeangliae-habitat-natural-oceano-pacifico-cerca-del-golfo-de-california-tambien-conocido-como-el-mar-de-cortes-1qi3uDLCOeo"]'::jsonb,
+  images = '["https://images.unsplash.com/photo-1568430462989-44163eb1752f?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
   what_you_will_do = '["Escucharás el canto de las ballenas jorobadas (en botes equipados con hidrófonos)", "Verás a las crías recién nacidas aprender a nadar junto a sus madres", "Navegarás cerca del Fin de la Tierra y el Arco de Los Cabos"]'::jsonb,
   itinerary = '["Registro en la Marina de Cabo San Lucas", "Paseo panorámico por la Bahía, Playa del Amor y la colonia de Leones Marinos", "Navegación mar adentro en el Pacífico o el Mar de Cortés (dependiendo de la actividad de las ballenas)", "Tiempo de avistamiento y toma de fotografías", "Regreso a la marina"]'::jsonb,
   requirements = '["Cámara con buen zoom o teléfono con correa de seguridad", "Chamarra o suéter ligero (las mañanas y tardes pueden ser frías)", "Protector solar y lentes de sol"]'::jsonb,
@@ -363,9 +363,9 @@ UPDATE public.activities SET
 WHERE slug = 'avistamiento-ballenas-cabos';
 
 -- 14. Lancha Transparente Cabos
-UPDATE public.activities SET 
+UPDATE public.activities_roamviax SET 
   description = 'Descubre los secretos del Mar de Cortés de una forma completamente nueva: a bordo de una lancha con fondo y laterales totalmente transparentes. Mientras navegas hacia el famoso Arco de Cabo San Lucas, podrás ver bajo tus pies el arrecife de coral, coloridos peces tropicales y el fascinante relieve submarino sin necesidad de mojarte.',
-  images = '["https://unsplash.com/es/fotos/una-persona-remando-un-bote-en-un-cuerpo-de-agua-XD-TcKXSUp0"]'::jsonb,
+ images = '["https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
   what_you_will_do = '["Observarás la vida marina a través del acrílico transparente de la embarcación", "Visitarás el Dedo de Neptuno, la Playa del Amor y la Playa del Divorcio", "Tomarás la foto obligada frente al monumental Arco de Los Cabos"]'::jsonb,
   itinerary = '["Zarpe desde la marina", "Recorrido bordeando la costa hacia el Fin de la Tierra (Land''s End)", "Observación de peces desde la lancha", "Parada frente al Arco y la colonia de lobos marinos para fotos", "Regreso al puerto", "Opcional: Degustación de tequila en la marina"]'::jsonb,
   requirements = '["Ropa cómoda de playa y sombrero", "Prohibido estrictamente el uso de zapatos con tacón (se debe abordar descalzo o con sandalias suaves)", "Protector solar"]'::jsonb,
@@ -374,9 +374,9 @@ UPDATE public.activities SET
 WHERE slug = 'arco-lancha-transparente';
 
 -- 15. Martinica Delfines Arrecife
-UPDATE public.activities SET 
+UPDATE public.activities_roamviax SET 
   description = 'Zarpa hacia las cálidas y turquesas aguas del Mar Caribe bordeando la pintoresca costa de Sotavento de la isla de Martinica. Este tour en barco te ofrece una mañana relajante donde buscaremos juguetones delfines en su hábitat y haremos paradas en hermosas calas coralinas para nadar y explorar el vibrante fondo marino.',
-  images = '["https://unsplash.com/es/fotos/delfin-blanco-y-negro-en-el-agua-vQGwNgWl2Ew"]'::jsonb,
+  images = '["https://images.unsplash.com/photo-1570481662006-a3a1374699e8?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
   what_you_will_do = '["Navegarás por la costa caribeña disfrutando de los paisajes volcánicos de la isla", "Observarás delfines nadando en la proa del barco", "Harás snorkel en aguas cristalinas repletas de coloridos peces tropicales y tortugas marinas"]'::jsonb,
   itinerary = '["Salida desde el muelle principal", "Crucero escénico hacia el norte de la costa caribeña", "Búsqueda y observación de cetáceos", "Parada en una ensenada protegida para hacer snorkel", "Visita rápida a la histórica cueva de murciélagos", "Brindis con bebidas locales y regreso"]'::jsonb,
   requirements = '["Traje de baño y toalla", "Lentes de sol, sombrero y protector solar amigable con corales", "Cámara resistente al agua"]'::jsonb,
@@ -385,9 +385,9 @@ UPDATE public.activities SET
 WHERE slug = 'delfines-arrecife-martinica';
 
 -- 16. Tortugas Vallarta
-UPDATE public.activities SET 
+UPDATE public.activities_roamviax SET 
   description = 'Conéctate con la naturaleza y participa activamente en la conservación marina en las costas de Puerto Vallarta. Durante la temporada de desove, cientos de tortugas golfinas llegan a estas playas. Acompaña a los biólogos del campamento tortuguero al atardecer para liberar a las pequeñas crías recién nacidas, protegiéndolas de los depredadores hasta que alcancen el océano.',
-  images = '["https://unsplash.com/es/fotos/una-pequena-tortuga-nadando-en-el-agua-al-atardecer-7qJjc43syI0"]'::jsonb,
+  images = '["https://images.unsplash.com/photo-1518331539958-36109559c5a1?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
   what_you_will_do = '["Aprenderás sobre el ciclo de vida y los retos de supervivencia de las tortugas marinas", "Conocerás el corral de incubación donde se protegen los nidos rescatados", "Ayudarás a liberar una o más tortuguitas en la arena y las verás caminar hacia las olas al atardecer"]'::jsonb,
   itinerary = '["Llegada al campamento tortuguero (ubicado en la playa de Nuevo Vallarta/Boca de Tomates)", "Plática educativa y concientización impartida por biólogos", "Entrega de las crías en contenedores adecuados", "Caminata a la orilla del mar justo al ocultarse el sol", "Liberación y observación hasta que ingresan al agua"]'::jsonb,
   requirements = '["Ropa ligera y cómoda", "Repelente de insectos ecológico (indispensable para el atardecer en la playa)", "Cámara fotográfica (IMPORTANTE: Desactivar el flash)", "Sandalias fáciles de quitar"]'::jsonb,
@@ -396,9 +396,9 @@ UPDATE public.activities SET
 WHERE slug = 'liberacion-tortugas-vallarta';
 
 -- 17. Roatan Monos
-UPDATE public.activities SET 
+UPDATE public.activities_roamviax SET 
   description = 'Descubre el lado más exótico y tierno de la isla de Roatán. Visita un santuario dedicado a la preservación y rehabilitación de la fauna hondureña. Camina entre frondosos jardines tropicales donde interactuarás cara a cara con simpáticos monos capuchinos, coloridas guacamayas y tendrás la oportunidad única de sostener en tus brazos a un dócil perezoso de tres dedos.',
-  images = '["https://unsplash.com/es/fotos/foto-de-enfoque-selectivo-de-mono-gris-sNeW-Aoeyus"]'::jsonb,
+  images = '["https://images.unsplash.com/photo-1529141071295-8e7c196b2723?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
   what_you_will_do = '["Cargarás y abrazarás a los famosos y tranquilos perezosos de la isla", "Verás a los curiosos monos ardilla saltar y jugar cerca de ti", "Disfrutarás de tiempo libre en un club de playa privado del Caribe"]'::jsonb,
   itinerary = '["Traslado desde tu hotel o puerto de cruceros al Santuario (Monkey and Sloth Hangout)", "Recorrido guiado por el parque interactuando con los animales rescatados", "Traslado a la costa oeste de la isla (West Bay o West End)", "Tiempo libre en club de playa para nadar y relajarse", "Regreso al punto de inicio"]'::jsonb,
   requirements = '["Ropa fresca tropical", "Repelente de insectos", "Traje de baño y toalla para la parte del club de playa", "Dinero extra para comida y bebidas en la playa"]'::jsonb,
@@ -407,9 +407,9 @@ UPDATE public.activities SET
 WHERE slug = 'santuario-mono-perezoso';
 
 -- 18. Lucha Libre CDMX
-UPDATE public.activities SET 
+UPDATE public.activities_roamviax SET 
   description = 'Sumérgete en la vibrante y folclórica cultura de México con una noche de Lucha Libre. Antes de dirigirte a la icónica Arena México, participarás en un taller interactivo donde conocerás la historia detrás de las máscaras y crearás la tuya propia. Después, disfrutarás de cervezas mientras gritas, ríes y te emocionas con las acrobacias aéreas de los técnicos y las rudezas de los rudos en la catedral de la lucha libre.',
-  images = '["https://unsplash.com/es/fotos/hombre-con-mascara-dentro-del-ring-de-lucha-libre-OebdsI0Q4F0"]'::jsonb,
+  images = '["https://images.unsplash.com/photo-1542456434-2e915b225916?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
   what_you_will_do = '["Personalizarás tu propia máscara de luchador en un taller creativo", "Aprenderás sobre las leyendas del ring como El Santo y Blue Demon", "Experimentarás el ambiente eléctrico, los gritos y la pasión del espectáculo en vivo dentro de la Arena México"]'::jsonb,
   itinerary = '["Punto de encuentro en una cervecería de la Colonia Roma", "Charla cultural y taller de máscaras acompañado de cerveza", "Caminata en grupo hacia la Arena México (aprox. 15 min)", "Ingreso y acomodo en las butacas preferentes", "Disfrute de 2 horas de peleas estelares", "Fin del tour a las afueras de la arena"]'::jsonb,
   requirements = '["Calzado extremadamente cómodo", "Dinero en efectivo (dentro de la arena no aceptan tarjeta para snacks o souvenirs típicos)"]'::jsonb,
@@ -418,9 +418,9 @@ UPDATE public.activities SET
 WHERE slug = 'lucha-libre-cdmx';
 
 -- 19. Murales Diego Rivera CDMX
-UPDATE public.activities SET 
+UPDATE public.activities_roamviax SET 
   description = 'Viaja a través de la convulsa y fascinante historia de México plasmada en las paredes de sus edificios más emblemáticos. En este recorrido cultural a pie por el Centro Histórico, un experto en historia del arte te guiará para decodificar los símbolos, los ideales políticos y las historias de amor ocultas en los monumentales frescos pintados por Diego Rivera y otros grandes exponentes del muralismo mexicano.',
-  images = '["https://unsplash.com/es/fotos/una-pintura-de-una-persona-sosteniendo-un-par-de-tijeras-VSfAPf5_Jg8"]'::jsonb,
+  images = '["https://images.unsplash.com/photo-1574246604907-be1469a295c5?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
   what_you_will_do = '["Admirarás los inmensos murales del Palacio Nacional y la Secretaría de Educación Pública", "Descubrirás la técnica al fresco y el mensaje revolucionario detrás del arte", "Observarás el famoso mural ''Sueño de una tarde dominical en la Alameda Central''"]'::jsonb,
   itinerary = '["Encuentro en el Zócalo capitalino", "Recorrido por los patios de Palacio Nacional (sujeto a disponibilidad gubernamental)", "Visita a la Secretaría de Educación Pública (SEP)", "Caminata histórica por calle Tacuba hacia la Alameda", "Ingreso al Museo Mural Diego Rivera", "Fin del tour en las inmediaciones de Bellas Artes"]'::jsonb,
   requirements = '["Calzado muy cómodo para caminar varias horas por el centro", "Identificación oficial (Pasaporte o INE) obligatoria para ingresar a los recintos gubernamentales", "Sombrero y botella de agua"]'::jsonb,
@@ -429,9 +429,9 @@ UPDATE public.activities SET
 WHERE slug = 'murales-diego-rivera-cdmx';
 
 -- 20. Excursion Amealco
-UPDATE public.activities SET 
+UPDATE public.activities_roamviax SET 
   description = 'Adéntrate en el corazón cultural del estado de Querétaro. Este viaje de día completo te llevará desde la herencia indígena de los otomíes hasta la majestuosidad geológica de la Sierra Gorda. Conocerás el Pueblo Mágico de Amealco, cuna de la famosa muñeca artesanal "Lele", pasearás por las pintorescas calles de Tequisquiapan y te maravillarás a las faldas de la Peña de Bernal, el tercer monolito más grande del mundo.',
-  images = '["https://unsplash.com/es/fotos/persona-sentada-junto-a-la-pared-de-hormigon-marron-frente-a-los-coches-del-parque-jpKXOaxJ1Vw"]'::jsonb,
+  images = '["https://images.unsplash.com/photo-1518605368461-1e18375e2bf1?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
   what_you_will_do = '["Aprenderás a confeccionar tu propia muñeca otomí (Lele) junto a artesanas locales", "Caminarás por la plaza principal y los mercados de artesanías de Tequisquiapan", "Probarás las famosas gorditas de maíz quebrado a las faldas del monolito de Bernal"]'::jsonb,
   itinerary = '["Salida desde la ciudad de Querétaro", "Llegada a Amealco y taller de artesanía textil", "Traslado a Tequisquiapan y tiempo libre para explorar y almorzar", "Viaje hacia San Sebastián Bernal", "Caminata guiada por las calles del pueblo mágico de Bernal y vistas del monolito", "Regreso a Querétaro al atardecer"]'::jsonb,
   requirements = '["Ropa ligera para el día y un suéter para la tarde (el clima cambia drásticamente)", "Zapatos cómodos para caminar por calles empedradas", "Efectivo para comprar artesanías directamente a los productores locales"]'::jsonb,
@@ -440,9 +440,9 @@ UPDATE public.activities SET
 WHERE slug = 'amealco-tequisquiapan-bernal';
 
 -- 21. Morelia Centro
-UPDATE public.activities SET 
+UPDATE public.activities_roamviax SET 
   description = 'Descubre por qué el corazón de Morelia fue declarado Patrimonio de la Humanidad por la UNESCO. Construida majestuosamente con cantera rosa, esta ciudad virreinal esconde secretos, leyendas coloniales y joyas arquitectónicas inigualables. Camina junto a un historiador local a través de plazas señoriales, enormes acueductos y templos imponentes que te transportarán en el tiempo.',
-  images = '["https://unsplash.com/es/fotos/castillo-de-hormigon-marron-y-blanco-6SSBUdqLNgs"]'::jsonb,
+  images = '["https://images.unsplash.com/photo-1580052614034-c55d20bfee3b?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
   what_you_will_do = '["Admirarás la imponente Catedral de Morelia y su órgano monumental", "Visitarás el interior del Palacio de Gobierno y sus murales que relatan la independencia", "Caminarás a lo largo del Acueducto y la fuente de las Tarascas", "Disfrutarás de los colores y olores del Mercado de Dulces y Artesanías"]'::jsonb,
   itinerary = '["Encuentro en la Plaza de Armas", "Visita guiada a la Catedral", "Recorrido por los portales virreinales y el Palacio de Gobierno", "Caminata por el callejón del romance hacia el Conservatorio de las Rosas", "Visita al Mercado de Dulces y el Palacio Clavijero", "Fin del recorrido cerca del Acueducto"]'::jsonb,
   requirements = '["Calzado muy cómodo (todo el recorrido es peatonal sobre adoquín)", "Sombrero, gorra o sombrilla", "Cámara fotográfica"]'::jsonb,
@@ -451,9 +451,9 @@ UPDATE public.activities SET
 WHERE slug = 'tour-morelia-centro';
 
 -- 22. Patzcuaro Janitzio
-UPDATE public.activities SET 
+UPDATE public.activities_roamviax SET 
   description = 'Viaja a la región lacustre de Michoacán, el hogar del imperio Purépecha. Este viaje te llevará a explorar las tranquilas aguas del Lago de Pátzcuaro a bordo de una lancha tradicional hasta llegar a la mítica isla de Janitzio. Observa a los pescadores desplegar sus icónicas redes en forma de mariposa y camina por los callejones empinados de la isla hasta llegar a la cima coronada por la colosal estatua de José María Morelos.',
-  images = '["https://hotelrincondejosefa.com/wp-content/uploads/2023/11/DJI_0301-Janitzio-768x1024.jpg"]'::jsonb,
+  images = '["https://images.pexels.com/photos/36515162/pexels-photo-36515162.jpeg"]'::jsonb,
   what_you_will_do = '["Navegarás por el lago observando la técnica ancestral de la pesca con red de mariposa", "Subirás los estrechos senderos de Janitzio llenos de artesanías y olores a charales fritos", "Conocerás el encantador centro histórico de Pátzcuaro, la Plaza Vasco de Quiroga y la Basílica"]'::jsonb,
   itinerary = '["Salida desde Morelia hacia Pátzcuaro", "Llegada al muelle general y abordaje de la lancha colectiva", "Travesía por el lago y llegada a la Isla de Janitzio", "Tiempo libre para subir al mirador del monumento y probar la gastronomía de la isla", "Regreso al continente y caminata guiada por el centro de Pátzcuaro (Casa de los 11 Patios)", "Retorno a Morelia"]'::jsonb,
   requirements = '["Zapatos extremadamente cómodos y con suela antiderrapante", "Suéter o chamarra (el clima del lago suele ser frío por las mañanas)", "Efectivo en billetes pequeños para comprar souvenirs o comida en la isla"]'::jsonb,
@@ -462,9 +462,9 @@ UPDATE public.activities SET
 WHERE slug = 'patzcuaro-janitzio-redes';
 
 -- 23. Bernal Freixenet
-UPDATE public.activities SET 
+UPDATE public.activities_roamviax SET 
   description = 'Deleita tus sentidos en la principal región vitivinícola del centro de México. Este tour combina la impresionante geología de Querétaro con su exquisita cultura del vino. Descenderás a 25 metros de profundidad para conocer las cavas de maduración de Finca Sala Vivé (Freixenet), aprenderás sobre la elaboración de vinos espumosos y terminarás la tarde paseando por el mágico pueblo de Bernal, bajo la sombra de su inmenso monolito.',
-  images = '["https://unsplash.com/es/fotos/basilica-amarilla-y-marron-con-vista-a-la-montana-bajo-el-cielo-azul-lzvZEdR2t8M"]'::jsonb,
+  images = '["https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
   what_you_will_do = '["Aprenderás el método tradicional (champenoise) de elaboración de vinos espumosos", "Explorarás los oscuros y fríos túneles subterráneos repletos de barricas", "Disfrutarás de una cata de vino en copa de cristal (que podrás llevarte de recuerdo)", "Caminarás por Bernal para comprar dulces de leche y admirar la Peña"]'::jsonb,
   itinerary = '["Salida desde el centro de Querétaro", "Llegada a las instalaciones de Cavas Freixenet en Ezequiel Montes", "Recorrido guiado por un sommelier hacia el fondo de las cavas (1.5 hrs)", "Degustación de vino", "Traslado a San Sebastián Bernal", "Tiempo libre para explorar el pueblo, almorzar y tomar fotos (2 hrs)", "Regreso a Querétaro"]'::jsonb,
   requirements = '["Suéter ligero (la temperatura dentro de las cavas subterráneas es fría y constante, alrededor de 15°C)", "Zapatos cómodos para el descenso a las cavas y las calles empedradas de Bernal", "Identificación para comprobar mayoría de edad"]'::jsonb,
@@ -473,9 +473,9 @@ UPDATE public.activities SET
 WHERE slug = 'bernal-freixenet-queretaro';
 
 -- 24. Tranvia Queretaro
-UPDATE public.activities SET 
+UPDATE public.activities_roamviax SET 
   description = 'Descubre las historias, mitos y leyendas de la época virreinal de una manera divertida y nostálgica. A bordo de una réplica de un tranvía de principios de siglo XX, recorrerás las calles adoquinadas del centro de Santiago de Querétaro, pasando por sus monumentos más majestuosos mientras un guía caracterizado narra los pasajes más emocionantes que forjaron la Independencia de México.',
-  images = '["https://images.unsplash.com/photo-1604187698587-cfdc58cee2ea?q=80&w=1170&auto=format&fit=crop"]'::jsonb,
+  images = '[https://images.pexels.com/photos/12013551/pexels-photo-12013551.jpeg"]'::jsonb,
   what_you_will_do = '["Viajarás cómodamente en un tranvía abierto ideal para tomar fotografías", "Admirarás la inmensidad de Los Arcos (el acueducto colonial de la ciudad)", "Conocerás el Teatro de la República y el Cerro de las Campanas desde tu asiento"]'::jsonb,
   itinerary = '["Encuentro en el punto de abordaje (Plaza de la Corregidora o Jardín Zenea)", "Inicio del recorrido panorámico", "Paso por el Acueducto, Templo de la Cruz, Panteón de los Queretanos Ilustres", "Paso por el Cerro de las Campanas (dependiendo de la ruta elegida)", "Regreso al punto de inicio"]'::jsonb,
   requirements = '["Cámara fotográfica o celular listo", "Sombrero y bloqueador solar para los recorridos diurnos", "Chamarra ligera para los recorridos nocturnos"]'::jsonb,
@@ -484,9 +484,9 @@ UPDATE public.activities SET
 WHERE slug = 'tranvia-clasico-queretaro';
 
 -- 25. Abejas Mayas Xkopek
-UPDATE public.activities SET 
+UPDATE public.activities_roamviax SET 
   description = 'A solo unas cuadras del centro de Valladolid, escóndete en la selva en Xkopek, un parque apícola único construido alrededor de un cenote seco. Aquí descubrirás el mundo sagrado de las abejas meliponas (abejas sin aguijón nativas de la región), veneradas por los antiguos mayas. Aprenderás sobre su forma de vida y degustarás las diferentes mieles medicinales que producen, rodeado de historias mayas.',
-  images = '["https://plus.unsplash.com/premium_photo-1661859445943-0d14d6faf230?q=80&w=987&auto=format&fit=crop"]'::jsonb,
+  images = '["https://images.pexels.com/photos/36001293/pexels-photo-36001293.jpeg"]'::jsonb,
   what_you_will_do = '["Descenderás a un misterioso cenote seco que sirve como refugio natural", "Caminarás por un sendero en la selva identificando flora endémica", "Visitarás un meliponario tradicional (jobones) para ver a las abejas de cerca y sin peligro", "Disfrutarás de una cata de diferentes tipos de miel virgen"]'::jsonb,
   itinerary = '["Llegada al parque Xkopek en Valladolid", "Caminata por la selva y descenso al cenote seco", "Charla sobre la deidad maya de las abejas y las especies nativas", "Observación de colmenas tradicionales", "Cata de mieles y descanso con agua de jamaica o chaya", "Oportunidad de compra de productos locales"]'::jsonb,
   requirements = '["Ropa ligera y zapatos cerrados para caminar por senderos de tierra y piedra", "Repelente de insectos 100% orgánico (los químicos fuertes dañan a las abejas)"]'::jsonb,
@@ -495,9 +495,9 @@ UPDATE public.activities SET
 WHERE slug = 'abejas-mayas-xkopek';
 
 -- 26. Museo Tequila Mezcal
-UPDATE public.activities SET 
+UPDATE public.activities_roamviax SET 
   description = 'El Museo del Tequila y el Mezcal (MUTEM) es un oasis cultural situado en la icónica y bulliciosa Plaza Garibaldi de la Ciudad de México. En este recorrido, aprenderás a distinguir entre un tequila y un mezcal, conocerás el proceso prehispánico y moderno de destilación del agave, y afinarás tu paladar en una cata guiada, culminando tu experiencia en la terraza con vistas a la plaza de los mariachis.',
-  images = '["https://images.unsplash.com/photo-1674916084024-50cdd3f6b864?q=80&w=987&auto=format&fit=crop"]'::jsonb,
+  images = '["https://images.pexels.com/photos/16068120/pexels-photo-16068120.jpeg"]'::jsonb,
   what_you_will_do = '["Conocerás los diferentes tipos de agaves, herramientas de cosecha y el proceso de maduración", "Admirarás una increíble colección de botellas históricas de tequila y mezcal", "Aprenderás a catar, oler y degustar correctamente estos destilados mexicanos como un profesional", "Disfrutarás del ambiente festivo de la Plaza Garibaldi"]'::jsonb,
   itinerary = '["Llegada a Plaza Garibaldi y acceso al museo", "Recorrido por las exposiciones interactivas sobre jima y destilación", "Visita a la colección de botellas", "Paso a la sala de catas para degustación guiada", "Tiempo libre en la terraza mirador (La Cantina del Museo)"]'::jsonb,
   requirements = '["Identificación oficial con fotografía (pasaporte o INE)"]'::jsonb,
@@ -509,62 +509,62 @@ WHERE slug = 'museo-tequila-mezcal-cdmx';
 -- 7. INSERTAR PAQUETES DE EXPERIENCIAS
 -- =====================================================================================
 INSERT INTO public.activity_packages (activity_id, package_name, price, features) VALUES
-((SELECT id FROM public.activities WHERE slug='cabo-cuatrimoto-tequila'), 'Cuatrimoto Doble', 2600.00, '{"incluye": ["1 Cuatrimoto compartida para 2 personas", "Guía bilingüe", "Degustación Tequila"], "no_incluye": ["Entrada al parque $25 USD por persona", "Seguro colisión $25 USD"]}'::jsonb),
-((SELECT id FROM public.activities WHERE slug='cabo-cuatrimoto-tequila'), 'Cuatrimoto Individual', 4200.00, '{"incluye": ["1 Cuatrimoto de uso exclusivo", "Guía bilingüe", "Degustación Tequila"], "no_incluye": ["Entrada al parque $25 USD", "Seguro colisión $25 USD"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='cabo-cuatrimoto-tequila'), 'Cuatrimoto Doble', 2600.00, '{"incluye": ["1 Cuatrimoto compartida para 2 personas", "Guía bilingüe", "Degustación Tequila"], "no_incluye": ["Entrada al parque $25 USD por persona", "Seguro colisión $25 USD"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='cabo-cuatrimoto-tequila'), 'Cuatrimoto Individual', 4200.00, '{"incluye": ["1 Cuatrimoto de uso exclusivo", "Guía bilingüe", "Degustación Tequila"], "no_incluye": ["Entrada al parque $25 USD", "Seguro colisión $25 USD"]}'::jsonb),
 
-((SELECT id FROM public.activities WHERE slug='manaties-isla-mujeres'), 'Encuentro interactivo con Ferry', 3400.00, '{"incluye": ["Interacción de 40 min", "Ferry ida y vuelta", "Almuerzo buffet"], "no_incluye": ["Tasa portuaria obligatoria de $15 USD", "Paquete fotográfico"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='manaties-isla-mujeres'), 'Encuentro interactivo con Ferry', 3400.00, '{"incluye": ["Interacción de 40 min", "Ferry ida y vuelta", "Almuerzo buffet"], "no_incluye": ["Tasa portuaria obligatoria de $15 USD", "Paquete fotográfico"]}'::jsonb),
 
-((SELECT id FROM public.activities WHERE slug='lucha-libre-cdmx'), 'Tour Taller + Lucha VIP', 3400.00, '{"incluye": ["Taller de máscara", "Máscara de regalo", "Entrada Arena México", "Cerveza ilimitada previa"], "no_incluye": ["Alimentos sólidos en la arena", "Transporte de regreso al hotel"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='lucha-libre-cdmx'), 'Tour Taller + Lucha VIP', 3400.00, '{"incluye": ["Taller de máscara", "Máscara de regalo", "Entrada Arena México", "Cerveza ilimitada previa"], "no_incluye": ["Alimentos sólidos en la arena", "Transporte de regreso al hotel"]}'::jsonb),
 
-((SELECT id FROM public.activities WHERE slug='museo-tequila-mezcal-cdmx'), 'Cata Grupo Reducido', 2600.00, '{"incluye": ["Entrada a MUTEM", "Degustación de 3 tequilas y 2 mezcales", "Snacks tradicionales"], "no_incluye": ["Bebidas adicionales en terraza"]}'::jsonb),
-((SELECT id FROM public.activities WHERE slug='museo-tequila-mezcal-cdmx'), 'Tour Privado Exclusivo', 3500.00, '{"incluye": ["Entrada a MUTEM", "Cata privada premium", "Botella de obsequio"], "no_incluye": ["Traslados a la plaza"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='museo-tequila-mezcal-cdmx'), 'Cata Grupo Reducido', 2600.00, '{"incluye": ["Entrada a MUTEM", "Degustación de 3 tequilas y 2 mezcales", "Snacks tradicionales"], "no_incluye": ["Bebidas adicionales en terraza"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='museo-tequila-mezcal-cdmx'), 'Tour Privado Exclusivo', 3500.00, '{"incluye": ["Entrada a MUTEM", "Cata privada premium", "Botella de obsequio"], "no_incluye": ["Traslados a la plaza"]}'::jsonb),
 
-((SELECT id FROM public.activities WHERE slug='murales-diego-rivera-cdmx'), 'Tour a pie histórico', 2680.00, '{"incluye": ["Tour guiado especializado", "Entrada a museos SEP y Bellas Artes"], "no_incluye": ["Comidas", "Propinas"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='murales-diego-rivera-cdmx'), 'Tour a pie histórico', 2680.00, '{"incluye": ["Tour guiado especializado", "Entrada a museos SEP y Bellas Artes"], "no_incluye": ["Comidas", "Propinas"]}'::jsonb),
 
-((SELECT id FROM public.activities WHERE slug='cuevas-tolantongo'), 'Acceso General desde CDMX', 1600.00, '{"incluye": ["Transporte redondo desde CDMX", "Entrada a las cuevas", "Transporte interno"], "no_incluye": ["Almuerzo y Desayuno"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='cuevas-tolantongo'), 'Acceso General desde CDMX', 1600.00, '{"incluye": ["Transporte redondo desde CDMX", "Entrada a las cuevas", "Transporte interno"], "no_incluye": ["Almuerzo y Desayuno"]}'::jsonb),
 
-((SELECT id FROM public.activities WHERE slug='tiburon-ballena-desde-cabo'), 'Expedición de Snorkel Completa', 5100.00, '{"incluye": ["Traslado desde Los Cabos", "Equipo snorkel y traje neopreno", "Desayuno ligero y almuerzo de tacos"], "no_incluye": ["Impuesto portuario $5 USD"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='tiburon-ballena-desde-cabo'), 'Expedición de Snorkel Completa', 5100.00, '{"incluye": ["Traslado desde Los Cabos", "Equipo snorkel y traje neopreno", "Desayuno ligero y almuerzo de tacos"], "no_incluye": ["Impuesto portuario $5 USD"]}'::jsonb),
 
-((SELECT id FROM public.activities WHERE slug='mariposa-monarca-rosario'), 'Santuario con transporte', 3200.00, '{"incluye": ["Entrada al santuario", "Tickets de peaje", "Transporte"], "no_incluye": ["Alquiler opcional de caballo de subida"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='mariposa-monarca-rosario'), 'Santuario con transporte', 3200.00, '{"incluye": ["Entrada al santuario", "Tickets de peaje", "Transporte"], "no_incluye": ["Alquiler opcional de caballo de subida"]}'::jsonb),
 
-((SELECT id FROM public.activities WHERE slug='amealco-tequisquiapan-bernal'), 'Tour Cultural 3 Pueblos', 3780.00, '{"incluye": ["Transporte", "Guía turístico", "Taller de muñecos Lele"], "no_incluye": ["Alimentos"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='amealco-tequisquiapan-bernal'), 'Tour Cultural 3 Pueblos', 3780.00, '{"incluye": ["Transporte", "Guía turístico", "Taller de muñecos Lele"], "no_incluye": ["Alimentos"]}'::jsonb),
 
-((SELECT id FROM public.activities WHERE slug='safari-oceanico-la-paz'), 'Safari Oceánico', 5100.00, '{"incluye": ["Navegación en panga", "Biólogo marino", "Equipo snorkel", "Comida y bebidas"], "no_incluye": ["Propinas"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='safari-oceanico-la-paz'), 'Safari Oceánico', 5100.00, '{"incluye": ["Navegación en panga", "Biólogo marino", "Equipo snorkel", "Comida y bebidas"], "no_incluye": ["Propinas"]}'::jsonb),
 
-((SELECT id FROM public.activities WHERE slug='nado-tiburon-ballena-biologo'), 'Nado en Yate Compartido', 4300.00, '{"incluye": ["Equipo snorkel", "Traje neopreno", "Guía biólogo marino"], "no_incluye": ["Transporte terrestre hasta la marina"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='nado-tiburon-ballena-biologo'), 'Nado en Yate Compartido', 4300.00, '{"incluye": ["Equipo snorkel", "Traje neopreno", "Guía biólogo marino"], "no_incluye": ["Transporte terrestre hasta la marina"]}'::jsonb),
 
-((SELECT id FROM public.activities WHERE slug='safari-delfines-orcas-paz'), 'Expedición en alta mar', 5300.00, '{"incluye": ["Safari guiado 8 horas", "Snacks y bebidas"], "no_incluye": ["Alimentos fuertes"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='safari-delfines-orcas-paz'), 'Expedición en alta mar', 5300.00, '{"incluye": ["Safari guiado 8 horas", "Snacks y bebidas"], "no_incluye": ["Alimentos fuertes"]}'::jsonb),
 
-((SELECT id FROM public.activities WHERE slug='avistamiento-ballenas-cabos'), 'Avistamiento Clásico en Bote', 2200.00, '{"incluye": ["Embarcación segura", "Guía experto", "Agua y equipo salvavidas"], "no_incluye": ["Transporte del hotel a marina"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='avistamiento-ballenas-cabos'), 'Avistamiento Clásico en Bote', 2200.00, '{"incluye": ["Embarcación segura", "Guía experto", "Agua y equipo salvavidas"], "no_incluye": ["Transporte del hotel a marina"]}'::jsonb),
 
-((SELECT id FROM public.activities WHERE slug='crucero-pirata-cabos'), 'Show y Cena', 1900.00, '{"incluye": ["Espectáculo", "Cena barbacoa", "Barra Libre"], "no_incluye": ["Impuesto portuario de $5 USD"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='crucero-pirata-cabos'), 'Show y Cena', 1900.00, '{"incluye": ["Espectáculo", "Cena barbacoa", "Barra Libre"], "no_incluye": ["Impuesto portuario de $5 USD"]}'::jsonb),
 
-((SELECT id FROM public.activities WHERE slug='arco-lancha-transparente'), 'Recorrido cristal', 3500.00, '{"incluye": ["Paseo lancha cristal", "Visita Arco", "Cata de tequila"], "no_incluye": ["Impuesto muelle $100 MXN"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='arco-lancha-transparente'), 'Recorrido cristal', 3500.00, '{"incluye": ["Paseo lancha cristal", "Visita Arco", "Cata de tequila"], "no_incluye": ["Impuesto muelle $100 MXN"]}'::jsonb),
 
-((SELECT id FROM public.activities WHERE slug='delfines-arrecife-martinica'), 'Tour snorkel Caribe', 1800.00, '{"incluye": ["Guía bilingüe", "Aperitivos locales y bebidas"], "no_incluye": ["Propinas"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='delfines-arrecife-martinica'), 'Tour snorkel Caribe', 1800.00, '{"incluye": ["Guía bilingüe", "Aperitivos locales y bebidas"], "no_incluye": ["Propinas"]}'::jsonb),
 
-((SELECT id FROM public.activities WHERE slug='tour-morelia-centro'), 'Tour Privado a Pie', 8460.00, '{"incluye": ["Guía local experto exclusivo", "Ruta histórica flexible"], "no_incluye": ["Alimentos y entradas a museos no especificados"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='tour-morelia-centro'), 'Tour Privado a Pie', 8460.00, '{"incluye": ["Guía local experto exclusivo", "Ruta histórica flexible"], "no_incluye": ["Alimentos y entradas a museos no especificados"]}'::jsonb),
 
-((SELECT id FROM public.activities WHERE slug='nevado-toluca-cima'), 'Ascenso a cráter', 4500.00, '{"incluye": ["Guía profesional de montaña", "Bastones de apoyo", "Seguro de accidentes"], "no_incluye": ["Alimentos", "Propinas"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='nevado-toluca-cima'), 'Ascenso a cráter', 4500.00, '{"incluye": ["Guía profesional de montaña", "Bastones de apoyo", "Seguro de accidentes"], "no_incluye": ["Alimentos", "Propinas"]}'::jsonb),
 
-((SELECT id FROM public.activities WHERE slug='patzcuaro-janitzio-redes'), 'Paseo cultural de un día', 3850.00, '{"incluye": ["Guía/conductor", "Boleto de lancha a isla Janitzio"], "no_incluye": ["Alimentos", "Propinas a pescadores"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='patzcuaro-janitzio-redes'), 'Paseo cultural de un día', 3850.00, '{"incluye": ["Guía/conductor", "Boleto de lancha a isla Janitzio"], "no_incluye": ["Alimentos", "Propinas a pescadores"]}'::jsonb),
 
-((SELECT id FROM public.activities WHERE slug='liberacion-tortugas-vallarta'), 'Liberación Atardecer', 1800.00, '{"incluye": ["Guía especializado en biología", "Donativo al campamento", "Participación en liberación"], "no_incluye": ["Traslados"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='liberacion-tortugas-vallarta'), 'Liberación Atardecer', 1800.00, '{"incluye": ["Guía especializado en biología", "Donativo al campamento", "Participación en liberación"], "no_incluye": ["Traslados"]}'::jsonb),
 
-((SELECT id FROM public.activities WHERE slug='bernal-freixenet-queretaro'), 'Cata y Pueblo Mágico', 1600.00, '{"incluye": ["Transporte desde centro", "Entrada a Cavas Freixenet", "Cata de vino"], "no_incluye": ["Ascenso a cima de la Peña"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='bernal-freixenet-queretaro'), 'Cata y Pueblo Mágico', 1600.00, '{"incluye": ["Transporte desde centro", "Entrada a Cavas Freixenet", "Cata de vino"], "no_incluye": ["Ascenso a cima de la Peña"]}'::jsonb),
 
-((SELECT id FROM public.activities WHERE slug='tranvia-clasico-queretaro'), 'Tour 1 Ruta Corta', 500.00, '{"incluye": ["Boleto en Tranvía", "Guía narrador"], "no_incluye": ["Descensos"]}'::jsonb),
-((SELECT id FROM public.activities WHERE slug='tranvia-clasico-queretaro'), 'Tour 2 Rutas Completas', 900.00, '{"incluye": ["Boleto Tranvía ruta extendida", "Guía narrador"], "no_incluye": ["Descensos"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='tranvia-clasico-queretaro'), 'Tour 1 Ruta Corta', 500.00, '{"incluye": ["Boleto en Tranvía", "Guía narrador"], "no_incluye": ["Descensos"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='tranvia-clasico-queretaro'), 'Tour 2 Rutas Completas', 900.00, '{"incluye": ["Boleto Tranvía ruta extendida", "Guía narrador"], "no_incluye": ["Descensos"]}'::jsonb),
 
-((SELECT id FROM public.activities WHERE slug='aqua-nick-riviera-maya'), 'Pase Acceso Total', 5800.00, '{"incluye": ["Entrada total al parque", "Comidas y bebidas en Splash Bites", "Toallas"], "no_incluye": ["Lockers, se rentan por separado"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='aqua-nick-riviera-maya'), 'Pase Acceso Total', 5800.00, '{"incluye": ["Entrada total al parque", "Comidas y bebidas en Splash Bites", "Toallas"], "no_incluye": ["Lockers, se rentan por separado"]}'::jsonb),
 
-((SELECT id FROM public.activities WHERE slug='santuario-mono-perezoso'), 'Visita a Santuario y Club de Playa', 3500.00, '{"incluye": ["Transporte", "Guía", "Entrada a parque de monos", "Pase de club de playa"], "no_incluye": ["Comidas y bebidas en club de playa"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='santuario-mono-perezoso'), 'Visita a Santuario y Club de Playa', 3500.00, '{"incluye": ["Transporte", "Guía", "Entrada a parque de monos", "Pase de club de playa"], "no_incluye": ["Comidas y bebidas en club de playa"]}'::jsonb),
 
-((SELECT id FROM public.activities WHERE slug='paseo-caballo-sayulita'), 'Paseo Corto (1 hora)', 2200.00, '{"incluye": ["Caballo y equipo", "Guía", "Agua", "Acceso a piscina del rancho"], "no_incluye": ["Propinas"]}'::jsonb),
-((SELECT id FROM public.activities WHERE slug='paseo-caballo-sayulita'), 'Paseo Atardecer (2 horas)', 2150.00, '{"incluye": ["Caballo y equipo", "Paseo por la playa al atardecer", "Acceso a piscina"], "no_incluye": ["Propinas"]}'::jsonb),
-((SELECT id FROM public.activities WHERE slug='paseo-caballo-sayulita'), 'Expedición Larga Selva (2.5 horas)', 2900.00, '{"incluye": ["Caballo y equipo", "Ruta extendida", "Acceso a piscina"], "no_incluye": ["Propinas"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='paseo-caballo-sayulita'), 'Paseo Corto (1 hora)', 2200.00, '{"incluye": ["Caballo y equipo", "Guía", "Agua", "Acceso a piscina del rancho"], "no_incluye": ["Propinas"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='paseo-caballo-sayulita'), 'Paseo Atardecer (2 horas)', 2150.00, '{"incluye": ["Caballo y equipo", "Paseo por la playa al atardecer", "Acceso a piscina"], "no_incluye": ["Propinas"]}'::jsonb),
+((SELECT id FROM public.activities_roamviax WHERE slug='paseo-caballo-sayulita'), 'Expedición Larga Selva (2.5 horas)', 2900.00, '{"incluye": ["Caballo y equipo", "Ruta extendida", "Acceso a piscina"], "no_incluye": ["Propinas"]}'::jsonb),
 
-((SELECT id FROM public.activities WHERE slug='abejas-mayas-xkopek'), 'Tour Meliponas', 800.00, '{"incluye": ["Entrada a parque Xkopek", "Visita cenote seco", "Cata de mieles y bebida"], "no_incluye": ["Transporte al parque"]}'::jsonb);
+((SELECT id FROM public.activities_roamviax WHERE slug='abejas-mayas-xkopek'), 'Tour Meliponas', 800.00, '{"incluye": ["Entrada a parque Xkopek", "Visita cenote seco", "Cata de mieles y bebida"], "no_incluye": ["Transporte al parque"]}'::jsonb);
 -- =====================================================================================
 -- 8. INSERTAR DETALLES MUNDIAL
 -- =====================================================================================

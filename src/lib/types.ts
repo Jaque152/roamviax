@@ -61,7 +61,6 @@ export interface CustomQuote {
   phone: string;
   destination: string;
   start_date?: string;
-  end_date?: string;
   pax_qty: number; 
   budget: string;
   special_requests: string;
@@ -108,7 +107,7 @@ export interface BookingItem {
   activity_packages?: {
     features: PackageFeatures;
     package_name: string;
-    activities: { title: string; location: string };
+    activities_roamviax: { title: string; location: string };
   };
 }
 

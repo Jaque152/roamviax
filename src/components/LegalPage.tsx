@@ -48,7 +48,7 @@ export function LegalPage({ title, sections }: LegalPageProps) {
           {/* Footer del Documento */}
           <div className="mt-20 pt-8 border-t border-border">
             <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-              Roamviax — Luxury Travel
+              Roamviax — Viajes de lujo
             </p>
           </div>
           

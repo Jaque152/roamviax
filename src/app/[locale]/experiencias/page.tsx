@@ -33,7 +33,7 @@ function ExperienciasContent() {
         if (catData) setCategories(catData);
 
         const { data: actData } = await supabase
-          .from('activities')
+          .from('activities_roamviax')
           .select(`
             id, title, slug, description, location, images, category_id,
             categories (id, name, slug),
@@ -186,7 +186,7 @@ function ExperienciasContent() {
                       
                       <div className="mt-auto pt-6 border-t border-border flex items-center justify-between">
                         <div>
-                          <p className="text-[9px] uppercase tracking-[0.2em] text-muted-foreground mb-1"><T>Desde</T></p>
+                          <p className="text-[9px] uppercase tracking-[0.2em] text-muted-foreground mb-1"><T>IVA incluido</T></p>
                           <div className="flex items-baseline gap-2">
                             <p className="text-lg font-serif font-medium text-foreground">
                               {formatPrice(exp.displayPrice)}

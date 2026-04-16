@@ -7,7 +7,7 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     // Añadimos 'phone' que viene del formulario de contacto
-    const { type, customerName, email, phone, destination, message, locale, budget, startDate, endDate, travelers } = body; 
+    const { type, customerName, email, phone, destination, message, locale, budget, startDate, travelers } = body; 
 
     // 1. ABRIR EL CANDADO: Permitimos QUOTE y CONTACT
     if (type !== 'QUOTE' && type !== 'CONTACT') {
@@ -43,7 +43,7 @@ export async function POST(req: Request) {
         <div style="font-family: 'Georgia', serif; color: #111; max-width: 600px; margin: auto; border: 1px solid #eaeaea;">
           <div style="background-color: ${bgDark}; padding: 40px 20px; text-align: center;">
             <h1 style="color: #fff; font-size: 28px; margin: 0; font-style: italic; letter-spacing: 2px;">roamviax</h1>
-            <p style="color: #888; font-size: 10px; text-transform: uppercase; letter-spacing: 4px; margin-top: 10px;">Luxury Travel | Editorial</p>
+            <p style="color: #888; font-size: 10px; text-transform: uppercase; letter-spacing: 4px; margin-top: 10px;">Viajes de lujo</p>
           </div>
           <div style="padding: 40px 30px; font-family: 'Helvetica Neue', Helvetica, sans-serif;">
             <h2 style="font-family: 'Georgia', serif; font-size: 22px; font-weight: normal;">${greeting}</h2>
@@ -51,7 +51,7 @@ export async function POST(req: Request) {
                         
             <div style="margin: 30px 0; padding-top: 20px; border-top: 1px solid #eaeaea;">
               <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #888; margin-bottom: 15px;">${isEnglish ? 'Trip Details' : 'Detalles de la Solicitud'}</p>
-              <p style="margin: 5px 0; font-size: 14px;"><strong>${isEnglish ? 'Dates:' : 'Fechas:'}</strong> ${startDate} a ${endDate}</p>
+              <p style="margin: 5px 0; font-size: 14px;"><strong>${isEnglish ? 'Date:' : 'Fecha:'}</strong> ${startDate}</p>
               <p style="margin: 5px 0; font-size: 14px;"><strong>${isEnglish ? 'Travelers:' : 'Viajeros:'}</strong> ${travelers}</p>
               <p style="margin: 5px 0; font-size: 14px;"><strong>${isEnglish ? 'Budget:' : 'Presupuesto:'}</strong> ${budget}</p>
             </div>
@@ -73,7 +73,7 @@ export async function POST(req: Request) {
           <hr/>
           <p><strong>Cliente:</strong> ${customerName}</p>
           <p><strong>Destino:</strong> ${destination}</p>
-          <p><strong>Fechas:</strong> ${startDate} a ${endDate}</p>
+          <p><strong>Fecha:</strong> ${startDate}</p>
           <p><strong>Viajeros:</strong> ${travelers}</p>
           <p><strong>Presupuesto:</strong> ${budget}</p>
           <p><strong>Email:</strong> ${email}</p>

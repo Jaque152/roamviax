@@ -71,13 +71,6 @@ export function Hero() {
             <p className="font-serif text-2xl italic text-foreground">Chichén Itzá</p>
           </div>
 
-          {/* Scroll Indicator (Solo Desktop) */}
-          <div className="absolute bottom-10 left-12 hidden lg:flex items-center gap-3 text-background">
-            <ArrowDownRight className="w-6 h-6 animate-bounce drop-shadow-md" />
-            <span className="text-[10px] uppercase tracking-[0.3em] font-medium drop-shadow-md">
-              <T>Scroll</T>
-            </span>
-          </div>
         </div>
       </div>
     </section>
