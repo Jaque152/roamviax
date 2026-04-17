@@ -83,7 +83,6 @@ CREATE TABLE public.custom_quotes (
   budget VARCHAR,
   special_requests TEXT,
   start_date DATE,
-  end_date DATE,
   status VARCHAR DEFAULT 'pending',
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
