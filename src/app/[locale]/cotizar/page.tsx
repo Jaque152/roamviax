@@ -10,6 +10,8 @@ import { T } from "@/components/T";
 import { useT } from "@/hooks/useT";
 import { Loader2, ArrowRight, MapPin, Calendar, Users, Wallet, MessageSquare, User } from "lucide-react";
 import { supabase } from '@/lib/supabase';
+import { CustomQuote } from "@/lib/types";
+
 
 const BUDGET_OPTIONS = [
   "Menos de $10,000 MXN",
