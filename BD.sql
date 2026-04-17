@@ -255,7 +255,7 @@ WHERE slug = 'nevado-toluca-cima';
 -- 4. Aqua Nick
 UPDATE public.activities_roamviax SET 
   description = 'Vive un día lleno de diversión infinita en Aqua Nick Park en la Riviera Maya. Deslízate por emocionantes toboganes, relájate en los ríos lentos, experimenta el famoso Slime y convive con tus personajes favoritos de Nickelodeon en un entorno acuático espectacular diseñado para toda la familia.',
-  images = '["https://images.unsplash.com/photo-1582293041079-7814c2f12063?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
+  images = '["https://images.pexels.com/photos/31166909/pexels-photo-31166909.jpeg"]'::jsonb,
   what_you_will_do = '["Te lanzarás por toboganes de clase mundial", "Navegarás por el río perezoso y el río de aventuras", "Recibirás el icónico baño de Slime verde de Nickelodeon", "Conocerás a Bob Esponja, Patricio y los Padrinos Mágicos"]'::jsonb,
   itinerary = '["Llegada al parque y entrega de pulseras", "Tiempo libre en la zona de toboganes y piscinas", "Super Slime time en la piscina principal", "Almuerzo en los kioscos de Splash Bites", "Cierre del parque"]'::jsonb,
   requirements = '["Traje de baño puesto y cambio de ropa seca", "Sandalias o calzado acuático", "Protector solar estrictamente biodegradable", "Tarjeta de crédito para consumos extra"]'::jsonb,
@@ -266,7 +266,7 @@ WHERE slug = 'aqua-nick-riviera-maya';
 -- 5. Sayulita Caballo
 UPDATE public.activities_roamviax SET 
   description = 'Desconéctate de la rutina y disfruta de un sereno recorrido a caballo por la exuberante selva tropical y las cálidas playas de Sayulita. Una experiencia relajante y en contacto directo con la naturaleza, perfecta para familias, parejas y jinetes de todos los niveles de experiencia.',
-  images = '["https://images.unsplash.com/photo-1597848467475-4700d23bbdf6?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
+  images = '["https://images.pexels.com/photos/27564247/pexels-photo-27564247.jpeg"]'::jsonb,
   what_you_will_do = '["Cabalgarás por senderos ocultos dentro de la selva nayarita", "Llegarás a una playa virgen para galopar frente al océano", "Aprenderás sobre la flora y fauna local con tu guía"]'::jsonb,
   itinerary = '["Llegada a Rancho Mi Chaparrita y asignación de caballo", "Instrucciones básicas de monta y seguridad", "Recorrido guiado por la selva", "Paseo por la línea de playa", "Regreso al rancho y tiempo libre en la piscina"]'::jsonb,
   requirements = '["Calzado cerrado o tenis deportivos (prohibidas chanclas)", "Pantalón largo cómodo (jeans o leggings)", "Repelente de mosquitos y protector solar", "Efectivo para propinas"]'::jsonb,
@@ -277,7 +277,7 @@ WHERE slug = 'paseo-caballo-sayulita';
 -- 6. Cancun Manaties
 UPDATE public.activities_roamviax SET 
   description = 'Vive un encuentro único y conmovedor con los gentiles manatíes en las aguas cristalinas de Isla Mujeres. Durante este programa interactivo, aprenderás sobre la dieta, el comportamiento y los esfuerzos de conservación de estos increíbles mamíferos marinos mientras compartes el agua con ellos. Además del encuentro, disfrutarás de un día completo de relajación en nuestras instalaciones con acceso a piscinas, comida buffet y bebidas.',
-  images = '["https://images.unsplash.com/photo-1681934336066-bdf8eebf9949?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
+  images = '["https://images.pexels.com/photos/35812286/pexels-photo-35812286.jpeg"]'::jsonb,
   what_you_will_do = '["Interactuarás de forma segura y respetuosa con los manatíes en el agua", "Aprenderás sobre la conservación marina de la mano de especialistas", "Disfrutarás de un día de club de playa en Isla Mujeres con comida y bebidas"]'::jsonb,
   itinerary = '["Cruce en ferry panorámico desde Cancún a Isla Mujeres", "Orientación educativa sobre los manatíes", "Encuentro interactivo en el agua (40 min)", "Almuerzo buffet internacional y barra libre", "Tiempo libre en piscinas y camastros", "Regreso en ferry a Cancún"]'::jsonb,
   requirements = '["Traje de baño puesto", "Cambio de ropa seca y toalla", "Protector solar biodegradable", "Efectivo para pago de impuesto de muelle"]'::jsonb,
@@ -288,7 +288,7 @@ WHERE slug = 'manaties-isla-mujeres';
 -- 7. Tolantongo
 UPDATE public.activities_roamviax SET 
   description = 'Escapa del bullicio de la ciudad y adéntrate en las majestuosas montañas de Hidalgo para descubrir las Grutas de Tolantongo. Relájate en las icónicas pozas termales color turquesa que se asientan en los acantilados, explora la cueva principal de donde brota el río y camina por el túnel de vapor. Un paraíso natural perfecto para desconectar.',
-  images = '["https://images.unsplash.com/photo-1505322022379-7c3353ee6291?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
+  images = '["https://images.pexels.com/photos/12331034/pexels-photo-12331034.jpeg"]'::jsonb,
   what_you_will_do = '["Te bañarás en las famosas pozas termales escalonadas en la montaña", "Explorarás el interior de las grutas y cascadas de agua caliente", "Caminarás por el río turquesa rodeado del cañón"]'::jsonb,
   itinerary = '["Salida desde el punto de encuentro", "Llegada al parque ecológico Tolantongo", "Exploración guiada de la Gruta Principal y el río", "Traslado interno hacia la zona de las Pozas", "Tiempo libre para relajarse en las aguas termales", "Regreso al punto de origen"]'::jsonb,
   requirements = '["Zapatos acuáticos (obligatorios por las piedras del río)", "Funda impermeable para celular", "Traje de baño y muda de ropa seca", "Dinero en efectivo (dentro del parque no aceptan tarjetas)"]'::jsonb,
@@ -299,7 +299,7 @@ WHERE slug = 'cuevas-tolantongo';
 -- 8. Tiburon Ballena desde Cabo
 UPDATE public.activities_roamviax SET 
   description = 'Vive una experiencia extraordinaria nadando junto al pez más grande del planeta en su hábitat natural. Este tour de día completo te lleva desde Los Cabos hasta la Bahía de La Paz, donde abordarás una embarcación especializada para buscar y hacer snorkel con el dócil tiburón ballena. Finaliza el día con unos deliciosos tacos locales en el malecón.',
-  images = '["https://images.unsplash.com/photo-1544324209-6ac0c0429f79?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
+  images = '["https://images.pexels.com/photos/7905793/pexels-photo-7905793.jpeg"]'::jsonb,
   what_you_will_do = '["Viajarás por carretera cruzando el desierto desde Los Cabos hasta La Paz", "Harás snorkel en mar abierto a pocos metros del majestuoso tiburón ballena", "Pasearás por el famoso Malecón de La Paz degustando comida local"]'::jsonb,
   itinerary = '["Pickup en tu hotel en Los Cabos", "Traslado terrestre hacia La Paz con desayuno ligero", "Abordaje de la embarcación y navegación hacia el área de avistamiento", "Snorkel en turnos controlados con el Tiburón Ballena", "Regreso a tierra y almuerzo de tacos tradicionales", "Traslado de regreso a Los Cabos"]'::jsonb,
   requirements = '["Traje de baño (ya puesto)", "Toalla y cambio de ropa seca", "Cámara de acción tipo GoPro", "Chamarra ligera para el traslado matutino"]'::jsonb,
@@ -310,7 +310,7 @@ WHERE slug = 'tiburon-ballena-desde-cabo';
 -- 9. Mariposa Monarca
 UPDATE public.activities_roamviax SET 
   description = 'Adéntrate en los frondosos bosques de oyamel en Michoacán para ser testigo de uno de los fenómenos migratorios más asombrosos del mundo. Millones de mariposas monarca viajan desde Canadá para pasar el invierno en este santuario, cubriendo los árboles de un vibrante color naranja. Una caminata espiritual y en profunda conexión con la naturaleza.',
-  images = '["https://images.unsplash.com/photo-1534260933201-574343169ec7?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
+  images = '["https://images.pexels.com/photos/20199021/pexels-photo-20199021.jpeg"]'::jsonb,
   what_you_will_do = '["Caminarás por los senderos boscosos del Santuario El Rosario", "Observarás racimos gigantes de mariposas monarca colgando de los árboles", "Aprenderás sobre el ciclo de vida y la migración de la especie"]'::jsonb,
   itinerary = '["Llegada a las faldas del Santuario El Rosario", "Ascenso caminando o a caballo (opcional) hacia la zona núcleo", "Tiempo de observación en silencio de las mariposas (aprox 45 min)", "Senderismo de descenso", "Tiempo libre para comida local en el parador turístico"]'::jsonb,
   requirements = '["Calzado cómodo de montaña o tenis con buen agarre", "Ropa abrigada (se recomienda vestirse en capas)", "Protector solar y gorra", "Prismáticos o cámara con buen zoom"]'::jsonb,
@@ -321,7 +321,7 @@ WHERE slug = 'mariposa-monarca-rosario';
 -- 10. Safari Oceanico
 UPDATE public.activities_roamviax SET 
   description = 'Explora el lado más salvaje del Mar de Cortés, conocido como el "Acuario del Mundo". En esta expedición en panga, navegaremos mar adentro buscando encuentros espontáneos con la impresionante fauna local: grandes bancos de delfines, colonias de lobos marinos, mantarrayas gigantes y aves pelágicas.',
-  images = '["https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
+  images = '["https://images.unsplash.com/photo-1582967788606-a171c1080cb0?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
   what_you_will_do = '["Navegarás en mar abierto por los alrededores de la Isla Espíritu Santo o Isla Cerralvo", "Saltarás al agua para hacer snorkel en los arrecifes cuando se presente la oportunidad", "Aprenderás sobre biología marina con guías expertos"]'::jsonb,
   itinerary = '["Encuentro en la marina de La Paz o La Ventana", "Zarpe y navegación de búsqueda en altamar", "Avistamiento de fauna y sesiones de snorkel espontáneas", "Pausa en una playa prístina para almorzar", "Regreso al puerto base"]'::jsonb,
   requirements = '["Chamarra rompevientos (el viento en altamar es frío)", "Traje de baño y toalla", "Protector solar estrictamente biodegradable", "Medicación para el mareo (tomada antes de zarpar)"]'::jsonb,
@@ -332,7 +332,7 @@ WHERE slug = 'safari-oceanico-la-paz';
 -- 11. Tiburon Ballena Biologo
 UPDATE public.activities_roamviax SET 
   description = 'Experimenta el nado con tiburones ballena desde una perspectiva científica y de conservación. Acompañado por biólogos marinos investigadores, aprenderás a identificar a los individuos a través de su patrón de manchas y comprenderás los protocolos estrictos para garantizar un encuentro pasivo, seguro y enriquecedor.',
-  images = '["https://images.unsplash.com/photo-1582967788606-a171c1080cb0?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
+  images = '["https://images.pexels.com/photos/20729267/pexels-photo-20729267.jpeg"]'::jsonb,
   what_you_will_do = '["Nadarás paralelamente al pez más grande del mundo en la bahía de La Paz", "Participarás en la foto-identificación científica de los tiburones observados", "Aprenderás datos fascinantes directamente de los investigadores que los protegen"]'::jsonb,
   itinerary = '["Reunión en las oficinas y charla técnica de conservación", "Caminata al muelle y abordaje", "Navegación corta hacia el Área de Refugio del Tiburón Ballena", "Nados controlados en grupos de máximo 5 personas", "Toma de datos y regreso al muelle"]'::jsonb,
   requirements = '["Traje de baño", "Toalla", "Cámara acuática (prohibido el uso de flash)", "Botella de agua reutilizable"]'::jsonb,
@@ -343,7 +343,7 @@ WHERE slug = 'nado-tiburon-ballena-biologo';
 -- 12. Safari Delfines y Orcas
 UPDATE public.activities_roamviax SET 
   description = 'Una expedición de mar profundo para verdaderos amantes del océano. Pasaremos hasta 8 horas navegando en el Mar de Cortés en busca de los grandes depredadores pelágicos. Aunque los avistamientos de orcas son raros y especiales, las posibilidades de nadar con inmensas manadas de delfines salvajes y leones marinos hacen de este safari una experiencia épica.',
-  images = '["https://images.unsplash.com/photo-1600612294445-5ee882672db1?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
+  images = '["https://images.pexels.com/photos/33603932/pexels-photo-33603932.jpeg"]'::jsonb,
   what_you_will_do = '["Explorarás zonas alejadas de la costa en busca de megafauna marina", "Te deslizarás al agua para interactuar con delfines en libertad (si las condiciones lo permiten)", "Disfrutarás del entorno virgen de las islas del Golfo de California"]'::jsonb,
   itinerary = '["Zarpe a primera hora de la mañana", "Navegación intensiva de exploración mar adentro (cubriendo grandes distancias)", "Interacciones y snorkel", "Parada breve para almuerzo a bordo", "Continuación de la búsqueda y regreso al atardecer"]'::jsonb,
   requirements = '["Ropa cómoda en capas y chamarra rompevientos", "Sombrero o gorra que no vuele con el viento y lentes polarizados", "Protector solar amigable con el arrecife", "Pastillas para el mareo"]'::jsonb,
@@ -365,7 +365,7 @@ WHERE slug = 'avistamiento-ballenas-cabos';
 -- 14. Lancha Transparente Cabos
 UPDATE public.activities_roamviax SET 
   description = 'Descubre los secretos del Mar de Cortés de una forma completamente nueva: a bordo de una lancha con fondo y laterales totalmente transparentes. Mientras navegas hacia el famoso Arco de Cabo San Lucas, podrás ver bajo tus pies el arrecife de coral, coloridos peces tropicales y el fascinante relieve submarino sin necesidad de mojarte.',
- images = '["https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
+ images = '["https://images.pexels.com/photos/22912077/pexels-photo-22912077.jpeg"]'::jsonb,
   what_you_will_do = '["Observarás la vida marina a través del acrílico transparente de la embarcación", "Visitarás el Dedo de Neptuno, la Playa del Amor y la Playa del Divorcio", "Tomarás la foto obligada frente al monumental Arco de Los Cabos"]'::jsonb,
   itinerary = '["Zarpe desde la marina", "Recorrido bordeando la costa hacia el Fin de la Tierra (Land''s End)", "Observación de peces desde la lancha", "Parada frente al Arco y la colonia de lobos marinos para fotos", "Regreso al puerto", "Opcional: Degustación de tequila en la marina"]'::jsonb,
   requirements = '["Ropa cómoda de playa y sombrero", "Prohibido estrictamente el uso de zapatos con tacón (se debe abordar descalzo o con sandalias suaves)", "Protector solar"]'::jsonb,
@@ -387,7 +387,7 @@ WHERE slug = 'delfines-arrecife-martinica';
 -- 16. Tortugas Vallarta
 UPDATE public.activities_roamviax SET 
   description = 'Conéctate con la naturaleza y participa activamente en la conservación marina en las costas de Puerto Vallarta. Durante la temporada de desove, cientos de tortugas golfinas llegan a estas playas. Acompaña a los biólogos del campamento tortuguero al atardecer para liberar a las pequeñas crías recién nacidas, protegiéndolas de los depredadores hasta que alcancen el océano.',
-  images = '["https://images.unsplash.com/photo-1518331539958-36109559c5a1?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
+  images = '["https://images.pexels.com/photos/35246138/pexels-photo-35246138.jpeg"]'::jsonb,
   what_you_will_do = '["Aprenderás sobre el ciclo de vida y los retos de supervivencia de las tortugas marinas", "Conocerás el corral de incubación donde se protegen los nidos rescatados", "Ayudarás a liberar una o más tortuguitas en la arena y las verás caminar hacia las olas al atardecer"]'::jsonb,
   itinerary = '["Llegada al campamento tortuguero (ubicado en la playa de Nuevo Vallarta/Boca de Tomates)", "Plática educativa y concientización impartida por biólogos", "Entrega de las crías en contenedores adecuados", "Caminata a la orilla del mar justo al ocultarse el sol", "Liberación y observación hasta que ingresan al agua"]'::jsonb,
   requirements = '["Ropa ligera y cómoda", "Repelente de insectos ecológico (indispensable para el atardecer en la playa)", "Cámara fotográfica (IMPORTANTE: Desactivar el flash)", "Sandalias fáciles de quitar"]'::jsonb,
@@ -398,7 +398,7 @@ WHERE slug = 'liberacion-tortugas-vallarta';
 -- 17. Roatan Monos
 UPDATE public.activities_roamviax SET 
   description = 'Descubre el lado más exótico y tierno de la isla de Roatán. Visita un santuario dedicado a la preservación y rehabilitación de la fauna hondureña. Camina entre frondosos jardines tropicales donde interactuarás cara a cara con simpáticos monos capuchinos, coloridas guacamayas y tendrás la oportunidad única de sostener en tus brazos a un dócil perezoso de tres dedos.',
-  images = '["https://images.unsplash.com/photo-1529141071295-8e7c196b2723?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
+  images = '["https://images.pexels.com/photos/32896689/pexels-photo-32896689.jpeg"]'::jsonb,
   what_you_will_do = '["Cargarás y abrazarás a los famosos y tranquilos perezosos de la isla", "Verás a los curiosos monos ardilla saltar y jugar cerca de ti", "Disfrutarás de tiempo libre en un club de playa privado del Caribe"]'::jsonb,
   itinerary = '["Traslado desde tu hotel o puerto de cruceros al Santuario (Monkey and Sloth Hangout)", "Recorrido guiado por el parque interactuando con los animales rescatados", "Traslado a la costa oeste de la isla (West Bay o West End)", "Tiempo libre en club de playa para nadar y relajarse", "Regreso al punto de inicio"]'::jsonb,
   requirements = '["Ropa fresca tropical", "Repelente de insectos", "Traje de baño y toalla para la parte del club de playa", "Dinero extra para comida y bebidas en la playa"]'::jsonb,
@@ -409,7 +409,7 @@ WHERE slug = 'santuario-mono-perezoso';
 -- 18. Lucha Libre CDMX
 UPDATE public.activities_roamviax SET 
   description = 'Sumérgete en la vibrante y folclórica cultura de México con una noche de Lucha Libre. Antes de dirigirte a la icónica Arena México, participarás en un taller interactivo donde conocerás la historia detrás de las máscaras y crearás la tuya propia. Después, disfrutarás de cervezas mientras gritas, ríes y te emocionas con las acrobacias aéreas de los técnicos y las rudezas de los rudos en la catedral de la lucha libre.',
-  images = '["https://images.unsplash.com/photo-1542456434-2e915b225916?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
+  images = '["https://images.pexels.com/photos/30098651/pexels-photo-30098651.jpeg"]'::jsonb,
   what_you_will_do = '["Personalizarás tu propia máscara de luchador en un taller creativo", "Aprenderás sobre las leyendas del ring como El Santo y Blue Demon", "Experimentarás el ambiente eléctrico, los gritos y la pasión del espectáculo en vivo dentro de la Arena México"]'::jsonb,
   itinerary = '["Punto de encuentro en una cervecería de la Colonia Roma", "Charla cultural y taller de máscaras acompañado de cerveza", "Caminata en grupo hacia la Arena México (aprox. 15 min)", "Ingreso y acomodo en las butacas preferentes", "Disfrute de 2 horas de peleas estelares", "Fin del tour a las afueras de la arena"]'::jsonb,
   requirements = '["Calzado extremadamente cómodo", "Dinero en efectivo (dentro de la arena no aceptan tarjeta para snacks o souvenirs típicos)"]'::jsonb,
@@ -420,7 +420,7 @@ WHERE slug = 'lucha-libre-cdmx';
 -- 19. Murales Diego Rivera CDMX
 UPDATE public.activities_roamviax SET 
   description = 'Viaja a través de la convulsa y fascinante historia de México plasmada en las paredes de sus edificios más emblemáticos. En este recorrido cultural a pie por el Centro Histórico, un experto en historia del arte te guiará para decodificar los símbolos, los ideales políticos y las historias de amor ocultas en los monumentales frescos pintados por Diego Rivera y otros grandes exponentes del muralismo mexicano.',
-  images = '["https://images.unsplash.com/photo-1574246604907-be1469a295c5?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
+  images = '["https://images.pexels.com/photos/8485967/pexels-photo-8485967.jpeg"]'::jsonb,
   what_you_will_do = '["Admirarás los inmensos murales del Palacio Nacional y la Secretaría de Educación Pública", "Descubrirás la técnica al fresco y el mensaje revolucionario detrás del arte", "Observarás el famoso mural ''Sueño de una tarde dominical en la Alameda Central''"]'::jsonb,
   itinerary = '["Encuentro en el Zócalo capitalino", "Recorrido por los patios de Palacio Nacional (sujeto a disponibilidad gubernamental)", "Visita a la Secretaría de Educación Pública (SEP)", "Caminata histórica por calle Tacuba hacia la Alameda", "Ingreso al Museo Mural Diego Rivera", "Fin del tour en las inmediaciones de Bellas Artes"]'::jsonb,
   requirements = '["Calzado muy cómodo para caminar varias horas por el centro", "Identificación oficial (Pasaporte o INE) obligatoria para ingresar a los recintos gubernamentales", "Sombrero y botella de agua"]'::jsonb,
@@ -431,7 +431,7 @@ WHERE slug = 'murales-diego-rivera-cdmx';
 -- 20. Excursion Amealco
 UPDATE public.activities_roamviax SET 
   description = 'Adéntrate en el corazón cultural del estado de Querétaro. Este viaje de día completo te llevará desde la herencia indígena de los otomíes hasta la majestuosidad geológica de la Sierra Gorda. Conocerás el Pueblo Mágico de Amealco, cuna de la famosa muñeca artesanal "Lele", pasearás por las pintorescas calles de Tequisquiapan y te maravillarás a las faldas de la Peña de Bernal, el tercer monolito más grande del mundo.',
-  images = '["https://images.unsplash.com/photo-1518605368461-1e18375e2bf1?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
+  images = '["https://images.pexels.com/photos/33703937/pexels-photo-33703937.jpeg"]'::jsonb,
   what_you_will_do = '["Aprenderás a confeccionar tu propia muñeca otomí (Lele) junto a artesanas locales", "Caminarás por la plaza principal y los mercados de artesanías de Tequisquiapan", "Probarás las famosas gorditas de maíz quebrado a las faldas del monolito de Bernal"]'::jsonb,
   itinerary = '["Salida desde la ciudad de Querétaro", "Llegada a Amealco y taller de artesanía textil", "Traslado a Tequisquiapan y tiempo libre para explorar y almorzar", "Viaje hacia San Sebastián Bernal", "Caminata guiada por las calles del pueblo mágico de Bernal y vistas del monolito", "Regreso a Querétaro al atardecer"]'::jsonb,
   requirements = '["Ropa ligera para el día y un suéter para la tarde (el clima cambia drásticamente)", "Zapatos cómodos para caminar por calles empedradas", "Efectivo para comprar artesanías directamente a los productores locales"]'::jsonb,
@@ -442,7 +442,7 @@ WHERE slug = 'amealco-tequisquiapan-bernal';
 -- 21. Morelia Centro
 UPDATE public.activities_roamviax SET 
   description = 'Descubre por qué el corazón de Morelia fue declarado Patrimonio de la Humanidad por la UNESCO. Construida majestuosamente con cantera rosa, esta ciudad virreinal esconde secretos, leyendas coloniales y joyas arquitectónicas inigualables. Camina junto a un historiador local a través de plazas señoriales, enormes acueductos y templos imponentes que te transportarán en el tiempo.',
-  images = '["https://images.unsplash.com/photo-1580052614034-c55d20bfee3b?q=80&w=1200&auto=format&fit=crop"]'::jsonb,
+  images = '["https://images.pexels.com/photos/12332269/pexels-photo-12332269.jpeg"]'::jsonb,
   what_you_will_do = '["Admirarás la imponente Catedral de Morelia y su órgano monumental", "Visitarás el interior del Palacio de Gobierno y sus murales que relatan la independencia", "Caminarás a lo largo del Acueducto y la fuente de las Tarascas", "Disfrutarás de los colores y olores del Mercado de Dulces y Artesanías"]'::jsonb,
   itinerary = '["Encuentro en la Plaza de Armas", "Visita guiada a la Catedral", "Recorrido por los portales virreinales y el Palacio de Gobierno", "Caminata por el callejón del romance hacia el Conservatorio de las Rosas", "Visita al Mercado de Dulces y el Palacio Clavijero", "Fin del recorrido cerca del Acueducto"]'::jsonb,
   requirements = '["Calzado muy cómodo (todo el recorrido es peatonal sobre adoquín)", "Sombrero, gorra o sombrilla", "Cámara fotográfica"]'::jsonb,
@@ -475,7 +475,7 @@ WHERE slug = 'bernal-freixenet-queretaro';
 -- 24. Tranvia Queretaro
 UPDATE public.activities_roamviax SET 
   description = 'Descubre las historias, mitos y leyendas de la época virreinal de una manera divertida y nostálgica. A bordo de una réplica de un tranvía de principios de siglo XX, recorrerás las calles adoquinadas del centro de Santiago de Querétaro, pasando por sus monumentos más majestuosos mientras un guía caracterizado narra los pasajes más emocionantes que forjaron la Independencia de México.',
-  images = '[https://images.pexels.com/photos/12013551/pexels-photo-12013551.jpeg"]'::jsonb,
+  images = '["https://images.pexels.com/photos/12013551/pexels-photo-12013551.jpeg"]'::jsonb,
   what_you_will_do = '["Viajarás cómodamente en un tranvía abierto ideal para tomar fotografías", "Admirarás la inmensidad de Los Arcos (el acueducto colonial de la ciudad)", "Conocerás el Teatro de la República y el Cerro de las Campanas desde tu asiento"]'::jsonb,
   itinerary = '["Encuentro en el punto de abordaje (Plaza de la Corregidora o Jardín Zenea)", "Inicio del recorrido panorámico", "Paso por el Acueducto, Templo de la Cruz, Panteón de los Queretanos Ilustres", "Paso por el Cerro de las Campanas (dependiendo de la ruta elegida)", "Regreso al punto de inicio"]'::jsonb,
   requirements = '["Cámara fotográfica o celular listo", "Sombrero y bloqueador solar para los recorridos diurnos", "Chamarra ligera para los recorridos nocturnos"]'::jsonb,
